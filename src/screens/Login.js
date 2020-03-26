@@ -1,10 +1,16 @@
 import React, {useState} from 'react';
-import {SafeAreaView, TextInput, StyleSheet, Button} from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
-import {callMoodleWebService} from '../api/helper';
+import {
+  SafeAreaView,
+  TextInput,
+  StyleSheet,
+  Button,
+  TouchableOpacity,
+  Text,
+} from 'react-native';
+import {renewMoodleUserToken} from '../api/helper';
 
-const Login = () => {
-  const [email, setEmail] = useState('');
+const Login = ({navigation}) => {
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const styles = StyleSheet.create({
@@ -16,43 +22,21 @@ const Login = () => {
     },
   });
 
-  const getSiteInfo = async () => {
-    try {
-      const {sitename} = await callMoodleWebService(
-        'core_webservice_get_site_info',
-      );
-      console.log('Sitename: ' + sitename);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const getUserToken = async () => {
-    const response = await fetch(
-      `http://localhost/login/token.php?service=moodle_mobile_app&username=${email}&password=${password}`,
-    );
-    const {token, errorcode} = await response.json();
-
-    if (errorcode) {
-      console.log('Error: ' + errorcode);
-    } else {
-      try {
-        AsyncStorage.setItem('MOODLE_USER_TOKEN', token);
-      } catch (error) {
-        console.log(error);
-      }
-      console.log('Logado com sucesso: ' + token);
-      getSiteInfo();
+    try {
+      await renewMoodleUserToken({username: username, password});
+    } catch (error) {
+      console.error(error);
     }
   };
 
   return (
     <SafeAreaView>
       <TextInput
-        placeholder={'Email'}
+        placeholder={'Nome de usuario'}
         style={styles.input}
         placeholderTextColor={'#000'}
-        onChangeText={text => setEmail(text)}
+        onChangeText={text => setUsername(text)}
       />
       <TextInput
         placeholder={'Senha'}
@@ -61,6 +45,9 @@ const Login = () => {
         onChangeText={text => setPassword(text)}
       />
       <Button title={'Entrar'} onPress={getUserToken} />
+      <TouchableOpacity onPress={() => navigation.push('register')}>
+        <Text>Register</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
