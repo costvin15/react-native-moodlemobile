@@ -25,6 +25,7 @@ const Login = ({navigation}) => {
   const getUserToken = async () => {
     try {
       await renewMoodleUserToken({username: username, password});
+      navigation.replace('home');
     } catch (error) {
       console.error(error);
     }
