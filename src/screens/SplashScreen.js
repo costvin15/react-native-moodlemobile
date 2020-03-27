@@ -8,9 +8,9 @@ const SplashScreen = ({navigation}) => {
   const verifyLogin = async () => {
     const token = await AsyncStorage.getItem(Constants.MOODLE_USER_TOKEN);
     if (!token) {
-      navigation.replace('login');
+      navigation.jumpTo('login');
     } else {
-      navigation.replace('home');
+      navigation.jumpTo('home');
     }
   };
 

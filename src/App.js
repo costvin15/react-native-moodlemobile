@@ -1,19 +1,19 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import {Home, Login, Register, SplashScreen} from './screens';
 
 const App = () => {
-  const Stack = createStackNavigator();
+  const Drawer = createDrawerNavigator();
 
   return (
     <NavigationContainer>
-      <Stack.Navigator headerMode={'none'} initialRouteName="splashscreen">
-        <Stack.Screen name="login" component={Login} />
-        <Stack.Screen name="home" component={Home} />
-        <Stack.Screen name="register" component={Register} />
-        <Stack.Screen name="splashscreen" component={SplashScreen} />
-      </Stack.Navigator>
+      <Drawer.Navigator initialRouteName="splashscreen">
+        <Drawer.Screen name="login" component={Login} />
+        <Drawer.Screen name="home" component={Home} />
+        <Drawer.Screen name="register" component={Register} />
+        <Drawer.Screen name="splashscreen" component={SplashScreen} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 };
