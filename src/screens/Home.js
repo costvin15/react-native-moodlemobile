@@ -1,11 +1,10 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
-import {Toolbar} from '../components';
+import {SafeAreaView, Text} from 'react-native';
 
-const Home = () => {
+const Home = ({navigation}) => {
   return (
     <SafeAreaView>
-      <Toolbar title={'Hello, World!'} />
+      <Text>Hello, Home</Text>
     </SafeAreaView>
   );
 };
