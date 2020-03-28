@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import {SafeAreaView, Text} from 'react-native';
+import {View, StatusBar, Text} from 'react-native';
 import {Toolbar} from 'react-native-material-ui';
 
 const Stack = createStackNavigator();
@@ -10,7 +10,10 @@ const Dashboard = ({navigation, route}) => {
   useEffect(() => {
     navigation.setOptions({
       header: () => (
-        <SafeAreaView>
+        <View>
+          <View style={{height: 20, backgroundColor: '#0077c2'}}>
+            <StatusBar backgroundColor="blue" barStyle="default" />
+          </View>
           <Toolbar
             leftElement="menu"
             onLeftElementPress={() => {
@@ -18,7 +21,7 @@ const Dashboard = ({navigation, route}) => {
             }}
             centerElement="Página inicial"
           />
-        </SafeAreaView>
+        </View>
       ),
     });
     console.log(navigation);
@@ -31,9 +34,13 @@ const Dashboard = ({navigation, route}) => {
   );
 };
 
-const Home = ({navigation}) => {
+const Home = ({navigation, route}) => {
+  useEffect(() => {
+    navigation.setOptions({});
+  });
+
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="dashboard">
       <Stack.Screen
         name="dashboard"
         component={Dashboard}
