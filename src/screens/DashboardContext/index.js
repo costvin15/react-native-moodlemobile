@@ -1,15 +1,47 @@
 import React from 'react';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-import Frontpage from './Frontpage';
+import Dashboard from './Dashboard';
+import Messages from './Messages';
+import About from './About';
 
 const DashboardContext = () => {
-  const Drawer = createDrawerNavigator();
+  const Tab = createMaterialBottomTabNavigator();
 
   return (
-    <Drawer.Navigator initialRouteName="frontpage">
-      <Drawer.Screen name="frontpage" component={Frontpage} />
-    </Drawer.Navigator>
+    <Tab.Navigator initialRouteName="dashboard">
+      <Tab.Screen
+        name="dashboard"
+        component={Dashboard}
+        options={{
+          title: 'Página Inicial',
+          tabBarIcon: ({color}) => (
+            <MaterialIcons name="home" color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="messages"
+        component={Messages}
+        options={{
+          title: 'Mensagens',
+          tabBarIcon: ({color}) => (
+            <MaterialIcons name="chat" color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="about"
+        component={About}
+        options={{
+          title: 'Sobre',
+          tabBarIcon: ({color}) => (
+            <MaterialIcons name="menu" color={color} size={26} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
 };
 

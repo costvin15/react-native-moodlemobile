@@ -21,11 +21,26 @@ export const callMoodleWebService = async (wsfunction, ...params) => {
   const data = await response.json();
 
   if (data.errorcode) {
-    console.log(url);
     throw data;
   }
 
   return data;
+};
+
+export const updateCurrentUserDetails = async () => {
+  const {sitename, functions, ...userdata} = await callMoodleWebService(
+    'core_webservice_get_site_info',
+  );
+
+  await AsyncStorage.setItem(
+    Constants.MOODLE_USER_DETAILS,
+    JSON.stringify(userdata),
+  );
+};
+
+export const getCurrentUserDetails = async () => {
+  const userdata = await AsyncStorage.getItem(Constants.MOODLE_USER_DETAILS);
+  return JSON.parse(userdata);
 };
 
 export const renewMoodleUserToken = async ({username, password}) => {
@@ -41,6 +56,7 @@ export const renewMoodleUserToken = async ({username, password}) => {
   }
 
   await AsyncStorage.setItem(Constants.MOODLE_USER_TOKEN, data.token);
+  await updateCurrentUserDetails();
 
   return data.token;
 };
