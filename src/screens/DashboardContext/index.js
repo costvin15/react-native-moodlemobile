@@ -1,15 +1,17 @@
 import React from 'react';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
-import Frontpage from './Frontpage';
+import Dashboard from './Dashboard';
+import Messages from './Messages';
 
 const DashboardContext = () => {
-  const Drawer = createDrawerNavigator();
+  const Tab = createMaterialBottomTabNavigator();
 
   return (
-    <Drawer.Navigator initialRouteName="frontpage">
-      <Drawer.Screen name="frontpage" component={Frontpage} />
-    </Drawer.Navigator>
+    <Tab.Navigator initialRouteName="dashboard">
+      <Tab.Screen name="dashboard" component={Dashboard} />
+      <Tab.Screen name="messages" component={Messages} />
+    </Tab.Navigator>
   );
 };
 
