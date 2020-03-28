@@ -5,7 +5,11 @@ export const callMoodleWebService = async (wsfunction, ...params) => {
   const token = await AsyncStorage.getItem(Constants.MOODLE_USER_TOKEN);
   var url = `${
     Constants.MOODLE_HOST
-  }/webservice/rest/server.php?moodlewsrestformat=json&wstoken=${token}&wsfunction=${wsfunction}`;
+  }/webservice/rest/server.php?moodlewsrestformat=json&wsfunction=${wsfunction}`;
+
+  if (token) {
+    url += `&wstoken=${token}`;
+  }
 
   params.forEach(param => {
     Object.keys(param).forEach(key => {
@@ -14,10 +18,10 @@ export const callMoodleWebService = async (wsfunction, ...params) => {
   });
 
   const response = await fetch(url);
-
   const data = await response.json();
 
   if (data.errorcode) {
+    console.log(url);
     throw data;
   }
 

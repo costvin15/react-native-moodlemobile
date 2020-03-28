@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Text,
 } from 'react-native';
-import {renewMoodleUserToken} from '../api/helper';
+import {renewMoodleUserToken} from '../../api/helper';
 
 const Login = ({navigation}) => {
   const [username, setUsername] = useState('');
@@ -25,7 +25,7 @@ const Login = ({navigation}) => {
   const getUserToken = async () => {
     try {
       await renewMoodleUserToken({username: username, password});
-      navigation.replace('home');
+      navigation.navigate('dashboardcontext', {screen: 'frontpage'});
     } catch (error) {
       console.error(error);
     }
