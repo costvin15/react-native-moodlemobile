@@ -3,6 +3,7 @@ import {createMaterialBottomTabNavigator} from '@react-navigation/material-botto
 
 import Dashboard from './Dashboard';
 import Messages from './Messages';
+import About from './About';
 
 const DashboardContext = () => {
   const Tab = createMaterialBottomTabNavigator();
@@ -11,6 +12,7 @@ const DashboardContext = () => {
     <Tab.Navigator initialRouteName="dashboard">
       <Tab.Screen name="dashboard" component={Dashboard} />
       <Tab.Screen name="messages" component={Messages} />
+      <Tab.Screen name="about" component={About} />
     </Tab.Navigator>
   );
 };
