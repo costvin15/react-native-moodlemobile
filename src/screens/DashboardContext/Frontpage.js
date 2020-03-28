@@ -1,36 +1,27 @@
 import React, {useEffect} from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
-import {View, StatusBar, Text} from 'react-native';
-import {Toolbar} from 'react-native-material-ui';
+import {SafeAreaView, Text} from 'react-native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-const Stack = createStackNavigator();
+import {Timeline} from '../../blocks';
+
+const Tab = createMaterialBottomTabNavigator();
 
 const Dashboard = ({navigation, route}) => {
   useEffect(() => {
     navigation.setOptions({
-      header: () => (
-        <View>
-          <View style={{height: 20, backgroundColor: '#0077c2'}}>
-            <StatusBar backgroundColor="blue" barStyle="default" />
-          </View>
-          <Toolbar
-            leftElement="menu"
-            onLeftElementPress={() => {
-              route.params.navigation.toggleDrawer();
-            }}
-            centerElement="Página inicial"
-          />
-        </View>
+      title: 'Página Inicial',
+      tabBarIcon: ({color}) => (
+        <MaterialIcons name="home" color={color} size={26} />
       ),
     });
-    console.log(navigation);
   });
 
   return (
-    <>
-      <Text>Hello, World!</Text>
-    </>
+    <SafeAreaView>
+      <Timeline />
+    </SafeAreaView>
   );
 };
 
@@ -40,13 +31,13 @@ const Home = ({navigation, route}) => {
   });
 
   return (
-    <Stack.Navigator initialRouteName="dashboard">
-      <Stack.Screen
+    <Tab.Navigator initialRouteName="dashboard">
+      <Tab.Screen
         name="dashboard"
         component={Dashboard}
         initialParams={{navigation}}
       />
-    </Stack.Navigator>
+    </Tab.Navigator>
   );
 };
 
