@@ -16,7 +16,7 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fields, setFields] = useState([]);
-  const [passwordpolicy, setPasswordpolicy] = useState('');
+  const [sitepasswordpolicy, setSitePasswordpolicy] = useState('');
 
   const styles = StyleSheet.create({
     input: {
@@ -29,7 +29,7 @@ const Register = () => {
 
   const getSignupSettings = async () => {
     try {
-      const {namefields, passwordpolicy, warnings} = await callMoodleWebService(
+      const {namefields, passwordpolicy} = await callMoodleWebService(
         'auth_email_get_signup_settings',
         {
           wstoken: ADMIN_WS_TOKEN,
@@ -106,7 +106,7 @@ const Register = () => {
         placeholderTextColor={'#000'}
         onChangeText={text => setPassword(text)}
       />
-      <Text>{passwordpolicy}</Text>
+      <Text>{sitepasswordpolicy}</Text>
       <Button onPress={makeRegister} title={'Registrar'} />
     </SafeAreaView>
   );
