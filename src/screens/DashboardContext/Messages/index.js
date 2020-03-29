@@ -12,11 +12,10 @@ const Dashboard = ({navigation, route}) => {
   return (
     <SafeAreaView>
       <Text>Messages</Text>
-      {conversations.map(conversation => {
-        console.log(conversation);
+      {conversations.map((conversation, index) => {
         return (
-          <View>
-            {conversation.members.map(member => (
+          <View key={index}>
+            {conversation?.members.map(member => (
               <Text>{member.fullname}</Text>
             ))}
             {conversation.messages.map(message => (
