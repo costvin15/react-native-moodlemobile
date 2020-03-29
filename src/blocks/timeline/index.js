@@ -3,6 +3,7 @@ import {View, Text} from 'react-native';
 import {Subheader, Card, Divider} from 'react-native-material-ui';
 import Provider from './provider';
 import Styles from './styles';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const Timeline = () => {
   const [events, setEvents] = useState([]);
@@ -27,6 +28,13 @@ const Timeline = () => {
             <Divider style={{container: Styles.eventDivider}} />
           </View>
         ))}
+
+        {events.length == 0 && (
+          <View style={Styles.noEventsContainer}>
+            <MaterialIcons name="event-busy" size={40} />
+            <Text>Você não tem tarefas</Text>
+          </View>
+        )}
       </Card>
     </View>
   );
