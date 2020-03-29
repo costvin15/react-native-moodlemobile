@@ -14,7 +14,12 @@ export const getDashboardBlocks = async () => {
   try {
     const blocks = [];
     const data = await callMoodleWebService('core_block_get_dashboard_blocks');
-    data.blocks.map(block => blocks.push(getBlock(block.name)));
+    data.blocks.map(block =>
+      blocks.push({
+        Block: getBlock(block.name),
+        title: block.name,
+      }),
+    );
     return blocks;
   } catch (error) {
     console.error(error);
