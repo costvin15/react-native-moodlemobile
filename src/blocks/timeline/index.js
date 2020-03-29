@@ -29,7 +29,7 @@ const Timeline = () => {
           </View>
         ))}
 
-        {events.length == 0 && (
+        {events.length === 0 && (
           <View style={Styles.noEventsContainer}>
             <MaterialIcons name="event-busy" size={40} />
             <Text>Você não tem tarefas</Text>
