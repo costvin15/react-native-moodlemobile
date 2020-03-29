@@ -1,5 +1,12 @@
 import React, {useState, useEffect, createRef} from 'react';
-import {StyleSheet, SafeAreaView, Text, TextInput, Button} from 'react-native';
+import {
+  StyleSheet,
+  StatusBar,
+  SafeAreaView,
+  Text,
+  TextInput,
+  Button,
+} from 'react-native';
 import {callMoodleWebService} from '../../api/helper';
 
 const ADMIN_WS_TOKEN = 'e88b9e281fe641bb1f3fdb156201a89c';
@@ -68,6 +75,8 @@ const Register = () => {
 
   return (
     <SafeAreaView>
+      <StatusBar barStyle="dark-content" />
+
       {fields.map(({stringid, placeholder, ref}) => {
         return (
           <TextInput

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {
   SafeAreaView,
+  StatusBar,
   TextInput,
   StyleSheet,
   Button,
@@ -33,6 +34,8 @@ const Login = ({navigation}) => {
 
   return (
     <SafeAreaView>
+      <StatusBar barStyle="dark-content" />
+
       <TextInput
         placeholder={'Nome de usuario'}
         style={styles.input}
