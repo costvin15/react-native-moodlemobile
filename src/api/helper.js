@@ -43,6 +43,14 @@ export const getCurrentUserDetails = async () => {
   return JSON.parse(userdata);
 };
 
+export const getUserCourses = async () => {
+  const {userid} = await getCurrentUserDetails();
+  const response = await callMoodleWebService('core_enrol_get_users_courses', {
+    userid,
+  });
+  return response;
+};
+
 export const renewMoodleUserToken = async ({username, password}) => {
   const response = await fetch(
     `${Constants.MOODLE_HOST}/login/token.php?service=${
