@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, FlatList} from 'react-native';
 import Provider from './provider';
 
 const Dashboard = ({navigation}) => {
@@ -11,9 +11,13 @@ const Dashboard = ({navigation}) => {
 
   return (
     <SafeAreaView>
-      {blocks.map((Block, index) => (
-        <Block key={index} />
-      ))}
+      <FlatList
+        data={blocks}
+        renderItem={({item}) => (
+          <item.Block key={item.title} title={item.title} />
+        )}
+        keyExtractor={data => data.title}
+      />
     </SafeAreaView>
   );
 };
