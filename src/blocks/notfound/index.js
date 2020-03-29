@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
-const Timeline = () => {
+const Timeline = ({title}) => {
   return (
     <View>
-      <Text>Block not found</Text>
+      <Text>Block not found: {title}</Text>
     </View>
   );
 };
