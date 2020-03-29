@@ -45,7 +45,7 @@ const Register = () => {
       }
 
       setFields(fieldList);
-      setPasswordpolicy(passwordpolicy);
+      setSitePasswordpolicy(passwordpolicy);
     } catch (error) {
       console.error(error);
     }
