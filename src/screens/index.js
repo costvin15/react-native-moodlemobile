@@ -1,3 +1,3 @@
-export {default as Home} from './Home';
-export {default as Login} from './Login';
-export {default as Register} from './Register';
+export {default as AuthContext} from './AuthContext';
+export {default as DashboardContext} from './DashboardContext';
+export {default as ContextManager} from './ContextManager';
