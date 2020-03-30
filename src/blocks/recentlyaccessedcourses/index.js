@@ -21,9 +21,9 @@ const RecentlyAccessedCourses = () => {
           horizontal
           showsHorizontalScrollIndicator={false}
           data={courses}
+          keyExtractor={item => 'item-' + item.id}
           renderItem={({item, index}) => (
             <View
-              key={item.id}
               style={{
                 ...Styles.courseContainer,
                 ...(index !== courses.length - 1
