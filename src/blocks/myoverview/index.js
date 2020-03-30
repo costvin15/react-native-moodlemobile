@@ -4,6 +4,7 @@ import {Card, Subheader} from 'react-native-material-ui';
 import Provider from './provider';
 import Styles from './styles';
 import {Bar} from 'react-native-progress';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const MyOverview = () => {
   const [courses, setCourses] = useState([]);
@@ -38,9 +39,9 @@ const MyOverview = () => {
                   style={Styles.courseImage}
                 />
               )) || (
-                <View
-                  style={{...Styles.courseImage, ...Styles.courseNoImage}}
-                />
+                <View style={{...Styles.courseImage, ...Styles.courseNoImage}}>
+                  <MaterialIcons name="image" size={50} />
+                </View>
               )}
               <View style={Styles.courseFooter}>
                 <Text style={Styles.courseTitle}>{item.displayname}</Text>
