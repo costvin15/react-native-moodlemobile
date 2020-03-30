@@ -1,6 +1,13 @@
+import {
+  MOODLE_HOST,
+  MOODLE_SERVICE,
+  MOODLE_ADMIN_TOKEN,
+} from 'react-native-dotenv';
+
 export default {
-  MOODLE_HOST: 'http://localhost',
-  MOODLE_SERVICE: 'react_native_app',
+  MOODLE_HOST,
+  MOODLE_SERVICE,
+  MOODLE_ADMIN_TOKEN,
   MOODLE_USER_TOKEN: 'MOODLE_USER_TOKEN',
   MOODLE_USER_DETAILS: 'MOODLE_USER_DETAILS',
 };
