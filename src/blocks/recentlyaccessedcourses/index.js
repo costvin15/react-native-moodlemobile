@@ -3,6 +3,7 @@ import {FlatList, View, Image, Text} from 'react-native';
 import {Card, Subheader} from 'react-native-material-ui';
 import Provider from './provider';
 import Styles from './styles';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const RecentlyAccessedCourses = () => {
   const [courses, setCourses] = useState([]);
@@ -19,17 +20,30 @@ const RecentlyAccessedCourses = () => {
           style={Styles.coursesContainer}
           horizontal
           data={courses}
-          renderItem={({item}) => (
-            <View key={item.id}>
-              {item.image && (
+          renderItem={({item, index}) => (
+            <View
+              key={item.id}
+              style={{
+                ...Styles.courseContainer,
+                ...(index !== courses.length - 1
+                  ? Styles.courseItemMargin
+                  : {}),
+              }}>
+              {(item.image && (
                 <Image
                   source={{
                     uri: item.image,
                   }}
                   style={Styles.courseImage}
                 />
+              )) || (
+                <View style={{...Styles.courseImage, ...Styles.courseNoImage}}>
+                  <MaterialIcons name="image" size={50} />
+                </View>
               )}
-              <Text>{item.displayname}</Text>
+              <View style={Styles.courseFooter}>
+                <Text style={Styles.courseTitle}>{item.displayname}</Text>
+              </View>
             </View>
           )}
         />
