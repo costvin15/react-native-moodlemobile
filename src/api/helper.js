@@ -2,13 +2,15 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Constants from './constants';
 
 export const callMoodleWebService = async (wsfunction, ...params) => {
-  const token = await AsyncStorage.getItem(Constants.MOODLE_USER_TOKEN);
   var url = `${
     Constants.MOODLE_HOST
   }/webservice/rest/server.php?moodlewsrestformat=json&wsfunction=${wsfunction}`;
 
-  if (token) {
-    url += `&wstoken=${token}`;
+  if (typeof params.wstoken === 'undefined') {
+    const token = await AsyncStorage.getItem(Constants.MOODLE_USER_TOKEN);
+    if (token) {
+      url += `&wstoken=${token}`;
+    }
   }
 
   params.forEach(param => {
