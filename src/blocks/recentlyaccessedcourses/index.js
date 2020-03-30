@@ -19,6 +19,7 @@ const RecentlyAccessedCourses = () => {
         <FlatList
           style={Styles.coursesContainer}
           horizontal
+          showsHorizontalScrollIndicator={false}
           data={courses}
           renderItem={({item, index}) => (
             <View
