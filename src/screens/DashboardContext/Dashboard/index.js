@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {SafeAreaView, FlatList} from 'react-native';
+import {SafeAreaView, StatusBar, FlatList} from 'react-native';
 import Provider from './provider';
 
 const Dashboard = ({navigation}) => {
@@ -11,6 +11,8 @@ const Dashboard = ({navigation}) => {
 
   return (
     <SafeAreaView>
+      <StatusBar barStyle="dark-content" />
+
       <FlatList
         data={blocks}
         renderItem={({item}) => (
