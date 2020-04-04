@@ -34,8 +34,16 @@ const Course = ({navigation, route}) => {
       )}
       headerMode="none"
       initialRouteName="view">
-      <Tab.Screen name="activities" component={Activities} />
-      <Tab.Screen name="participants" component={Participants} />
+      <Tab.Screen
+        name="activities"
+        component={Activities}
+        initialParams={route.params}
+      />
+      <Tab.Screen
+        name="participants"
+        component={Participants}
+        initialParams={route.params}
+      />
     </Tab.Navigator>
   );
 };
