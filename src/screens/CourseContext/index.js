@@ -7,7 +7,7 @@ const Course = () => {
   const Stack = createStackNavigator();
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator headerMode="none" initialRouteName="view">
       <Stack.Screen name="view" component={View} />
     </Stack.Navigator>
   );
