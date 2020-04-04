@@ -1,24 +1,42 @@
 import React, {useState, useEffect} from 'react';
-import {View as RNView} from 'react-native';
 import {Appbar} from 'react-native-paper';
-import {styles} from './styles';
+import {
+  createMaterialTopTabNavigator,
+  MaterialTopTabBar,
+} from '@react-navigation/material-top-tabs';
 import Provider from './provider';
+import {styles} from './styles';
 
-const View = ({navigation, route}) => {
+const Activity = () => <></>;
+
+const Course = ({navigation, route}) => {
   const [course, setCourse] = useState({});
+  const Tab = createMaterialTopTabNavigator();
 
   useEffect(() => {
     Provider.getCourseDetail(route.params.id).then(data => setCourse(data));
   }, [route.params.id]);
 
   return (
-    <RNView>
-      <Appbar.Header style={styles.header}>
-        <Appbar.BackAction onPress={() => navigation.goBack()} />
-        <Appbar.Content title={course.displayname} />
-      </Appbar.Header>
-    </RNView>
+    <Tab.Navigator
+      tabBar={props => (
+        <>
+          <Appbar.Header style={styles.header}>
+            <Appbar.BackAction onPress={navigation.goBack} />
+            <Appbar.Content title={course.displayname} />
+          </Appbar.Header>
+          <MaterialTopTabBar
+            {...props}
+            style={styles.tabbar}
+            activeTintColor="#fff"
+          />
+        </>
+      )}
+      headerMode="none"
+      initialRouteName="view">
+      <Tab.Screen name="activites" component={Activity} />
+    </Tab.Navigator>
   );
 };
 
-export default View;
+export default Course;
