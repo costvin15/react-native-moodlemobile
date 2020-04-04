@@ -6,8 +6,8 @@ import {
 } from '@react-navigation/material-top-tabs';
 import Provider from './provider';
 import {styles} from './styles';
-
-const Activity = () => <></>;
+import Activities from './Activities';
+import Participants from './Participants';
 
 const Course = ({navigation, route}) => {
   const [course, setCourse] = useState({});
@@ -34,7 +34,8 @@ const Course = ({navigation, route}) => {
       )}
       headerMode="none"
       initialRouteName="view">
-      <Tab.Screen name="activites" component={Activity} />
+      <Tab.Screen name="activities" component={Activities} />
+      <Tab.Screen name="participants" component={Participants} />
     </Tab.Navigator>
   );
 };
