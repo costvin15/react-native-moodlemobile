@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import Constants from './constants';
+import events from '../events';
 
 export const callMoodleWebService = async (wsfunction, ...params) => {
   var url = `${
@@ -69,4 +70,9 @@ export const renewMoodleUserToken = async ({username, password}) => {
   await updateCurrentUserDetails();
 
   return data.token;
+};
+
+export const emmitEvent = (eventname, params) => {
+  const {handler} = events.find(event => event?.name === eventname);
+  handler(params);
 };
