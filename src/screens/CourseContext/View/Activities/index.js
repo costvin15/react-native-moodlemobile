@@ -21,10 +21,17 @@ const Activities = ({route}) => {
     );
   };
 
-  const _renderContent = section => {
+  const _renderContent = (section, index) => {
     return (
       <View>
-        <Text>Content</Text>
+        <FlatList
+          data={sections[index].modules}
+          renderItem={({item}) => (
+            <View>
+              <Text>{item.name}</Text>
+            </View>
+          )}
+        />
       </View>
     );
   };
