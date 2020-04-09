@@ -76,3 +76,12 @@ export const emmitEvent = (eventname, params) => {
   const {handler} = events.find(event => event?.name === eventname);
   handler(params);
 };
+
+export default {
+  callMoodleWebService,
+  updateCurrentUserDetails,
+  getCurrentUserDetails,
+  getUserCourses,
+  renewMoodleUserToken,
+  emmitEvent,
+};
