@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {getCurrentUserDetails} from '../../../api/helper';
-import {SafeAreaView, Text, Image} from 'react-native';
+import {SafeAreaView, StatusBar, Text, Image} from 'react-native';
 
 const About = ({navigation}) => {
   const [user, setUser] = useState(null);
@@ -11,6 +11,8 @@ const About = ({navigation}) => {
 
   return (
     <SafeAreaView>
+      <StatusBar barStyle="dark-content" />
+
       <Image
         source={{uri: user?.userpictureurl}}
         style={{height: 50, width: 50}}

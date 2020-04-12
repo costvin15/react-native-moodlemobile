@@ -1,15 +1,21 @@
 import React, {useState, useEffect, createRef} from 'react';
-import {StyleSheet, SafeAreaView, Text, TextInput, Button} from 'react-native';
+import {
+  StyleSheet,
+  StatusBar,
+  SafeAreaView,
+  Text,
+  TextInput,
+  Button,
+} from 'react-native';
 import {callMoodleWebService} from '../../api/helper';
-
-const ADMIN_WS_TOKEN = 'e88b9e281fe641bb1f3fdb156201a89c';
+import Constants from '../../api/constants';
 
 const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fields, setFields] = useState([]);
-  const [passwordpolicy, setPasswordpolicy] = useState('');
+  const [sitepasswordpolicy, setSitePasswordpolicy] = useState('');
 
   const styles = StyleSheet.create({
     input: {
@@ -22,23 +28,23 @@ const Register = () => {
 
   const getSignupSettings = async () => {
     try {
-      const {namefields, passwordpolicy, warnings} = await callMoodleWebService(
+      const {namefields, passwordpolicy} = await callMoodleWebService(
         'auth_email_get_signup_settings',
         {
-          wstoken: ADMIN_WS_TOKEN,
+          wstoken: Constants.MOODLE_ADMIN_TOKEN,
         },
       );
       const fieldList = [];
       for (const field of namefields) {
         const placeholder = await callMoodleWebService('core_get_string', {
           stringid: field,
-          wstoken: ADMIN_WS_TOKEN,
+          wstoken: Constants.MOODLE_ADMIN_TOKEN,
         });
         fieldList.push({stringid: field, placeholder, ref: createRef()});
       }
 
       setFields(fieldList);
-      setPasswordpolicy(passwordpolicy);
+      setSitePasswordpolicy(passwordpolicy);
     } catch (error) {
       console.error(error);
     }
@@ -68,6 +74,8 @@ const Register = () => {
 
   return (
     <SafeAreaView>
+      <StatusBar barStyle="dark-content" />
+
       {fields.map(({stringid, placeholder, ref}) => {
         return (
           <TextInput
@@ -97,7 +105,7 @@ const Register = () => {
         placeholderTextColor={'#000'}
         onChangeText={text => setPassword(text)}
       />
-      <Text>{passwordpolicy}</Text>
+      <Text>{sitepasswordpolicy}</Text>
       <Button onPress={makeRegister} title={'Registrar'} />
     </SafeAreaView>
   );
