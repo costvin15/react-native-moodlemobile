@@ -1,6 +1,7 @@
 import {Linking} from 'react-native';
 import Provider from '../../../api/helper';
 import Constants from '../../../api/constants';
+import InAppBrowser from 'react-native-inappbrowser-reborn';
 
 const splitUrl = (url = '') => {
   const result = {
@@ -35,7 +36,6 @@ const splitUrl = (url = '') => {
 };
 
 export const openBrowserForOAuthLogin = async ({url}) => {
-  // url : https://www40.saiteava.org/auth/oauth2/login.php?id=1&wantsurl=%2F&sesskey=txKovusHUG
   let launchUrl = Constants.MOODLE_HOST + '/admin/tool/mobile/launch.php';
   const uri = splitUrl(url);
   const options = {
@@ -48,7 +48,7 @@ export const openBrowserForOAuthLogin = async ({url}) => {
 
   let index = 0;
   for (const [key, value] of Object.entries(options)) {
-    if (index == 0) {
+    if (index === 0) {
       launchUrl += '?';
     } else {
       launchUrl += '&';
@@ -57,13 +57,18 @@ export const openBrowserForOAuthLogin = async ({url}) => {
     index++;
   }
 
-  const supported = await Linking.canOpenURL(launchUrl);
-  if (supported) {
+  if (await InAppBrowser.isAvailable()) {
+    const result = await InAppBrowser.openAuth(launchUrl);
+    console.log(result);
+  } else if (await Linking.canOpenURL(launchUrl)) {
     await Linking.openURL(launchUrl);
+  } else {
+    console.error('Cannot open identity provider');
   }
 };
 
 export const getIdentityProviders = async () => {
+  console.log(Constants);
   const {identityproviders} = await Provider.callMoodleWebService(
     'tool_mobile_get_public_config',
     {
