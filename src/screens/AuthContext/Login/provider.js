@@ -35,12 +35,12 @@ const splitUrl = (url = '') => {
   return result;
 };
 
-export const openBrowserForOAuthLogin = async ({url}) => {
+export const openBrowserForOAuthLogin = async ({url, navigation}) => {
   let launchUrl = Constants.MOODLE_HOST + '/admin/tool/mobile/launch.php';
   const uri = splitUrl(url);
   const options = {
     service: Constants.MOODLE_SERVICE,
-    oauthsso: uri.params.id,
+    // oauthsso: uri.params.id,
     passport: Math.random() * 1000,
     urlscheme: Constants.MOODLE_CUSTOMURLSCHEME,
     confirmed: true,
@@ -59,7 +59,11 @@ export const openBrowserForOAuthLogin = async ({url}) => {
 
   if (await InAppBrowser.isAvailable()) {
     const result = await InAppBrowser.openAuth(launchUrl);
-    console.log(result);
+    if (result.type === 'success') {
+      const matches = /token=(.*)/.exec(result.url);
+      Provider.setMoodleUserToken(matches[1]);
+      navigation.navigate('dashboardcontext', {screen: 'frontpage'});
+    }
   } else if (await Linking.canOpenURL(launchUrl)) {
     await Linking.openURL(launchUrl);
   } else {
@@ -68,7 +72,6 @@ export const openBrowserForOAuthLogin = async ({url}) => {
 };
 
 export const getIdentityProviders = async () => {
-  console.log(Constants);
   const {identityproviders} = await Provider.callMoodleWebService(
     'tool_mobile_get_public_config',
     {
