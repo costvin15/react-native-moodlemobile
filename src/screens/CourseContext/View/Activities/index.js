@@ -3,7 +3,7 @@ import {View, FlatList, Text, ScrollView} from 'react-native';
 import Provider from './provider';
 import Accordion from 'react-native-collapsible/Accordion';
 import {styles} from './styles';
-import {Card} from 'react-native-paper';
+import {Card, IconButton} from 'react-native-paper';
 
 const Activities = ({route}) => {
   const [sections, setSections] = useState([]);
@@ -15,7 +15,7 @@ const Activities = ({route}) => {
     );
   }, [route.params.id]);
 
-  const _renderHeader = section => {
+  const _renderHeader = (section, index, isActive) => {
     return (
       <Card
         style={{
@@ -23,7 +23,24 @@ const Activities = ({route}) => {
           ...styles.marginTop,
           ...styles.cardHeader,
         }}>
-        <Card.Title title={section.name} />
+        <Card.Title
+          title={section.name}
+          right={props =>
+            isActive ? (
+              <IconButton
+                {...props}
+                icon="arrow-up-drop-circle-outline"
+                onPress={() => {}}
+              />
+            ) : (
+              <IconButton
+                {...props}
+                icon="arrow-down-drop-circle-outline"
+                onPress={() => {}}
+              />
+            )
+          }
+        />
       </Card>
     );
   };
