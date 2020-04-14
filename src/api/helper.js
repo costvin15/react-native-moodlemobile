@@ -74,7 +74,7 @@ export const renewMoodleUserToken = async ({username, password}) => {
 
 export const setMoodleUserToken = async token => {
   await AsyncStorage.setItem(Constants.MOODLE_USER_TOKEN, token);
-  await updateCurrentUserDetails();
+  // await updateCurrentUserDetails();
   return token;
 };
 
