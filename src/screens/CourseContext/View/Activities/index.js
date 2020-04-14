@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, FlatList, Text, ScrollView} from 'react-native';
+import {View, FlatList, Text, ScrollView, Image} from 'react-native';
 import Provider from './provider';
 import Accordion from 'react-native-collapsible/Accordion';
 import {styles} from './styles';
@@ -57,7 +57,11 @@ const Activities = ({route}) => {
           style={{...styles.marginHorizontal, ...styles.marginVertical}}
           data={sections[index].modules}
           renderItem={({item}) => (
-            <View>
+            <View style={styles.rowDirection}>
+              <Image
+                source={{uri: item.modicon}}
+                style={{width: 25, height: 25}}
+              />
               <Text>{item.name}</Text>
             </View>
           )}

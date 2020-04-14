@@ -11,7 +11,6 @@ export const styles = StyleSheet.create({
   },
   rowDirection: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
   },
   marginTop: {
     marginTop: 15,
