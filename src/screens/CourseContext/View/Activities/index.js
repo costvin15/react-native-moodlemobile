@@ -4,6 +4,7 @@ import Provider from './provider';
 import Accordion from 'react-native-collapsible/Accordion';
 import {styles} from './styles';
 import {Card, IconButton} from 'react-native-paper';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Activities = ({route}) => {
   const [sections, setSections] = useState([]);
@@ -21,7 +22,7 @@ const Activities = ({route}) => {
         style={{
           ...styles.marginHorizontal,
           ...styles.marginTop,
-          ...styles.cardHeader,
+          ...(isActive ? styles.cardHeader : {}),
         }}>
         <Card.Title
           title={section.name}
@@ -45,9 +46,13 @@ const Activities = ({route}) => {
     );
   };
 
-  const _renderContent = (section, index) => {
+  const _renderContent = (section, index, isActive) => {
     return (
-      <Card style={{...styles.marginHorizontal, ...styles.cardContent}}>
+      <Card
+        style={{
+          ...styles.marginHorizontal,
+          ...(isActive ? styles.cardContent : {}),
+        }}>
         <FlatList
           style={{...styles.marginHorizontal, ...styles.marginVertical}}
           data={sections[index].modules}
@@ -74,6 +79,7 @@ const Activities = ({route}) => {
         renderHeader={_renderHeader}
         renderContent={_renderContent}
         onChange={_updateSections}
+        touchableComponent={props => <TouchableOpacity {...props} />}
       />
     </ScrollView>
   );
