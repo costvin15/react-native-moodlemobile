@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {View, FlatList, Text} from 'react-native';
+import {View, FlatList, Text, ScrollView} from 'react-native';
 import Provider from './provider';
 import Accordion from 'react-native-collapsible/Accordion';
+import {styles} from './styles';
+import {Card} from 'react-native-paper';
 
 const Activities = ({route}) => {
   const [sections, setSections] = useState([]);
@@ -15,16 +17,22 @@ const Activities = ({route}) => {
 
   const _renderHeader = section => {
     return (
-      <View>
-        <Text>{section.name}</Text>
-      </View>
+      <Card
+        style={{
+          ...styles.marginHorizontal,
+          ...styles.marginTop,
+          ...styles.cardHeader,
+        }}>
+        <Card.Title title={section.name} />
+      </Card>
     );
   };
 
   const _renderContent = (section, index) => {
     return (
-      <View>
+      <Card style={{...styles.marginHorizontal, ...styles.cardContent}}>
         <FlatList
+          style={{...styles.marginHorizontal, ...styles.marginVertical}}
           data={sections[index].modules}
           renderItem={({item}) => (
             <View>
@@ -32,7 +40,7 @@ const Activities = ({route}) => {
             </View>
           )}
         />
-      </View>
+      </Card>
     );
   };
 
@@ -41,7 +49,7 @@ const Activities = ({route}) => {
   };
 
   return (
-    <View>
+    <ScrollView>
       <Accordion
         sections={sections}
         activeSections={activeSections}
@@ -50,7 +58,7 @@ const Activities = ({route}) => {
         renderContent={_renderContent}
         onChange={_updateSections}
       />
-    </View>
+    </ScrollView>
   );
 };
 
