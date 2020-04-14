@@ -4,7 +4,7 @@ import Provider from './provider';
 import Accordion from 'react-native-collapsible/Accordion';
 import {styles} from './styles';
 import {Card, IconButton} from 'react-native-paper';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const Activities = ({route}) => {
   const [sections, setSections] = useState([]);
