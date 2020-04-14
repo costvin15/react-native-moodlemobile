@@ -40,10 +40,9 @@ export const openBrowserForOAuthLogin = async ({url, navigation}) => {
   const uri = splitUrl(url);
   const options = {
     service: Constants.MOODLE_SERVICE,
-    // oauthsso: uri.params.id,
+    oauthsso: uri.params.id,
     passport: Math.random() * 1000,
     urlscheme: Constants.MOODLE_CUSTOMURLSCHEME,
-    confirmed: true,
   };
 
   let index = 0;
@@ -58,11 +57,17 @@ export const openBrowserForOAuthLogin = async ({url, navigation}) => {
   }
 
   if (await InAppBrowser.isAvailable()) {
-    const result = await InAppBrowser.openAuth(launchUrl);
+    const result = await InAppBrowser.openAuth(launchUrl, null, {
+      ephemeralWebSession: false,
+    });
     if (result.type === 'success') {
       const matches = /token=(.*)/.exec(result.url);
-      Provider.setMoodleUserToken(matches[1]);
-      navigation.navigate('dashboardcontext', {screen: 'frontpage'});
+      const token = await Provider.setMoodleUserToken(matches[1]);
+      console.log('result');
+      console.log(result.url);
+      console.log('Token:');
+      console.log(token);
+      // navigation.navigate('dashboardcontext', {screen: 'frontpage'});
     }
   } else if (await Linking.canOpenURL(launchUrl)) {
     await Linking.openURL(launchUrl);
