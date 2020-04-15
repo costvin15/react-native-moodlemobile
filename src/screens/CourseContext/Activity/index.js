@@ -1,11 +1,18 @@
 import React from 'react';
 import {View, Text} from 'react-native';
+import {Page} from '../../../components';
 
-const Activity = () => {
+const Activity = ({navigation, route}) => {
   return (
-    <View>
+    <Page
+      appbar={{
+        title: route?.params?.item.name,
+        canGoBack: navigation.canGoBack(),
+        goBack: () => navigation.goBack(),
+      }}>
+      {console.log(route.params.item)}
       <Text>Hello, Activity</Text>
-    </View>
+    </Page>
   );
 };
 
