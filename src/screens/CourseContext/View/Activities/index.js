@@ -5,6 +5,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 import {styles} from './styles';
 import {Card, IconButton} from 'react-native-paper';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {emmitEvent} from '../../../../api/helper';
 
 const Activities = ({route}) => {
   const [sections, setSections] = useState([]);
@@ -46,6 +47,27 @@ const Activities = ({route}) => {
     );
   };
 
+  const _renderActivity = ({item}) => {
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          emmitEvent('core.course.activity.view', {item});
+        }}>
+        <View style={styles.rowDirection}>
+          <View style={styles.rowDirection}>
+            <Image
+              source={{uri: item.modicon}}
+              style={{width: 25, height: 25}}
+            />
+            <Text>{item.name}</Text>
+          </View>
+
+          <IconButton icon="link" />
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
   const _renderContent = (section, index, isActive) => {
     return (
       <Card
@@ -56,15 +78,7 @@ const Activities = ({route}) => {
         <FlatList
           style={{...styles.marginHorizontal, ...styles.marginVertical}}
           data={sections[index].modules}
-          renderItem={({item}) => (
-            <View style={styles.rowDirection}>
-              <Image
-                source={{uri: item.modicon}}
-                style={{width: 25, height: 25}}
-              />
-              <Text>{item.name}</Text>
-            </View>
-          )}
+          renderItem={_renderActivity}
         />
       </Card>
     );
