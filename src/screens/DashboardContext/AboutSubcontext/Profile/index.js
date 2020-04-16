@@ -1,7 +1,7 @@
 import React from 'react';
 import {Page} from '../../../../components';
 import {View, Image, Text, TouchableOpacity} from 'react-native';
-import {Card, Divider, FAB} from 'react-native-paper';
+import {Card, Divider, FAB, List} from 'react-native-paper';
 import {styles} from './styles';
 
 const Profile = ({navigation, route}) => {
@@ -47,6 +47,26 @@ const Profile = ({navigation, route}) => {
             />
             <Text style={styles.messageText}>Mensagem</Text>
           </TouchableOpacity>
+          <Divider />
+          <View>
+            <List.Item
+              title="Detalhes"
+              left={() => <List.Icon icon="account" />}
+              onPress={() => {}}
+            />
+            <Divider />
+            <List.Item
+              title="Mensagens do blog"
+              left={() => <List.Icon icon="newspaper" />}
+              onPress={() => {}}
+            />
+            <Divider />
+            <List.Item
+              title="Emblemas"
+              left={() => <List.Icon icon="trophy" />}
+              onPress={() => {}}
+            />
+          </View>
         </Card>
       </View>
     </Page>
