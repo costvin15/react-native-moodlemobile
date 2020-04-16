@@ -52,7 +52,9 @@ const Profile = ({navigation, route}) => {
             <List.Item
               title="Detalhes"
               left={() => <List.Icon icon="account" />}
-              onPress={() => {}}
+              onPress={() => {
+                navigation.navigate('details');
+              }}
             />
             <Divider />
             <List.Item
