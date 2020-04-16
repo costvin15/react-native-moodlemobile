@@ -33,7 +33,10 @@ const About = ({navigation}) => {
                 />
               )}
               onPress={() => {
-                navigation.navigate('aboutsubcontext');
+                navigation.navigate('aboutsubcontext', {
+                  screen: 'profile',
+                  params: {user},
+                });
               }}
             />
           </List.Section>
