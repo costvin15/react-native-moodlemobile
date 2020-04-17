@@ -18,7 +18,13 @@ export const callMoodleWebService = async (wsfunction, ...params) => {
     Object.keys(param).forEach(key => {
       if (Array.isArray(param[key])) {
         param[key].forEach((value, index) => {
-          url += `&${key}[${index}]=${value}`;
+          if (typeof value === 'object') {
+            Object.keys(value).forEach(valuekey => {
+              url += `&${key}[${index}][${valuekey}]=${value[valuekey]}`;
+            });
+          } else {
+            url += `&${key}[${index}]=${value}`;
+          }
         });
       } else {
         url += `&${key}=${param[key]}`;
