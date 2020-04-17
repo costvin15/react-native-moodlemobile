@@ -1,12 +1,14 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Page} from '../../../../components';
 import {View} from 'react-native';
 import {List} from 'react-native-paper';
 import Provider from './provider';
 
 const Details = ({navigation}) => {
+  const [user, setUser] = useState({});
+
   useEffect(() => {
-    Provider.getUserDetails(246);
+    Provider.getUserDetails().then(data => setUser(data));
   }, []);
 
   return (
@@ -19,7 +21,7 @@ const Details = ({navigation}) => {
       <View>
         <List.Section>
           <List.Subheader>Contato</List.Subheader>
-          <List.Item title="Endereço de mail" description="ss" />
+          <List.Item title="Endereço de mail" description={user?.email} />
         </List.Section>
       </View>
     </Page>
