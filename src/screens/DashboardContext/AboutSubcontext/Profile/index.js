@@ -61,7 +61,9 @@ const Profile = ({navigation, route}) => {
             <List.Item
               title="Mensagens do blog"
               left={() => <List.Icon icon="newspaper" />}
-              onPress={() => {}}
+              onPress={() => {
+                emmitEvent('core.user.blogmessages', {id: user.userid});
+              }}
             />
             <Divider />
             <List.Item
