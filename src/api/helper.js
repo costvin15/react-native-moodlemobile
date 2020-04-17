@@ -1,14 +1,17 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import Constants from './constants';
+import events from '../events';
 
 export const callMoodleWebService = async (wsfunction, ...params) => {
-  const token = await AsyncStorage.getItem(Constants.MOODLE_USER_TOKEN);
   var url = `${
     Constants.MOODLE_HOST
   }/webservice/rest/server.php?moodlewsrestformat=json&wsfunction=${wsfunction}`;
 
-  if (token) {
-    url += `&wstoken=${token}`;
+  if (typeof params.wstoken === 'undefined') {
+    const token = await AsyncStorage.getItem(Constants.MOODLE_USER_TOKEN);
+    if (token) {
+      url += `&wstoken=${token}`;
+    }
   }
 
   params.forEach(param => {
@@ -67,4 +70,25 @@ export const renewMoodleUserToken = async ({username, password}) => {
   await updateCurrentUserDetails();
 
   return data.token;
+};
+
+export const setMoodleUserToken = async token => {
+  await AsyncStorage.setItem(Constants.MOODLE_USER_TOKEN, token);
+  // await updateCurrentUserDetails();
+  return token;
+};
+
+export const emmitEvent = (eventname, params) => {
+  const {handler} = events.find(event => event?.name === eventname);
+  handler(params);
+};
+
+export default {
+  callMoodleWebService,
+  updateCurrentUserDetails,
+  getCurrentUserDetails,
+  getUserCourses,
+  renewMoodleUserToken,
+  setMoodleUserToken,
+  emmitEvent,
 };

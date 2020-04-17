@@ -1,22 +1,23 @@
 import React, {useState, useEffect} from 'react';
-import {FlatList, View, Image, Text, TouchableOpacity} from 'react-native';
+import {View, FlatList, Image, Text, TouchableOpacity} from 'react-native';
 import {Card, Subheader} from 'react-native-material-ui';
 import Provider from './provider';
 import Styles from './styles';
+import {Bar} from 'react-native-progress';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {emmitEvent} from '../../api/helper';
 
-const RecentlyAccessedCourses = () => {
+const MyOverview = () => {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    Provider.getRecentlyAccessedCourses().then(data => setCourses(data));
+    Provider.getCourseWithCompletionStatus().then(data => setCourses(data));
   }, []);
 
   return (
     <View>
       <Card>
-        <Subheader text="Cursos acessados recentemente" />
+        <Subheader text="Resumo dos cursos" />
         <FlatList
           style={Styles.coursesContainer}
           horizontal
@@ -48,6 +49,7 @@ const RecentlyAccessedCourses = () => {
                 )}
                 <View style={Styles.courseFooter}>
                   <Text style={Styles.courseTitle}>{item.displayname}</Text>
+                  <Bar progress={item.percentage / 100} width={280} />
                 </View>
               </View>
             </TouchableOpacity>
@@ -58,4 +60,4 @@ const RecentlyAccessedCourses = () => {
   );
 };
 
-export default RecentlyAccessedCourses;
+export default MyOverview;

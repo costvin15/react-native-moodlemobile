@@ -1,5 +1,10 @@
 import {callMoodleWebService} from '../../../api/helper';
-import {NotFound, Timeline, RecentlyAccessedCourses} from '../../../blocks';
+import {
+  NotFound,
+  Timeline,
+  RecentlyAccessedCourses,
+  MyOverview,
+} from '../../../blocks';
 
 export const getBlock = block => {
   switch (block) {
@@ -7,6 +12,8 @@ export const getBlock = block => {
       return Timeline;
     case 'recentlyaccessedcourses':
       return RecentlyAccessedCourses;
+    case 'myoverview':
+      return MyOverview;
     default:
       return NotFound;
   }

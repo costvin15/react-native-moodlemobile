@@ -8,8 +8,7 @@ import {
   Button,
 } from 'react-native';
 import {callMoodleWebService} from '../../api/helper';
-
-const ADMIN_WS_TOKEN = 'e88b9e281fe641bb1f3fdb156201a89c';
+import Constants from '../../api/constants';
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -32,14 +31,14 @@ const Register = () => {
       const {namefields, passwordpolicy} = await callMoodleWebService(
         'auth_email_get_signup_settings',
         {
-          wstoken: ADMIN_WS_TOKEN,
+          wstoken: Constants.MOODLE_ADMIN_TOKEN,
         },
       );
       const fieldList = [];
       for (const field of namefields) {
         const placeholder = await callMoodleWebService('core_get_string', {
           stringid: field,
-          wstoken: ADMIN_WS_TOKEN,
+          wstoken: Constants.MOODLE_ADMIN_TOKEN,
         });
         fieldList.push({stringid: field, placeholder, ref: createRef()});
       }
