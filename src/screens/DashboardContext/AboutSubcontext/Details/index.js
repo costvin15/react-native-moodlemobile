@@ -23,6 +23,25 @@ const Details = ({navigation}) => {
           <List.Subheader>Contato</List.Subheader>
           <List.Item title="Endereço de mail" description={user?.email} />
         </List.Section>
+
+        <List.Section>
+          <List.Subheader>Detalhes do usuário</List.Subheader>
+          {user?.customfields.map(field => {
+            let description = '';
+            if (field.type === 'checkbox') {
+              if (field.value === '1') {
+                description = 'Sim';
+              } else {
+                description = 'Não';
+              }
+            } else if (field.type === 'datetime') {
+              // TODO: Show date as string
+            } else if (field.type === 'text') {
+              description = field.value;
+            }
+            return <List.Item title={field.name} description={description} />;
+          })}
+        </List.Section>
       </View>
     </Page>
   );
