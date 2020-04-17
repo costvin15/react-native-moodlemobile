@@ -3,6 +3,7 @@ import {Page} from '../../../../components';
 import {View, Image, Text, TouchableOpacity} from 'react-native';
 import {Card, Divider, FAB, List} from 'react-native-paper';
 import {styles} from './styles';
+import {emmitEvent} from '../../../../api/helper';
 
 const Profile = ({navigation, route}) => {
   const user = route.params?.user;
@@ -53,7 +54,7 @@ const Profile = ({navigation, route}) => {
               title="Detalhes"
               left={() => <List.Icon icon="account" />}
               onPress={() => {
-                navigation.navigate('details');
+                emmitEvent('core.user.details', {id: user.userid});
               }}
             />
             <Divider />

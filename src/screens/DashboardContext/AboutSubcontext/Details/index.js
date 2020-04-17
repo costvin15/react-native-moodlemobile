@@ -4,12 +4,12 @@ import {View} from 'react-native';
 import {List} from 'react-native-paper';
 import Provider from './provider';
 
-const Details = ({navigation}) => {
+const Details = ({navigation, route}) => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    Provider.getUserDetails().then(data => setUser(data));
-  }, []);
+    Provider.getUserDetails(route.params.id).then(data => setUser(data));
+  }, [route.params.id]);
 
   return (
     <Page
@@ -26,7 +26,7 @@ const Details = ({navigation}) => {
 
         <List.Section>
           <List.Subheader>Detalhes do usuário</List.Subheader>
-          {user?.customfields.map(field => {
+          {user?.customfields?.map(field => {
             let description = '';
             if (field.type === 'checkbox') {
               if (field.value === '1') {
