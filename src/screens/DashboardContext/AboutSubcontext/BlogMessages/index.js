@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Page} from '../../../../components';
 import Provider from './provider';
 import {View, Text} from 'react-native';
+import RenderHTML from 'react-native-render-html';
 
 const BlogMessages = ({navigation, route}) => {
   const [entries, setEntries] = useState([]);
@@ -23,6 +24,7 @@ const BlogMessages = ({navigation, route}) => {
           return (
             <View>
               <Text>{entry.subject}</Text>
+              <RenderHTML html={entry.summary} />
             </View>
           );
         })}
