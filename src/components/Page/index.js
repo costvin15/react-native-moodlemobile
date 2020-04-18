@@ -3,7 +3,7 @@ import {View, ScrollView} from 'react-native';
 import {Appbar} from 'react-native-paper';
 import {styles} from './styles';
 
-const Page = ({appbar, children}) => {
+const Page = ({appbar, children, hasScrollView = true}) => {
   return (
     <View style={styles.flex}>
       <Appbar.Header style={{...styles.toolbar}}>
@@ -11,9 +11,11 @@ const Page = ({appbar, children}) => {
         <Appbar.Content title={appbar?.title} />
       </Appbar.Header>
 
-      <ScrollView contentContainerStyle={styles.flexGrow}>
-        {children}
-      </ScrollView>
+      {hasScrollView && (
+        <ScrollView contentContainerStyle={styles.flexGrow}>
+          {children}
+        </ScrollView>
+      )}
     </View>
   );
 };
