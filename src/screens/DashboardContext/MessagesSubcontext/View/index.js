@@ -4,15 +4,19 @@ import Provider from './provider';
 import {GiftedChat} from 'react-native-gifted-chat';
 import {emmitEvent} from '../../../../api/helper';
 
-const ConversationView = ({navigation}) => {
+const ConversationView = ({navigation, route}) => {
   const [title, setTitle] = useState('');
   const [currentUser, setCurrentUser] = useState([]);
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    Provider.getConversationMessages().then(data => {
+    Provider.getConversationMessages(route?.params?.id).then(data => {
       (async () => {
-        setTitle(data.name);
+        if (data.name !== null) {
+          setTitle(data.name);
+        } else {
+          setTitle(data.members[0].fullname);
+        }
 
         const resultMembers = [];
         data.members.forEach(member => {
@@ -22,12 +26,12 @@ const ConversationView = ({navigation}) => {
             avatar: member.profileimageurl,
           });
         });
-        const currentUser = await Provider.getCurrentUser();
-        setCurrentUser(currentUser);
+        const user = await Provider.getCurrentUser();
+        setCurrentUser(user);
         resultMembers.push({
-          _id: currentUser.userid,
-          name: currentUser.fullname,
-          avatar: currentUser.userpictureurl,
+          _id: user.userid,
+          name: user.fullname,
+          avatar: user.userpictureurl,
         });
 
         const resultMessages = [];
@@ -42,7 +46,7 @@ const ConversationView = ({navigation}) => {
         setMessages(resultMessages);
       })();
     });
-  }, []);
+  }, [route]);
 
   return (
     <Page

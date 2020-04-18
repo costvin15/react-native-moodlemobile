@@ -5,12 +5,13 @@ const getCurrentUser = async () => {
   return result;
 };
 
-const getConversationMessages = async () => {
+const getConversationMessages = async id => {
+  const {userid} = await Helper.getCurrentUserDetails();
   const response = await Helper.callMoodleWebService(
     'core_message_get_conversation',
     {
-      userid: 246,
-      conversationid: 66,
+      userid,
+      conversationid: id,
       includecontactrequests: 0,
       includeprivacyinfo: 0,
     },
