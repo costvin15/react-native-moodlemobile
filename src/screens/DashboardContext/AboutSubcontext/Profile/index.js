@@ -45,6 +45,9 @@ const Profile = ({navigation, route}) => {
               icon="message-outline"
               color="white"
               style={styles.messageFab}
+              onPress={() => {
+                emmitEvent('core.user.message.send', {id: user.userid});
+              }}
             />
             <Text style={styles.messageText}>Mensagem</Text>
           </TouchableOpacity>
