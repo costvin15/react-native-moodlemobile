@@ -18,6 +18,16 @@ const events = [
       });
     },
   },
+  {
+    name: 'core.user.message.send',
+    handler: ({id}) => {
+      console.log(`Event core.user.message.send received with id ${id}`);
+      Navigation.navigate('messagessubcontext', {
+        screen: 'view',
+        params: {id},
+      });
+    },
+  },
 ];
 
 export default events;

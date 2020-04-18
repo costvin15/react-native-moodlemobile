@@ -5,6 +5,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 import {View, TouchableOpacity} from 'react-native';
 import {Card, IconButton, Avatar} from 'react-native-paper';
 import {styles} from './styles';
+import {emmitEvent} from '../../../api/helper';
 
 const Dashboard = ({navigation, route}) => {
   const [activeSections, setActiveSections] = useState([]);
@@ -57,7 +58,8 @@ const Dashboard = ({navigation, route}) => {
     });
 
     return (
-      <View>
+      <TouchableOpacity
+        onPress={() => emmitEvent('core.user.message.send', {id: 0})}>
         <Card style={{...styles.removeBorderRadiusTop}}>
           <Card.Title
             title={title}
@@ -66,7 +68,7 @@ const Dashboard = ({navigation, route}) => {
             left={props => <Avatar.Image {...props} source={{uri: image}} />}
           />
         </Card>
-      </View>
+      </TouchableOpacity>
     );
   };
 
