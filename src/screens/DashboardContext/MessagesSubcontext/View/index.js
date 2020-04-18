@@ -10,43 +10,91 @@ const ConversationView = ({navigation, route}) => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    Provider.getConversationMessages(route?.params?.id).then(data => {
-      (async () => {
-        if (data.name !== null) {
-          setTitle(data.name);
-        } else {
-          setTitle(data.members[0].fullname);
-        }
+    const getConversationByConvid = async () => {
+      try {
+        const response = Provider.getConversation(route?.params?.id);
+        return response;
+      } catch (error) {
+        console.log(error);
+        console.error('Esta conversa não existe (18)');
+      }
+    };
 
-        const resultMembers = [];
-        data.members.forEach(member => {
-          resultMembers.push({
-            _id: member.id,
-            name: member.fullname,
-            avatar: member.profileimageurl,
-          });
+    const getConversationWithUser = async () => {
+      try {
+        const response = await Provider.getConversationsBetweenUsers({
+          otheruserid: route?.params?.touserid,
         });
-        const user = await Provider.getCurrentUser();
-        setCurrentUser(user);
+        console.log(response);
+        return response;
+      } catch (error) {
+        console.log(route?.params?.touserid);
+        console.error('Esta conversa não existe (31)');
+      }
+    };
+
+    const getSelfConversation = async () => {
+      try {
+        const response = await Provider.getSelfConversation();
+        console.log(response);
+        return response;
+      } catch (error) {
+        console.log(error);
+        console.error('Esta conversa não existe (43)');
+      }
+    };
+
+    (async () => {
+      let response;
+      if (route?.params.id) {
+        response = await getConversationByConvid();
+      } else if (route?.params.touserid === currentUser.userid) {
+        response = await getSelfConversation();
+      } else if (route?.params.touserid && currentUser.userid) {
+        response = await getConversationWithUser();
+      }
+
+      if (response?.name !== null) {
+        setTitle(response.name);
+      } else {
+        setTitle(response.members[0].fullname);
+      }
+
+      const resultMembers = [];
+      response.members.forEach(member => {
         resultMembers.push({
-          _id: user.userid,
-          name: user.fullname,
-          avatar: user.userpictureurl,
+          _id: member.id,
+          name: member.fullname,
+          avatar: member.profileimageurl,
         });
+      });
 
-        const resultMessages = [];
-        data.messages.forEach(({text, timecreated, useridfrom}, index) => {
-          resultMessages.push({
-            _id: index,
-            text,
-            createdAt: new Date(timecreated * 1000),
-            user: resultMembers.find(({_id}) => _id === useridfrom),
-          });
+      resultMembers.push({
+        _id: currentUser.userid,
+        name: currentUser.fullname,
+        avatar: currentUser.userpictureurl,
+      });
+
+      const resultMessages = [];
+      response.messages.forEach(({text, timecreated, useridfrom}, index) => {
+        resultMessages.push({
+          _id: index,
+          text,
+          createdAt: new Date(timecreated * 1000),
+          user: resultMembers.find(({_id}) => _id === useridfrom),
         });
-        setMessages(resultMessages);
-      })();
-    });
-  }, [route]);
+      });
+
+      setMessages(resultMessages);
+    })();
+  }, [route, currentUser]);
+
+  useEffect(() => {
+    (async () => {
+      const user = await Provider.getCurrentUser();
+      setCurrentUser(user);
+    })();
+  }, []);
 
   return (
     <Page

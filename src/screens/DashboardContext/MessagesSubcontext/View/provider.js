@@ -5,7 +5,7 @@ const getCurrentUser = async () => {
   return result;
 };
 
-const getConversationMessages = async id => {
+const getConversation = async id => {
   const {userid} = await Helper.getCurrentUserDetails();
   const response = await Helper.callMoodleWebService(
     'core_message_get_conversation',
@@ -19,4 +19,34 @@ const getConversationMessages = async id => {
   return response;
 };
 
-export default {getCurrentUser, getConversationMessages};
+const getConversationsBetweenUsers = async ({otheruserid}) => {
+  const {userid} = await Helper.getCurrentUserDetails();
+  const response = await Helper.callMoodleWebService(
+    'core_message_get_conversation_between_users',
+    {
+      userid,
+      otheruserid,
+      includecontactrequests: 0,
+      includeprivacyinfo: 0,
+    },
+  );
+  return response;
+};
+
+const getSelfConversation = async () => {
+  const {userid} = await Helper.getCurrentUserDetails();
+  const response = await Helper.callMoodleWebService(
+    'core_message_get_self_conversation',
+    {
+      userid,
+    },
+  );
+  return response;
+};
+
+export default {
+  getCurrentUser,
+  getConversation,
+  getConversationsBetweenUsers,
+  getSelfConversation,
+};
