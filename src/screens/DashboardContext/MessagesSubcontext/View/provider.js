@@ -1,5 +1,10 @@
 import Helper from '../../../../api/helper';
 
+const getCurrentUser = async () => {
+  const result = await Helper.getCurrentUserDetails();
+  return result;
+};
+
 const getConversationMessages = async () => {
   const response = await Helper.callMoodleWebService(
     'core_message_get_conversation',
@@ -13,4 +18,4 @@ const getConversationMessages = async () => {
   return response;
 };
 
-export default {getConversationMessages};
+export default {getCurrentUser, getConversationMessages};
