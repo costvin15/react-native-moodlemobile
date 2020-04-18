@@ -6,13 +6,15 @@ const View = ({navigation}) => {
   const [conversation, setConversation] = useState({});
 
   useEffect(() => {
-    Provider.getConversationMessages().then(data => setConversation(data));
+    Provider.getConversationMessages().then(data => {
+      setConversation(data);
+    });
   }, []);
 
   return (
     <Page
       appbar={{
-        title: 'Mensagens',
+        title: conversation?.name,
         canGoBack: navigation.canGoBack(),
         goBack: navigation.goBack,
       }}
