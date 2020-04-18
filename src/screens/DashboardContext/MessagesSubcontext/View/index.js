@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {Page} from '../../../../components';
 import Provider from './provider';
 import {GiftedChat} from 'react-native-gifted-chat';
-import {View, Text} from 'react-native';
 
 const ConversationView = ({navigation}) => {
   const [title, setTitle] = useState('');
@@ -24,18 +23,36 @@ const ConversationView = ({navigation}) => {
 
   useEffect(() => {
     Provider.getConversationMessages().then(data => {
-      setTitle(data.name);
+      (async () => {
+        setTitle(data.name);
 
-      const resultMessages = [];
-      data.messages.forEach(({text, timecreated}, index) => {
-        resultMessages.push({
-          _id: index,
-          text,
-          createdAt: new Date(timecreated * 1000),
-          user: {_id: 2, name: 'ReactNative'},
+        const resultMembers = [];
+        data.members.forEach(member => {
+          resultMembers.push({
+            _id: member.id,
+            name: member.fullname,
+            avatar: member.profileimageurl,
+          });
         });
-      });
-      setMessages(resultMessages);
+        const currentUser = await Provider.getCurrentUser();
+        resultMembers.push({
+          _id: currentUser.userid,
+          name: currentUser.fullname,
+          avatar: currentUser.userpictureurl,
+        });
+        setMembers(resultMembers);
+
+        const resultMessages = [];
+        data.messages.forEach(({text, timecreated, useridfrom}, index) => {
+          resultMessages.push({
+            _id: index,
+            text,
+            createdAt: new Date(timecreated * 1000),
+            user: resultMembers.find(({_id}) => _id === useridfrom),
+          });
+        });
+        setMessages(resultMessages);
+      })();
     });
   }, []);
 
