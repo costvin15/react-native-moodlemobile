@@ -26,6 +26,10 @@ export const styles = StyleSheet.create({
     borderBottomStartRadius: 0,
     borderBottomEndRadius: 0,
   },
+  conversationTitle: {
+    fontSize: 16,
+    color: '#757575',
+  },
 });
 
 export default styles;
