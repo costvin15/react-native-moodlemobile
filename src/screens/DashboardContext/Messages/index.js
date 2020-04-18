@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, View, Text} from 'react-native';
+import {SafeAreaView, StatusBar, View, Text} from 'react-native';
 import Provider from './provider';
 
 const Dashboard = ({navigation, route}) => {
@@ -11,9 +11,10 @@ const Dashboard = ({navigation, route}) => {
 
   return (
     <SafeAreaView>
+      <StatusBar barStyle="dark-content" />
+
       <Text>Messages</Text>
       {conversations.map((conversation, index) => {
-        console.log(conversation);
         return (
           <View key={index}>
             {conversation?.members.map(member => (

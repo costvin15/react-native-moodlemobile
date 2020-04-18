@@ -13,6 +13,10 @@ export const styles = StyleSheet.create({
   eventDivider: {
     marginTop: 15,
   },
+  noEventsContainer: {
+    padding: 15,
+    alignItems: 'center',
+  },
 });
 
 export default styles;
