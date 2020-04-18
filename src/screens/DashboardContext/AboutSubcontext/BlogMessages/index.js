@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {Page} from '../../../../components';
 import Provider from './provider';
-import {View, Text} from 'react-native';
-import RenderHTML from 'react-native-render-html';
+import {View, TouchableOpacity} from 'react-native';
+import {Card, Avatar} from 'react-native-paper';
+import {styles} from './styles';
 
 const BlogMessages = ({navigation, route}) => {
   const [entries, setEntries] = useState([]);
@@ -20,12 +21,27 @@ const BlogMessages = ({navigation, route}) => {
       }}>
       <View>
         {entries.map(entry => {
-          console.log(entry);
           return (
-            <View>
-              <Text>{entry.subject}</Text>
-              <RenderHTML html={entry.summary} />
-            </View>
+            <TouchableOpacity onPress={() => {}}>
+              <View
+                style={{
+                  ...styles.marginTopDefault,
+                  ...styles.marginHorizontalDefault,
+                }}>
+                <Card>
+                  <Card.Title
+                    title={entry.subject}
+                    left={() => (
+                      <Avatar.Image
+                        source={{uri: entry.user.profileimageurl}}
+                        size={40}
+                      />
+                    )}
+                    subtitle={entry.user.fullname}
+                  />
+                </Card>
+              </View>
+            </TouchableOpacity>
           );
         })}
       </View>
