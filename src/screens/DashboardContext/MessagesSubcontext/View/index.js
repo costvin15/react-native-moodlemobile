@@ -2,24 +2,12 @@ import React, {useState, useEffect} from 'react';
 import {Page} from '../../../../components';
 import Provider from './provider';
 import {GiftedChat} from 'react-native-gifted-chat';
+import {emmitEvent} from '../../../../api/helper';
 
 const ConversationView = ({navigation}) => {
   const [title, setTitle] = useState('');
-  const [members, setMembers] = useState([]);
+  const [currentUser, setCurrentUser] = useState([]);
   const [messages, setMessages] = useState([]);
-
-  // const messages = [
-  //   {
-  //     _id: 1,
-  //     text: 'Hello developer',
-  //     createdAt: new Date(),
-  //     user: {
-  //       _id: 2,
-  //       name: 'React Native',
-  //       avatar: 'https://placeimg.com/140/140/any',
-  //     },
-  //   },
-  // ];
 
   useEffect(() => {
     Provider.getConversationMessages().then(data => {
@@ -35,12 +23,12 @@ const ConversationView = ({navigation}) => {
           });
         });
         const currentUser = await Provider.getCurrentUser();
+        setCurrentUser(currentUser);
         resultMembers.push({
           _id: currentUser.userid,
           name: currentUser.fullname,
           avatar: currentUser.userpictureurl,
         });
-        setMembers(resultMembers);
 
         const resultMessages = [];
         data.messages.forEach(({text, timecreated, useridfrom}, index) => {
@@ -68,8 +56,10 @@ const ConversationView = ({navigation}) => {
         messages={messages}
         onSend={() => console.log('Send!')}
         user={{
-          _id: 1,
+          _id: currentUser.userid,
         }}
+        // TODO: Call core.user.view instead of core.user details
+        onPressAvatar={user => emmitEvent('core.user.details', {id: user._id})}
       />
     </Page>
   );
