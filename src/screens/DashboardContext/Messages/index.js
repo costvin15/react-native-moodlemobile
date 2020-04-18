@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, StatusBar, View, Text} from 'react-native';
 import Provider from './provider';
+import {Page} from '../../../components';
 
 const Dashboard = ({navigation, route}) => {
   const [conversations, setConversations] = useState([]);
@@ -10,10 +10,8 @@ const Dashboard = ({navigation, route}) => {
   }, [navigation]);
 
   return (
-    <SafeAreaView>
-      <StatusBar barStyle="dark-content" />
-
-      <Text>Messages</Text>
+    <Page appbar={{title: 'Mensagens'}}>
+      {/*
       {conversations.map((conversation, index) => {
         return (
           <View key={index}>
@@ -25,8 +23,8 @@ const Dashboard = ({navigation, route}) => {
             ))}
           </View>
         );
-      })}
-    </SafeAreaView>
+      })} */}
+    </Page>
   );
 };
 
