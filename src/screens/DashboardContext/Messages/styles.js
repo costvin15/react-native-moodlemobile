@@ -12,6 +12,20 @@ export const styles = StyleSheet.create({
     marginTop: 15,
     marginHorizontal: 15,
   },
+  marginHorizontal: {
+    marginHorizontal: 15,
+  },
+  marginBottomDefault: {
+    marginBottom: 15,
+  },
+  removeBorderRadiusTop: {
+    borderTopStartRadius: 0,
+    borderTopEndRadius: 0,
+  },
+  removeBorderRadiusBottom: {
+    borderBottomStartRadius: 0,
+    borderBottomEndRadius: 0,
+  },
 });
 
 export default styles;

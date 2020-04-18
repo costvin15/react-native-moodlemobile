@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import Provider from './provider';
 import {Page} from '../../../components';
 import Accordion from 'react-native-collapsible/Accordion';
-import {View, Text, TouchableOpacity} from 'react-native';
-import {Card, IconButton} from 'react-native-paper';
+import {View, TouchableOpacity} from 'react-native';
+import {Card, IconButton, Avatar} from 'react-native-paper';
 import {styles} from './styles';
 
 const Dashboard = ({navigation, route}) => {
@@ -29,7 +29,12 @@ const Dashboard = ({navigation, route}) => {
 
   const renderHeader = (section, index, isActive) => (
     // TODO: Improve with react-native-animatable
-    <Card style={isActive ? styles.headerActive : styles.headerUnactive}>
+    <Card
+      style={
+        isActive
+          ? {...styles.headerActive, ...styles.removeBorderRadiusBottom}
+          : styles.headerUnactive
+      }>
       <Card.Title
         title={section.title}
         right={props => (
@@ -42,28 +47,64 @@ const Dashboard = ({navigation, route}) => {
     </Card>
   );
 
-  const renderConversation = ({members}) => {
+  const renderConversation = ({image = '', title}) => {
     // TODO: Improve conversation view
-    return <Text>{members[0].fullname}</Text>;
+    return (
+      <View>
+        <Card style={{...styles.removeBorderRadiusTop}}>
+          <Card.Title
+            left={props => <Avatar.Image {...props} source={{uri: image}} />}
+            subtitle={title}
+          />
+        </Card>
+      </View>
+    );
   };
 
-  const renderContent = (section, index) => {
+  const renderContent = (section, index, isActive) => {
     if (index === 0) {
       return (
-        <View>
-          {favouriteConversations.map(value => renderConversation(value))}
+        <View
+          style={{
+            ...styles.marginBottomDefault,
+            ...(isActive ? styles.marginHorizontal : {}),
+          }}>
+          {favouriteConversations.map(value =>
+            renderConversation({
+              image: value.members[0].profileimageurl,
+              title: value.members[0].fullname,
+            }),
+          )}
         </View>
       );
     } else if (index === 1) {
       return (
-        <View>
-          {groupConversations.map(value => renderConversation(value))}
+        <View
+          style={{
+            ...styles.marginBottomDefault,
+            ...(isActive ? styles.marginHorizontal : {}),
+          }}>
+          {groupConversations.map(value => {
+            return renderConversation({
+              image: value.imageurl,
+              title: value.name,
+            });
+          })}
         </View>
       );
     } else if (index === 2) {
       return (
-        <View>
-          {privateConversations.map(value => renderConversation(value))}
+        <View
+          style={{
+            ...styles.marginBottomDefault,
+            ...(isActive ? styles.marginHorizontal : {}),
+          }}>
+          {privateConversations?.map(value => {
+            return renderConversation({
+              image: value.members[0].profileimageurl,
+              title: value.members[0].fullname,
+            });
+          })}
         </View>
       );
     }
