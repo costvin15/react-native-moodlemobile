@@ -8,19 +8,21 @@ import {styles} from './styles';
 
 const Dashboard = ({navigation, route}) => {
   const [activeSections, setActiveSections] = useState([]);
-  const [conversations, setConversations] = useState([]);
+  const [privateConversations, setPrivateConversations] = useState([]);
+  const [groupConversations, setGroupConversations] = useState([]);
+  const [favouriteConversations, setFavouriteConversations] = useState([]);
 
   const sections = [
     {
-      title: 'Favoritos',
+      title: `Favoritos (${favouriteConversations.length})`,
       content: 'Lorem ipsun...',
     },
     {
-      title: 'Grupo',
+      title: `Grupo (${groupConversations.length})`,
       content: 'Lorem ipsun...',
     },
     {
-      title: 'Privado',
+      title: `Privado (${privateConversations.length})`,
       content: 'Lorem ipsun...',
     },
   ];
@@ -40,11 +42,42 @@ const Dashboard = ({navigation, route}) => {
     </Card>
   );
 
-  const renderContent = () => <Text>Content</Text>;
+  const renderConversation = ({members}) => {
+    // TODO: Improve conversation view
+    return <Text>{members[0].fullname}</Text>;
+  };
+
+  const renderContent = (section, index) => {
+    if (index === 0) {
+      return (
+        <View>
+          {favouriteConversations.map(value => renderConversation(value))}
+        </View>
+      );
+    } else if (index === 1) {
+      return (
+        <View>
+          {groupConversations.map(value => renderConversation(value))}
+        </View>
+      );
+    } else if (index === 2) {
+      return (
+        <View>
+          {privateConversations.map(value => renderConversation(value))}
+        </View>
+      );
+    }
+  };
 
   useEffect(() => {
-    Provider.getConversations().then(data => setConversations(data));
-  }, [navigation]);
+    Provider.getPrivateConversations().then(data =>
+      setPrivateConversations(data),
+    );
+    Provider.getGroupConversations().then(data => setGroupConversations(data));
+    Provider.getFavouritesConversations().then(data =>
+      setFavouriteConversations(data),
+    );
+  }, []);
 
   return (
     <Page appbar={{title: 'Mensagens'}}>
