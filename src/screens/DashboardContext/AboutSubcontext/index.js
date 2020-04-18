@@ -5,7 +5,7 @@ import Profile from './Profile';
 import Details from './Details';
 import BlogMessages from './BlogMessages';
 
-const AboutViews = () => {
+const AboutSubcontext = () => {
   const Stack = createStackNavigator();
 
   return (
@@ -17,4 +17,4 @@ const AboutViews = () => {
   );
 };
 
-export default AboutViews;
+export default AboutSubcontext;

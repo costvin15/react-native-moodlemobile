@@ -7,6 +7,7 @@ import {
   CourseContext,
   DashboardContext,
   AboutSubcontext,
+  MessagesSubcontext,
 } from './screens';
 import {navigationRef} from './RootNavigation';
 
@@ -21,6 +22,10 @@ const App = () => {
         <Stack.Screen name="dashboardcontext" component={DashboardContext} />
         <Stack.Screen name="coursecontext" component={CourseContext} />
         <Stack.Screen name="aboutsubcontext" component={AboutSubcontext} />
+        <Stack.Screen
+          name="messagessubcontext"
+          component={MessagesSubcontext}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
