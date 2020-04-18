@@ -47,14 +47,23 @@ const Dashboard = ({navigation, route}) => {
     </Card>
   );
 
-  const renderConversation = ({image = '', title}) => {
-    // TODO: Improve conversation view
+  const renderConversation = ({image = '', title, date = 0}) => {
+    const currentDate = new Date(date * 1000).toLocaleString(undefined, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+    });
+
     return (
       <View>
         <Card style={{...styles.removeBorderRadiusTop}}>
           <Card.Title
+            title={title}
+            titleStyle={{...styles.conversationTitle}}
+            subtitle={currentDate}
             left={props => <Avatar.Image {...props} source={{uri: image}} />}
-            subtitle={title}
           />
         </Card>
       </View>
@@ -73,6 +82,7 @@ const Dashboard = ({navigation, route}) => {
             renderConversation({
               image: value.members[0].profileimageurl,
               title: value.members[0].fullname,
+              date: value.messages[0].timecreated,
             }),
           )}
         </View>
@@ -88,6 +98,7 @@ const Dashboard = ({navigation, route}) => {
             return renderConversation({
               image: value.imageurl,
               title: value.name,
+              date: value.messages[0].timecreated,
             });
           })}
         </View>
@@ -103,6 +114,7 @@ const Dashboard = ({navigation, route}) => {
             return renderConversation({
               image: value.members[0].profileimageurl,
               title: value.members[0].fullname,
+              date: value.messages[0].timecreated,
             });
           })}
         </View>
@@ -132,19 +144,6 @@ const Dashboard = ({navigation, route}) => {
           touchableComponent={props => <TouchableOpacity {...props} />}
         />
       </View>
-      {/*
-      {conversations.map((conversation, index) => {
-        return (
-          <View key={index}>
-            {conversation?.members.map(member => (
-              <Text>{member.fullname}</Text>
-            ))}
-            {conversation.messages.map(message => (
-              <Text>{message.text}</Text>
-            ))}
-          </View>
-        );
-      })} */}
     </Page>
   );
 };
