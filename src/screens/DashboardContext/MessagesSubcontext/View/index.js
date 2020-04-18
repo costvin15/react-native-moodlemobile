@@ -44,13 +44,13 @@ const ConversationView = ({navigation, route}) => {
       }
     };
 
-    (async () => {
+    const wrapper = async () => {
       let response;
       if (route?.params.id) {
         response = await getConversationByConvid();
       } else if (route?.params.touserid === currentUser.userid) {
         response = await getSelfConversation();
-      } else if (route?.params.touserid && currentUser.userid) {
+      } else if (route?.params.touserid) {
         response = await getConversationWithUser();
       }
 
@@ -86,7 +86,11 @@ const ConversationView = ({navigation, route}) => {
       });
 
       setMessages(resultMessages);
-    })();
+    };
+
+    if (currentUser.userid) {
+      wrapper();
+    }
   }, [route, currentUser]);
 
   useEffect(() => {
