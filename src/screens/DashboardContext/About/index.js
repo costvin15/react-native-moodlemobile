@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import {View, Image} from 'react-native';
-import {Card, List} from 'react-native-paper';
+import {Card, List, Divider} from 'react-native-paper';
 
 import {styles} from './styles';
 import {Page} from '../../../components';
 import {getCurrentUserDetails} from '../../../api/helper';
 import {emmitEvent} from '../../../api/helper';
+import Provider from './provider';
 
 const About = ({navigation}) => {
   const [user, setUser] = useState(null);
@@ -36,6 +37,16 @@ const About = ({navigation}) => {
               onPress={() => {
                 emmitEvent('core.user.view', {id: user?.userid});
               }}
+            />
+          </List.Section>
+
+          <Divider />
+
+          <List.Section>
+            <List.Item
+              title="Sair"
+              left={props => <List.Icon {...props} icon="logout" />}
+              onPress={() => Provider.performLogout(navigation)}
             />
           </List.Section>
         </Card>
