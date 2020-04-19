@@ -1,7 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {View, FlatList, Text} from 'react-native';
+import {View, FlatList, Text, ScrollView, Image} from 'react-native';
 import Provider from './provider';
 import Accordion from 'react-native-collapsible/Accordion';
+import {styles} from './styles';
+import {Card, IconButton} from 'react-native-paper';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import {emmitEvent} from '../../../../api/helper';
 
 const Activities = ({route}) => {
   const [sections, setSections] = useState([]);
@@ -13,26 +17,70 @@ const Activities = ({route}) => {
     );
   }, [route.params.id]);
 
-  const _renderHeader = section => {
+  const _renderHeader = (section, index, isActive) => {
     return (
-      <View>
-        <Text>{section.name}</Text>
-      </View>
+      <Card
+        style={{
+          ...styles.marginHorizontal,
+          ...styles.marginTop,
+          ...(isActive ? styles.cardHeader : {}),
+        }}>
+        <Card.Title
+          title={section.name}
+          right={props =>
+            isActive ? (
+              <IconButton
+                {...props}
+                icon="arrow-up-drop-circle-outline"
+                onPress={() => {}}
+              />
+            ) : (
+              <IconButton
+                {...props}
+                icon="arrow-down-drop-circle-outline"
+                onPress={() => {}}
+              />
+            )
+          }
+        />
+      </Card>
     );
   };
 
-  const _renderContent = (section, index) => {
+  const _renderActivity = ({item}) => {
     return (
-      <View>
+      <TouchableOpacity
+        onPress={() => {
+          emmitEvent('core.course.activity.view', {item});
+        }}>
+        <View style={styles.rowDirection}>
+          <View style={styles.rowDirection}>
+            <Image
+              source={{uri: item.modicon}}
+              style={{width: 25, height: 25}}
+            />
+            <Text>{item.name}</Text>
+          </View>
+
+          <IconButton icon="link" />
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
+  const _renderContent = (section, index, isActive) => {
+    return (
+      <Card
+        style={{
+          ...styles.marginHorizontal,
+          ...(isActive ? styles.cardContent : {}),
+        }}>
         <FlatList
+          style={{...styles.marginHorizontal, ...styles.marginVertical}}
           data={sections[index].modules}
-          renderItem={({item}) => (
-            <View>
-              <Text>{item.name}</Text>
-            </View>
-          )}
+          renderItem={_renderActivity}
         />
-      </View>
+      </Card>
     );
   };
 
@@ -41,7 +89,7 @@ const Activities = ({route}) => {
   };
 
   return (
-    <View>
+    <ScrollView>
       <Accordion
         sections={sections}
         activeSections={activeSections}
@@ -49,8 +97,9 @@ const Activities = ({route}) => {
         renderHeader={_renderHeader}
         renderContent={_renderContent}
         onChange={_updateSections}
+        touchableComponent={props => <TouchableOpacity {...props} />}
       />
-    </View>
+    </ScrollView>
   );
 };
 

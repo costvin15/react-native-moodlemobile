@@ -1,7 +1,11 @@
 import React, {useState, useEffect} from 'react';
+import {View, Image} from 'react-native';
+import {Card, List} from 'react-native-paper';
+
+import {styles} from './styles';
+import {Page} from '../../../components';
 import {getCurrentUserDetails} from '../../../api/helper';
-import {SafeAreaView, StatusBar, Text, Image, Button} from 'react-native';
-import Provider from './provider';
+import {emmitEvent} from '../../../api/helper';
 
 const About = ({navigation}) => {
   const [user, setUser] = useState(null);
@@ -11,16 +15,32 @@ const About = ({navigation}) => {
   }, []);
 
   return (
-    <SafeAreaView>
-      <StatusBar barStyle="dark-content" />
-
-      <Image
-        source={{uri: user?.userpictureurl}}
-        style={{height: 50, width: 50}}
-      />
-      <Text>{user?.fullname}</Text>
-      <Button onPress={() => Provider.performLogout(navigation)} title="Sair" />
-    </SafeAreaView>
+    <Page appbar={{title: 'Sobre'}}>
+      <View
+        style={{
+          ...styles.marginHorizontalDefault,
+          ...styles.marginVerticalDefault,
+        }}>
+        <Card>
+          <List.Section>
+            <List.Subheader>Perfil</List.Subheader>
+            <List.Item
+              title={user?.fullname}
+              description={user?.siteurl}
+              left={() => (
+                <Image
+                  style={styles.profileImage}
+                  source={{uri: user?.userpictureurl}}
+                />
+              )}
+              onPress={() => {
+                emmitEvent('core.user.view', {id: user?.userid});
+              }}
+            />
+          </List.Section>
+        </Card>
+      </View>
+    </Page>
   );
 };
 

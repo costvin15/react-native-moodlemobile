@@ -61,10 +61,10 @@ const Login = ({navigation}) => {
       />
       <Button title={'Entrar'} onPress={getUserToken} />
 
-      {identityProviders.map(provider => (
+      {identityProviders?.map(provider => (
         <TouchableOpacity
           onPress={() => {
-            Provider.openBrowserForOAuthLogin();
+            Provider.openBrowserForOAuthLogin({...provider, navigation});
           }}>
           <Image
             source={{uri: provider.iconurl}}

@@ -16,7 +16,19 @@ export const callMoodleWebService = async (wsfunction, ...params) => {
 
   params.forEach(param => {
     Object.keys(param).forEach(key => {
-      url += `&${key}=${param[key]}`;
+      if (Array.isArray(param[key])) {
+        param[key].forEach((value, index) => {
+          if (typeof value === 'object') {
+            Object.keys(value).forEach(valuekey => {
+              url += `&${key}[${index}][${valuekey}]=${value[valuekey]}`;
+            });
+          } else {
+            url += `&${key}[${index}]=${value}`;
+          }
+        });
+      } else {
+        url += `&${key}=${param[key]}`;
+      }
     });
   });
 
@@ -72,6 +84,12 @@ export const renewMoodleUserToken = async ({username, password}) => {
   return data.token;
 };
 
+export const setMoodleUserToken = async token => {
+  await AsyncStorage.setItem(Constants.MOODLE_USER_TOKEN, token);
+  // await updateCurrentUserDetails();
+  return token;
+};
+
 export const emmitEvent = (eventname, params) => {
   const {handler} = events.find(event => event?.name === eventname);
   handler(params);
@@ -83,5 +101,6 @@ export default {
   getCurrentUserDetails,
   getUserCourses,
   renewMoodleUserToken,
+  setMoodleUserToken,
   emmitEvent,
 };
