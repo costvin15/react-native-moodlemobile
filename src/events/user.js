@@ -20,11 +20,11 @@ const events = [
   },
   {
     name: 'core.user.message.send',
-    handler: ({id}) => {
-      console.log(`Event core.user.message.send received with id ${id}`);
+    handler: ({id, touserid}) => {
+      console.log(`Event core.user.message.send received`);
       Navigation.navigate('messagessubcontext', {
         screen: 'view',
-        params: {id},
+        params: {id, touserid},
       });
     },
   },

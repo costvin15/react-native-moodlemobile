@@ -48,7 +48,7 @@ const Dashboard = ({navigation, route}) => {
     </Card>
   );
 
-  const renderConversation = ({image = '', title, date = 0}) => {
+  const renderConversation = ({id = 0, image = '', title, date = 0}) => {
     const currentDate = new Date(date * 1000).toLocaleString(undefined, {
       year: 'numeric',
       month: 'long',
@@ -59,7 +59,7 @@ const Dashboard = ({navigation, route}) => {
 
     return (
       <TouchableOpacity
-        onPress={() => emmitEvent('core.user.message.send', {id: 0})}>
+        onPress={() => emmitEvent('core.user.message.send', {id})}>
         <Card style={{...styles.removeBorderRadiusTop}}>
           <Card.Title
             title={title}
@@ -82,6 +82,7 @@ const Dashboard = ({navigation, route}) => {
           }}>
           {favouriteConversations.map(value =>
             renderConversation({
+              id: value.id,
               image: value.members[0].profileimageurl,
               title: value.members[0].fullname,
               date: value.messages[0].timecreated,
@@ -98,6 +99,7 @@ const Dashboard = ({navigation, route}) => {
           }}>
           {groupConversations.map(value => {
             return renderConversation({
+              id: value.id,
               image: value.imageurl,
               title: value.name,
               date: value.messages[0].timecreated,
@@ -114,6 +116,7 @@ const Dashboard = ({navigation, route}) => {
           }}>
           {privateConversations?.map(value => {
             return renderConversation({
+              id: value.id,
               image: value.members[0].profileimageurl,
               title: value.members[0].fullname,
               date: value.messages[0].timecreated,
