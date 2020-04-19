@@ -3,6 +3,9 @@ import {Page} from '../../../../components';
 import Provider from './provider';
 import {GiftedChat} from 'react-native-gifted-chat';
 import {emmitEvent} from '../../../../api/helper';
+import {View} from 'react-native';
+import RenderHTML from 'react-native-render-html';
+import {styles} from './styles';
 
 const ConversationView = ({navigation, route}) => {
   const [title, setTitle] = useState('');
@@ -25,7 +28,6 @@ const ConversationView = ({navigation, route}) => {
         const response = await Provider.getConversationsBetweenUsers({
           otheruserid: route?.params?.touserid,
         });
-        console.log(response);
         return response;
       } catch (error) {
         console.log(route?.params?.touserid);
@@ -36,7 +38,6 @@ const ConversationView = ({navigation, route}) => {
     const getSelfConversation = async () => {
       try {
         const response = await Provider.getSelfConversation();
-        console.log(response);
         return response;
       } catch (error) {
         console.log(error);
@@ -100,6 +101,19 @@ const ConversationView = ({navigation, route}) => {
     })();
   }, []);
 
+  const renderMessageText = ({currentMessage}) => {
+    return (
+      <View style={styles.marginHorizontalDefault}>
+        <RenderHTML
+          html={currentMessage.text}
+          tagsStyles={{
+            p: {...styles.whiteColor, ...styles.marginVerticalDefault},
+          }}
+        />
+      </View>
+    );
+  };
+
   return (
     <Page
       appbar={{
@@ -114,6 +128,8 @@ const ConversationView = ({navigation, route}) => {
         user={{
           _id: currentUser.userid,
         }}
+        // renderMessage={props => <Message {...props} />}
+        renderMessageText={props => renderMessageText(props)}
         // TODO: Call core.user.view instead of core.user details
         onPressAvatar={user => emmitEvent('core.user.details', {id: user._id})}
       />
