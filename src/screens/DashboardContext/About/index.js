@@ -44,6 +44,15 @@ const About = ({navigation}) => {
 
           <List.Section>
             <List.Item
+              title="Notas"
+              left={props => <List.Icon {...props} icon="poll" />}
+              onPress={() => {
+                navigation.navigate('aboutsubcontext', {
+                  screen: 'grades',
+                });
+              }}
+            />
+            <List.Item
               title="Sair"
               left={props => <List.Icon {...props} icon="logout" />}
               onPress={() => Provider.performLogout(navigation)}
