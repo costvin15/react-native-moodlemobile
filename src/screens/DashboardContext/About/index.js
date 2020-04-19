@@ -5,6 +5,7 @@ import {Card, List} from 'react-native-paper';
 import {styles} from './styles';
 import {Page} from '../../../components';
 import {getCurrentUserDetails} from '../../../api/helper';
+import {emmitEvent} from '../../../api/helper';
 
 const About = ({navigation}) => {
   const [user, setUser] = useState(null);
@@ -33,10 +34,7 @@ const About = ({navigation}) => {
                 />
               )}
               onPress={() => {
-                navigation.navigate('aboutsubcontext', {
-                  screen: 'profile',
-                  params: {user},
-                });
+                emmitEvent('core.user.view', {id: user?.userid});
               }}
             />
           </List.Section>
