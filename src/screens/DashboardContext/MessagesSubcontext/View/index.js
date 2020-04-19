@@ -129,7 +129,6 @@ const ConversationView = ({navigation, route}) => {
           _id: currentUser.userid,
         }}
         renderBubble={props => {
-          console.log(props);
           return (
             <Bubble
               {...props}
