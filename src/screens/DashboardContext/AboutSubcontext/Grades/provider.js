@@ -23,13 +23,15 @@ const getGrades = async () => {
     for (const item of response.gradeitems) {
       if (item.weightraw) {
         grade.totalgrade += item.graderaw * item.weightraw;
+      } else if (item.gradedatesubmitted) {
+        grade.totalgrade += item.graderaw;
       }
     }
 
     grades.push(grade);
   }
 
-  console.log(grades);
+  return grades;
 };
 
 export default {getGrades};
