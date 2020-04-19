@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Page} from '../../../../components';
 import Provider from './provider';
-import {GiftedChat} from 'react-native-gifted-chat';
+import {GiftedChat, Bubble} from 'react-native-gifted-chat';
 import {emmitEvent} from '../../../../api/helper';
 import {View} from 'react-native';
 import RenderHTML from 'react-native-render-html';
@@ -101,7 +101,7 @@ const ConversationView = ({navigation, route}) => {
     })();
   }, []);
 
-  const renderMessageText = ({currentMessage}) => {
+  const renderMessageText = ({currentMessage, ...props}) => {
     return (
       <View style={styles.marginHorizontalDefault}>
         <RenderHTML
@@ -129,6 +129,22 @@ const ConversationView = ({navigation, route}) => {
           _id: currentUser.userid,
         }}
         // renderMessage={props => <Message {...props} />}
+        renderBubble={props => {
+          console.log(props);
+          return (
+            <Bubble
+              {...props}
+              wrapperStyle={{
+                left: {
+                  backgroundColor: '#3b3b3b',
+                },
+                right: {
+                  backgroundColor: '#248eff',
+                },
+              }}
+            />
+          );
+        }}
         renderMessageText={props => renderMessageText(props)}
         // TODO: Call core.user.view instead of core.user details
         onPressAvatar={user => emmitEvent('core.user.details', {id: user._id})}
