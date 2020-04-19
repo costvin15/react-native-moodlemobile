@@ -128,7 +128,6 @@ const ConversationView = ({navigation, route}) => {
         user={{
           _id: currentUser.userid,
         }}
-        // renderMessage={props => <Message {...props} />}
         renderBubble={props => {
           console.log(props);
           return (
@@ -147,7 +146,7 @@ const ConversationView = ({navigation, route}) => {
         }}
         renderMessageText={props => renderMessageText(props)}
         // TODO: Call core.user.view instead of core.user details
-        onPressAvatar={user => emmitEvent('core.user.details', {id: user._id})}
+        onPressAvatar={user => emmitEvent('core.user.view', {id: user._id})}
       />
     </Page>
   );
