@@ -7,15 +7,15 @@ import {
   TextInput,
   Button,
 } from 'react-native';
-import {callMoodleWebService} from '../../api/helper';
-import Constants from '../../api/constants';
+import {callMoodleWebService} from '../../../api/helper';
+import Constants from '../../../api/constants';
+import Provider from './provider';
 
 const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fields, setFields] = useState([]);
-  const [sitepasswordpolicy, setSitePasswordpolicy] = useState('');
 
   const styles = StyleSheet.create({
     input: {
@@ -26,50 +26,11 @@ const Register = () => {
     },
   });
 
-  const getSignupSettings = async () => {
-    try {
-      const {namefields, passwordpolicy} = await callMoodleWebService(
-        'auth_email_get_signup_settings',
-        {
-          wstoken: Constants.MOODLE_ADMIN_TOKEN,
-        },
-      );
-      const fieldList = [];
-      for (const field of namefields) {
-        const placeholder = await callMoodleWebService('core_get_string', {
-          stringid: field,
-          wstoken: Constants.MOODLE_ADMIN_TOKEN,
-        });
-        fieldList.push({stringid: field, placeholder, ref: createRef()});
-      }
-
-      setFields(fieldList);
-      setSitePasswordpolicy(passwordpolicy);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const makeRegister = async () => {
-    const values = {};
-    fields.map(value => {
-      values[value.stringid] = value.ref.current._lastNativeText;
-    });
-    try {
-      const response = await callMoodleWebService('auth_email_signup_user', {
-        username,
-        password,
-        email,
-        ...values,
-      });
-      console.log(response);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   useEffect(() => {
-    getSignupSettings();
+    setFields([
+      {stringid: 'firstname', placeholder: 'Nome', ref: createRef()},
+      {stringid: 'lastname', placeholder: 'Sobrenome', ref: createRef()},
+    ]);
   }, []);
 
   return (
@@ -105,8 +66,21 @@ const Register = () => {
         placeholderTextColor={'#000'}
         onChangeText={text => setPassword(text)}
       />
-      <Text>{sitepasswordpolicy}</Text>
-      <Button onPress={makeRegister} title={'Registrar'} />
+      <Button
+        onPress={() => {
+          const values = {};
+          fields.map(value => {
+            values[value.stringid] = value.ref.current._lastNativeText;
+          });
+          Provider.registerUser({
+            username,
+            password,
+            email,
+            ...values,
+          });
+        }}
+        title={'Registrar'}
+      />
     </SafeAreaView>
   );
 };
