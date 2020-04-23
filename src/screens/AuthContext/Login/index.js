@@ -66,7 +66,12 @@ const Login = ({navigation}) => {
             style={{...styles.marginTopDefault}}
             theme={{
               colors: {
-                primary: '#248eff',
+                primary:
+                  provider.name === 'Google'
+                    ? '#ab000d'
+                    : provider.name === 'Facebook'
+                    ? '#002171'
+                    : '#248eff',
               },
             }}
             onPress={() => {
