@@ -27,6 +27,8 @@ const Login = ({navigation}) => {
         <TextInput
           label="Nome de usuário"
           mode="outlined"
+          keyboardType="email-address"
+          autoCapitalize="none"
           theme={{
             colors: {
               primary: '#248eff',
@@ -38,6 +40,7 @@ const Login = ({navigation}) => {
         <TextInput
           label="Senha"
           mode="outlined"
+          secureTextEntry={true}
           theme={{
             colors: {
               primary: '#248eff',
