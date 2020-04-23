@@ -25,7 +25,6 @@ const getConversation = async id => {
       includeprivacyinfo: 0,
     },
   );
-
   return response;
 };
 
@@ -54,9 +53,30 @@ const getSelfConversation = async () => {
   return response;
 };
 
+const sendMessageToConversations = async ({conversationId, data}) => {
+  if (conversationId === null) {
+    return [];
+  }
+
+  const response = await Helper.callMoodleWebService(
+    'core_message_send_messages_to_conversation',
+    {
+      conversationid: conversationId,
+      messages: [
+        {
+          text: data[0].text,
+          textformat: 2,
+        },
+      ],
+    },
+  );
+  return response;
+};
+
 export default {
   getCurrentUser,
   getConversation,
   getConversationsBetweenUsers,
   getSelfConversation,
+  sendMessageToConversations,
 };

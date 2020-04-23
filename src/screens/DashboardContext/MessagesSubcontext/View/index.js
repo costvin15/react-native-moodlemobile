@@ -8,6 +8,7 @@ import RenderHTML from 'react-native-render-html';
 import {styles} from './styles';
 
 const ConversationView = ({navigation, route}) => {
+  const [conversationId, setConversationId] = useState(null);
   const [title, setTitle] = useState('');
   const [currentUser, setCurrentUser] = useState([]);
   const [messages, setMessages] = useState([]);
@@ -76,6 +77,7 @@ const ConversationView = ({navigation, route}) => {
       });
 
       setMessages(resultMessages);
+      setConversationId(response?.id);
     };
 
     if (currentUser.userid) {
@@ -115,7 +117,25 @@ const ConversationView = ({navigation, route}) => {
       }}>
       <GiftedChat
         messages={messages}
-        onSend={() => console.log('Send!')}
+        onSend={data => {
+          (async () => {
+            const response = await Provider.sendMessageToConversations({
+              conversationId,
+              data,
+            });
+            const message = {
+              _id: response[0]?.id,
+              text: response[0]?.text,
+              createdAt: Date.now(),
+              user: {
+                _id: currentUser.userid,
+                name: currentUser.fullname,
+                avatar: currentUser.userpictureurl,
+              },
+            };
+            setMessages(GiftedChat.append(messages, message));
+          })();
+        }}
         user={{
           _id: currentUser.userid,
         }}
