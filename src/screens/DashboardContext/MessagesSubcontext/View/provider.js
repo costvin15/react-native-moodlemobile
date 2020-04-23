@@ -7,6 +7,15 @@ const getCurrentUser = async () => {
 
 const getConversation = async id => {
   const {userid} = await Helper.getCurrentUserDetails();
+
+  await Helper.callMoodleWebService(
+    'core_message_mark_all_conversation_messages_as_read ',
+    {
+      userid,
+      conversationid: id,
+    },
+  );
+
   const response = await Helper.callMoodleWebService(
     'core_message_get_conversation',
     {
@@ -16,6 +25,7 @@ const getConversation = async id => {
       includeprivacyinfo: 0,
     },
   );
+
   return response;
 };
 
