@@ -3,7 +3,7 @@ import Constants from './constants';
 import events from '../events';
 
 export const callMoodleWebService = async (wsfunction, ...params) => {
-  var url = `${
+  let url = `${
     Constants.MOODLE_HOST
   }/webservice/rest/server.php?moodlewsrestformat=json&wsfunction=${wsfunction}`;
 
@@ -16,14 +16,26 @@ export const callMoodleWebService = async (wsfunction, ...params) => {
 
   params.forEach(param => {
     Object.keys(param).forEach(key => {
-      url += `&${key}=${param[key]}`;
+      if (Array.isArray(param[key])) {
+        param[key].forEach((value, index) => {
+          if (typeof value === 'object') {
+            Object.keys(value).forEach(valuekey => {
+              url += `&${key}[${index}][${valuekey}]=${value[valuekey]}`;
+            });
+          } else {
+            url += `&${key}[${index}]=${value}`;
+          }
+        });
+      } else {
+        url += `&${key}=${param[key]}`;
+      }
     });
   });
 
   const response = await fetch(url);
   const data = await response.json();
 
-  if (data.errorcode) {
+  if (data?.errorcode) {
     throw data;
   }
 

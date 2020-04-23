@@ -1,40 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import {
-  SafeAreaView,
-  StatusBar,
-  TextInput,
-  StyleSheet,
-  Button,
-  TouchableOpacity,
-  Text,
-  Image,
-  Linking,
-} from 'react-native';
-import Api from '../../../api/helper';
 import Provider from './provider';
+import {Page} from '../../../components';
+import {TextInput, Button} from 'react-native-paper';
+import {View} from 'react-native';
+import {styles} from './styles';
 
 const Login = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [identityProviders, setIdentityProviders] = useState([]);
-
-  const styles = StyleSheet.create({
-    input: {
-      height: 50,
-      borderColor: '#000',
-      borderWidth: 1,
-      color: '#000',
-    },
-  });
-
-  const getUserToken = async () => {
-    try {
-      await Api.renewMoodleUserToken({username: username, password});
-      navigation.navigate('dashboardcontext', {screen: 'frontpage'});
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   useEffect(() => {
     (async () => {
@@ -44,40 +18,85 @@ const Login = ({navigation}) => {
   }, []);
 
   return (
-    <SafeAreaView>
-      <StatusBar barStyle="dark-content" />
+    <Page appbar={{title: 'Login'}}>
+      <View
+        style={{
+          ...styles.marginHorizontalDefault,
+          ...styles.marginVerticalDefault,
+        }}>
+        <TextInput
+          label="Nome de usuário"
+          mode="outlined"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          theme={{
+            colors: {
+              primary: '#248eff',
+            },
+          }}
+          onChangeText={text => setUsername(text)}
+        />
 
-      <TextInput
-        placeholder={'Nome de usuario'}
-        style={styles.input}
-        placeholderTextColor={'#000'}
-        onChangeText={text => setUsername(text)}
-      />
-      <TextInput
-        placeholder={'Senha'}
-        style={styles.input}
-        placeholderTextColor={'#000'}
-        onChangeText={text => setPassword(text)}
-      />
-      <Button title={'Entrar'} onPress={getUserToken} />
+        <TextInput
+          label="Senha"
+          mode="outlined"
+          secureTextEntry={true}
+          theme={{
+            colors: {
+              primary: '#248eff',
+            },
+          }}
+          style={{...styles.marginTopDefault}}
+          onChangeText={text => setPassword(text)}
+        />
 
-      {identityProviders?.map(provider => (
-        <TouchableOpacity
-          onPress={() => {
-            Provider.openBrowserForOAuthLogin({...provider, navigation});
+        <Button
+          mode="contained"
+          style={{...styles.marginTopDefault}}
+          onPress={() => Provider.makeLogin({navigation, username, password})}
+          theme={{
+            colors: {
+              primary: '#248eff',
+            },
           }}>
-          <Image
-            source={{uri: provider.iconurl}}
-            style={{width: 25, height: 25}}
-          />
-          <Text>{provider.name}</Text>
-        </TouchableOpacity>
-      ))}
+          Entrar
+        </Button>
 
-      <TouchableOpacity onPress={() => navigation.push('register')}>
-        <Text>Register</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
+        {identityProviders?.map(provider => (
+          <Button
+            icon={provider.name.toLowerCase()}
+            mode="contained"
+            style={{...styles.marginTopDefault}}
+            theme={{
+              colors: {
+                primary:
+                  provider.name === 'Google'
+                    ? '#ab000d'
+                    : provider.name === 'Facebook'
+                    ? '#002171'
+                    : '#248eff',
+              },
+            }}
+            onPress={() => {
+              Provider.openBrowserForOAuthLogin({...provider, navigation});
+            }}>
+            {provider.name}
+          </Button>
+        ))}
+
+        <Button
+          mode="contained"
+          style={{...styles.marginTopDefault}}
+          theme={{
+            colors: {
+              primary: '#248eff',
+            },
+          }}
+          onPress={() => navigation.push('register')}>
+          Criar uma nova conta
+        </Button>
+      </View>
+    </Page>
   );
 };
 

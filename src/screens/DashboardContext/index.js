@@ -1,12 +1,21 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Provider from './provider';
 
 import Dashboard from './Dashboard';
 import Messages from './Messages';
 import About from './About';
 
 const DashboardContext = () => {
+  const [unreadConversations, setUnreadConversations] = useState(0);
+
+  useEffect(() => {
+    Provider.getUnreadConversationsCount().then(data =>
+      setUnreadConversations(data),
+    );
+  }, []);
+
   const Tab = createMaterialBottomTabNavigator();
 
   return (
@@ -29,6 +38,7 @@ const DashboardContext = () => {
           tabBarIcon: ({color}) => (
             <MaterialIcons name="chat" color={color} size={26} />
           ),
+          tabBarBadge: unreadConversations !== 0 ? unreadConversations : false,
         }}
       />
       <Tab.Screen
