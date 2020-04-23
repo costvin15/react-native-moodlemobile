@@ -3,7 +3,7 @@ import Constants from './constants';
 import events from '../events';
 
 export const callMoodleWebService = async (wsfunction, ...params) => {
-  var url = `${
+  let url = `${
     Constants.MOODLE_HOST
   }/webservice/rest/server.php?moodlewsrestformat=json&wsfunction=${wsfunction}`;
 
