@@ -35,7 +35,7 @@ export const callMoodleWebService = async (wsfunction, ...params) => {
   const response = await fetch(url);
   const data = await response.json();
 
-  if (data.errorcode) {
+  if (data?.errorcode) {
     throw data;
   }
 
