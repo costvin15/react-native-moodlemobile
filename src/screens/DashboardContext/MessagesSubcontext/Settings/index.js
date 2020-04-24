@@ -1,15 +1,41 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Page} from '../../../../components';
+import {Card} from 'react-native-paper';
+import {View, Text, Switch} from 'react-native';
+import {styles} from './styles';
 
 const Settings = ({navigation}) => {
+  const [sendWithEnter, setSendWithEnter] = useState(false);
+
   return (
     <Page
       appbar={{
         title: 'Configurações',
         canGoBack: navigation.canGoBack(),
         goBack: navigation.goBack,
-      }}
-    />
+      }}>
+      <View
+        style={{
+          ...styles.marginHorizontalDefault,
+          ...styles.marginVerticalDefault,
+        }}>
+        <Card>
+          <Card.Title title="Geral" />
+          <Card.Content
+            style={{
+              ...styles.rowDirection,
+              ...styles.spaceBetween,
+              ...styles.alignCenter,
+            }}>
+            <Text>Use enter para enviar</Text>
+            <Switch
+              value={sendWithEnter}
+              onValueChange={() => setSendWithEnter(!sendWithEnter)}
+            />
+          </Card.Content>
+        </Card>
+      </View>
+    </Page>
   );
 };
 
