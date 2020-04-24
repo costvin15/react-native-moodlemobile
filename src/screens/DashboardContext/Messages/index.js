@@ -138,7 +138,18 @@ const Dashboard = ({navigation, route}) => {
   }, []);
 
   return (
-    <Page appbar={{title: 'Mensagens'}}>
+    <Page
+      appbar={{
+        title: 'Mensagens',
+        action: {
+          icon: 'settings',
+          onPress: () => {
+            navigation.navigate('messagessubcontext', {
+              screen: 'settings',
+            });
+          },
+        },
+      }}>
       <View>
         <Accordion
           activeSections={activeSections}
