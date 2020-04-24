@@ -9,6 +9,10 @@ const Page = ({appbar, children, hasScrollView = true}) => {
       <Appbar.Header style={{...styles.toolbar}}>
         {appbar?.canGoBack && <Appbar.BackAction onPress={appbar?.goBack} />}
         <Appbar.Content title={appbar?.title} />
+        <Appbar.Action
+          icon={appbar?.action?.icon}
+          onPress={appbar?.action?.onPress}
+        />
       </Appbar.Header>
 
       {hasScrollView && (
