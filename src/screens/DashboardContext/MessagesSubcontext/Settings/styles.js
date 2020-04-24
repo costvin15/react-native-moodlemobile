@@ -7,6 +7,9 @@ export const styles = StyleSheet.create({
   marginHorizontalDefault: {
     marginHorizontal: 15,
   },
+  marginTopDefault: {
+    marginTop: 15,
+  },
   rowDirection: {
     flexDirection: 'row',
   },

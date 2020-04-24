@@ -5,6 +5,7 @@ import {View, Text, Switch} from 'react-native';
 import {styles} from './styles';
 
 const Settings = ({navigation}) => {
+  const [emailNotification, setEmailNotification] = useState(false);
   const [sendWithEnter, setSendWithEnter] = useState(false);
 
   return (
@@ -20,6 +21,22 @@ const Settings = ({navigation}) => {
           ...styles.marginVerticalDefault,
         }}>
         <Card>
+          <Card.Title title="Preferências de notificação" />
+          <Card.Content
+            style={{
+              ...styles.rowDirection,
+              ...styles.spaceBetween,
+              ...styles.alignCenter,
+            }}>
+            <Text>Email</Text>
+            <Switch
+              value={emailNotification}
+              onValueChange={() => setEmailNotification(!emailNotification)}
+            />
+          </Card.Content>
+        </Card>
+
+        <Card style={{...styles.marginTopDefault}}>
           <Card.Title title="Geral" />
           <Card.Content
             style={{
