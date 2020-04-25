@@ -90,6 +90,11 @@ export const setMoodleUserToken = async token => {
   return token;
 };
 
+export const getMoodleUserToken = async () => {
+  const token = await AsyncStorage.getItem(Constants.MOODLE_USER_TOKEN);
+  return token;
+};
+
 export const emmitEvent = (eventname, params) => {
   const {handler} = events.find(event => event?.name === eventname);
   handler(params);
@@ -102,5 +107,6 @@ export default {
   getUserCourses,
   renewMoodleUserToken,
   setMoodleUserToken,
+  getMoodleUserToken,
   emmitEvent,
 };
