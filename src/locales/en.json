@@ -6,5 +6,15 @@
     "message": "Message",
     "details": "Details",
     "blogposts": "Blog posts",
-    "emblems": "Emblems"
+    "emblems": "Emblems",
+    "messages": "Messages",
+    "favorites": "Favorites",
+    "group": "Group",
+    "private": "Private",
+    "settings": "Settings",
+    "notificationpreferences": "Notification preferences",
+    "email": "Email",
+    "general": "General",
+    "useentertosend": "Use enter to send",
+    "dashboard": "Dashboard"
 }

@@ -3,6 +3,7 @@ import {Page} from '../../../../components';
 import {Card} from 'react-native-paper';
 import {View, Text, Switch} from 'react-native';
 import {styles} from './styles';
+import Locales from '../../../../locales';
 
 const Settings = ({navigation}) => {
   const [emailNotification, setEmailNotification] = useState(false);
@@ -11,7 +12,7 @@ const Settings = ({navigation}) => {
   return (
     <Page
       appbar={{
-        title: 'Configurações',
+        title: Locales.t('settings'),
         canGoBack: navigation.canGoBack(),
         goBack: navigation.goBack,
       }}>
@@ -21,14 +22,14 @@ const Settings = ({navigation}) => {
           ...styles.marginVerticalDefault,
         }}>
         <Card>
-          <Card.Title title="Preferências de notificação" />
+          <Card.Title title={Locales.t('notificationpreferences')} />
           <Card.Content
             style={{
               ...styles.rowDirection,
               ...styles.spaceBetween,
               ...styles.alignCenter,
             }}>
-            <Text>Email</Text>
+            <Text>{Locales.t('email')}</Text>
             <Switch
               value={emailNotification}
               onValueChange={() => setEmailNotification(!emailNotification)}
@@ -37,14 +38,14 @@ const Settings = ({navigation}) => {
         </Card>
 
         <Card style={{...styles.marginTopDefault}}>
-          <Card.Title title="Geral" />
+          <Card.Title title={Locales.t('general')} />
           <Card.Content
             style={{
               ...styles.rowDirection,
               ...styles.spaceBetween,
               ...styles.alignCenter,
             }}>
-            <Text>Use enter para enviar</Text>
+            <Text>{Locales.t('useentertosend')}</Text>
             <Switch
               value={sendWithEnter}
               onValueChange={() => setSendWithEnter(!sendWithEnter)}

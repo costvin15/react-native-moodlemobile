@@ -7,6 +7,7 @@ import {useTheme} from 'react-native-paper';
 import Dashboard from './Dashboard';
 import Messages from './Messages';
 import About from './About';
+import Locales from '../../locales';
 
 const DashboardContext = () => {
   const [unreadConversations, setUnreadConversations] = useState(0);
@@ -30,7 +31,7 @@ const DashboardContext = () => {
         name="dashboard"
         component={Dashboard}
         options={{
-          title: 'Página Inicial',
+          title: Locales.t('dashboard'),
           tabBarIcon: ({color}) => (
             <MaterialIcons name="home" color={color} size={26} />
           ),
@@ -40,7 +41,7 @@ const DashboardContext = () => {
         name="messages"
         component={Messages}
         options={{
-          title: 'Mensagens',
+          title: Locales.t('messages'),
           tabBarIcon: ({color}) => (
             <MaterialIcons name="chat" color={color} size={26} />
           ),
@@ -51,7 +52,7 @@ const DashboardContext = () => {
         name="about"
         component={About}
         options={{
-          title: 'Sobre',
+          title: Locales.t('about'),
           tabBarIcon: ({color}) => (
             <MaterialIcons name="menu" color={color} size={26} />
           ),
