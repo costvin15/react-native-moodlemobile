@@ -5,6 +5,7 @@ import {Card} from 'react-native-paper';
 import {Page} from '../../../../components';
 import Provider from './provider';
 import {styles} from './styles';
+import Locales from '../../../../locales';
 
 const Grades = ({navigation}) => {
   const [grades, setGrades] = useState([]);
@@ -16,7 +17,7 @@ const Grades = ({navigation}) => {
   return (
     <Page
       appbar={{
-        title: 'Notas',
+        title: Locales.t('grades'),
         canGoBack: navigation.canGoBack(),
         goBack: navigation.goBack,
       }}>
