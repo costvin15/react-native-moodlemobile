@@ -1,3 +1,27 @@
 {
-    "about": "Sobre"
+    "about": "Sobre",
+    "profile": "Perfil",
+    "grades": "Notas",
+    "signout": "Sair",
+    "message": "Mensagem",
+    "details": "Detalhes",
+    "blogposts": "Mensagens do blog",
+    "emblems": "Emblemas",
+    "messages": "Mensagens",
+    "favorites": "Favoritos",
+    "group": "Grupo",
+    "private": "Privado",
+    "settings": "Configurações",
+    "notificationpreferences": "Preferências de notificação",
+    "email": "Email",
+    "general": "Geral",
+    "useentertosend": "Use enter para enviar",
+    "dashboard": "Dashboard",
+    "activities": "Atividades",
+    "participants": "Participantes",
+    "openexternalactivity": "Abrir atividade external",
+    "login": "Entrar",
+    "username": "Nome de usuário",
+    "password": "Senha",
+    "createanewaccount": "Criar uma nova conta"
 }
