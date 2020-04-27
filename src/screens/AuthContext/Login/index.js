@@ -4,11 +4,13 @@ import {Page} from '../../../components';
 import {TextInput, Button} from 'react-native-paper';
 import {View} from 'react-native';
 import {styles} from './styles';
+import {useTheme} from 'react-native-paper';
 
 const Login = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [identityProviders, setIdentityProviders] = useState([]);
+  const Theme = useTheme();
 
   useEffect(() => {
     (async () => {
@@ -29,11 +31,6 @@ const Login = ({navigation}) => {
           mode="outlined"
           keyboardType="email-address"
           autoCapitalize="none"
-          theme={{
-            colors: {
-              primary: '#248eff',
-            },
-          }}
           onChangeText={text => setUsername(text)}
         />
 
@@ -41,11 +38,6 @@ const Login = ({navigation}) => {
           label="Senha"
           mode="outlined"
           secureTextEntry={true}
-          theme={{
-            colors: {
-              primary: '#248eff',
-            },
-          }}
           style={{...styles.marginTopDefault}}
           onChangeText={text => setPassword(text)}
         />
@@ -53,12 +45,7 @@ const Login = ({navigation}) => {
         <Button
           mode="contained"
           style={{...styles.marginTopDefault}}
-          onPress={() => Provider.makeLogin({navigation, username, password})}
-          theme={{
-            colors: {
-              primary: '#248eff',
-            },
-          }}>
+          onPress={() => Provider.makeLogin({navigation, username, password})}>
           Entrar
         </Button>
 
@@ -74,7 +61,7 @@ const Login = ({navigation}) => {
                     ? '#ab000d'
                     : provider.name === 'Facebook'
                     ? '#002171'
-                    : '#248eff',
+                    : Theme.colors.primary,
               },
             }}
             onPress={() => {
@@ -87,11 +74,6 @@ const Login = ({navigation}) => {
         <Button
           mode="contained"
           style={{...styles.marginTopDefault}}
-          theme={{
-            colors: {
-              primary: '#248eff',
-            },
-          }}
           onPress={() => navigation.push('register')}>
           Criar uma nova conta
         </Button>

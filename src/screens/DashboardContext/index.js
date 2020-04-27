@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Provider from './provider';
+import {useTheme} from 'react-native-paper';
 
 import Dashboard from './Dashboard';
 import Messages from './Messages';
@@ -9,6 +10,7 @@ import About from './About';
 
 const DashboardContext = () => {
   const [unreadConversations, setUnreadConversations] = useState(0);
+  const Theme = useTheme();
 
   useEffect(() => {
     Provider.getUnreadConversationsCount().then(data =>
@@ -19,7 +21,11 @@ const DashboardContext = () => {
   const Tab = createMaterialBottomTabNavigator();
 
   return (
-    <Tab.Navigator initialRouteName="dashboard">
+    <Tab.Navigator
+      initialRouteName="dashboard"
+      barStyle={{
+        backgroundColor: Theme.colors.primary,
+      }}>
       <Tab.Screen
         name="dashboard"
         component={Dashboard}
