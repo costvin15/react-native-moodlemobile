@@ -5,6 +5,7 @@ import {TextInput, Button} from 'react-native-paper';
 import {View} from 'react-native';
 import {styles} from './styles';
 import {useTheme} from 'react-native-paper';
+import Locales from '../../../locales';
 
 const Login = ({navigation}) => {
   const [username, setUsername] = useState('');
@@ -20,14 +21,14 @@ const Login = ({navigation}) => {
   }, []);
 
   return (
-    <Page appbar={{title: 'Login'}}>
+    <Page appbar={{title: Locales.t('login')}}>
       <View
         style={{
           ...styles.marginHorizontalDefault,
           ...styles.marginVerticalDefault,
         }}>
         <TextInput
-          label="Nome de usuário"
+          label={Locales.t('username')}
           mode="outlined"
           keyboardType="email-address"
           autoCapitalize="none"
@@ -35,7 +36,7 @@ const Login = ({navigation}) => {
         />
 
         <TextInput
-          label="Senha"
+          label={Locales.t('password')}
           mode="outlined"
           secureTextEntry={true}
           style={{...styles.marginTopDefault}}
@@ -46,7 +47,7 @@ const Login = ({navigation}) => {
           mode="contained"
           style={{...styles.marginTopDefault}}
           onPress={() => Provider.makeLogin({navigation, username, password})}>
-          Entrar
+          {Locales.t('login')}
         </Button>
 
         {identityProviders?.map(provider => (
@@ -75,7 +76,7 @@ const Login = ({navigation}) => {
           mode="contained"
           style={{...styles.marginTopDefault}}
           onPress={() => navigation.push('register')}>
-          Criar uma nova conta
+          {Locales.t('createanewaccount')}
         </Button>
       </View>
     </Page>
