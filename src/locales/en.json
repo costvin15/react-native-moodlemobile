@@ -16,5 +16,8 @@
     "email": "Email",
     "general": "General",
     "useentertosend": "Use enter to send",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "activities": "Activities",
+    "participants": "Participants",
+    "openexternalactivity": "Open external activity"
 }
