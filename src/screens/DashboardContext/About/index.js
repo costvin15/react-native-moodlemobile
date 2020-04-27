@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, Image} from 'react-native';
 import {Card, List, Divider} from 'react-native-paper';
 
+import Locales from '../../../locales';
 import {styles} from './styles';
 import {Page} from '../../../components';
 import {getCurrentUserDetails} from '../../../api/helper';
@@ -16,7 +17,7 @@ const About = ({navigation}) => {
   }, []);
 
   return (
-    <Page appbar={{title: 'Sobre'}}>
+    <Page appbar={{title: Locales.t('about')}}>
       <View
         style={{
           ...styles.marginHorizontalDefault,
@@ -24,7 +25,7 @@ const About = ({navigation}) => {
         }}>
         <Card>
           <List.Section>
-            <List.Subheader>Perfil</List.Subheader>
+            <List.Subheader>{Locales.t('profile')}</List.Subheader>
             <List.Item
               title={user?.fullname}
               description={user?.siteurl}
@@ -44,7 +45,7 @@ const About = ({navigation}) => {
 
           <List.Section>
             <List.Item
-              title="Notas"
+              title={Locales.t('grades')}
               left={props => <List.Icon {...props} icon="poll" />}
               onPress={() => {
                 navigation.navigate('aboutsubcontext', {
@@ -53,7 +54,7 @@ const About = ({navigation}) => {
               }}
             />
             <List.Item
-              title="Sair"
+              title={Locales.t('signout')}
               left={props => <List.Icon {...props} icon="logout" />}
               onPress={() => Provider.performLogout(navigation)}
             />
