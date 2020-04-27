@@ -6,6 +6,7 @@ import {styles} from './styles';
 import {emmitEvent} from '../../../../api/helper';
 import Provider from './provider';
 import {useTheme} from 'react-native-paper';
+import Locales from '../../../../locales';
 
 const Profile = ({navigation, route}) => {
   const [user, setUser] = useState({});
@@ -18,7 +19,7 @@ const Profile = ({navigation, route}) => {
   return (
     <Page
       appbar={{
-        title: 'Perfil',
+        title: Locales.t('profile'),
         canGoBack: navigation.canGoBack(),
         goBack: navigation.goBack,
       }}>
@@ -60,13 +61,13 @@ const Profile = ({navigation, route}) => {
                 ...styles.messageText,
                 color: Theme.colors.accent,
               }}>
-              Mensagem
+              {Locales.t('message')}
             </Text>
           </TouchableOpacity>
           <Divider />
           <View>
             <List.Item
-              title="Detalhes"
+              title={Locales.t('details')}
               left={() => <List.Icon icon="account" />}
               onPress={() => {
                 emmitEvent('core.user.details', {id: user?.id});
@@ -74,7 +75,7 @@ const Profile = ({navigation, route}) => {
             />
             <Divider />
             <List.Item
-              title="Mensagens do blog"
+              title={Locales.t('blogposts')}
               left={() => <List.Icon icon="newspaper" />}
               onPress={() => {
                 emmitEvent('core.user.blogmessages', {id: user?.id});
@@ -82,7 +83,7 @@ const Profile = ({navigation, route}) => {
             />
             <Divider />
             <List.Item
-              title="Emblemas"
+              title={Locales.t('emblems')}
               left={() => <List.Icon icon="trophy" />}
               onPress={() => {}}
             />
