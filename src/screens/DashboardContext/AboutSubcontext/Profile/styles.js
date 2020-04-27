@@ -19,12 +19,8 @@ export const styles = StyleSheet.create({
     marginTop: 15,
     fontSize: 20,
   },
-  messageFab: {
-    backgroundColor: '#248eff',
-  },
   messageText: {
     paddingTop: 10,
-    color: '#248eff',
   },
 });
 

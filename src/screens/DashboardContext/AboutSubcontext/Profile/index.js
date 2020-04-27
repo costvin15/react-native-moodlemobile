@@ -5,9 +5,11 @@ import {Card, Divider, FAB, List} from 'react-native-paper';
 import {styles} from './styles';
 import {emmitEvent} from '../../../../api/helper';
 import Provider from './provider';
+import {useTheme} from 'react-native-paper';
 
 const Profile = ({navigation, route}) => {
   const [user, setUser] = useState({});
+  const Theme = useTheme();
 
   useEffect(() => {
     Provider.getUserById({id: route.params?.id}).then(data => setUser(data));
@@ -32,7 +34,6 @@ const Profile = ({navigation, route}) => {
               ...styles.marginHorizontalDefault,
               ...styles.marginVerticalDefault,
             }}>
-            {console.log(user)}
             <Image
               source={{uri: user?.profileimageurl}}
               style={styles.profileImage}
@@ -50,12 +51,17 @@ const Profile = ({navigation, route}) => {
             <FAB
               icon="message-outline"
               color="white"
-              style={styles.messageFab}
               onPress={() => {
                 emmitEvent('core.user.message.send', {touserid: user?.id});
               }}
             />
-            <Text style={styles.messageText}>Mensagem</Text>
+            <Text
+              style={{
+                ...styles.messageText,
+                color: Theme.colors.accent,
+              }}>
+              Mensagem
+            </Text>
           </TouchableOpacity>
           <Divider />
           <View>

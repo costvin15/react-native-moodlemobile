@@ -6,12 +6,14 @@ import {emmitEvent} from '../../../../api/helper';
 import {View} from 'react-native';
 import RenderHTML from 'react-native-render-html';
 import {styles} from './styles';
+import {useTheme} from 'react-native-paper';
 
 const ConversationView = ({navigation, route}) => {
   const [conversationId, setConversationId] = useState(null);
   const [title, setTitle] = useState('');
   const [currentUser, setCurrentUser] = useState([]);
   const [messages, setMessages] = useState([]);
+  const Theme = useTheme();
 
   useEffect(() => {
     const getConversationByConvid = async () => {
@@ -148,7 +150,7 @@ const ConversationView = ({navigation, route}) => {
                   backgroundColor: '#3b3b3b',
                 },
                 right: {
-                  backgroundColor: '#248eff',
+                  backgroundColor: Theme.colors.primary,
                 },
               }}
             />

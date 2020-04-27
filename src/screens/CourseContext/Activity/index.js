@@ -24,7 +24,6 @@ const Activity = ({navigation, route}) => {
           ...styles.marginHorizontalDefault,
           ...styles.marginVerticalDefault,
         }}>
-        {console.log(module)}
         <Button
           title="Abrir atividade externa"
           onPress={() => {
