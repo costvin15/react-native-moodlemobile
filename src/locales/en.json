@@ -19,5 +19,9 @@
     "dashboard": "Dashboard",
     "activities": "Activities",
     "participants": "Participants",
-    "openexternalactivity": "Open external activity"
+    "openexternalactivity": "Open external activity",
+    "login": "Log in",
+    "username": "Username",
+    "password": "Password",
+    "createanewaccount": "Create a new account"
 }
