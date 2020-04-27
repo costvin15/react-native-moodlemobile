@@ -15,5 +15,6 @@
     "notificationpreferences": "Notification preferences",
     "email": "Email",
     "general": "General",
-    "useentertosend": "Use enter to send"
+    "useentertosend": "Use enter to send",
+    "dashboard": "Dashboard"
 }
