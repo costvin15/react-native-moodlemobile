@@ -10,5 +10,10 @@
     "messages": "Messages",
     "favorites": "Favorites",
     "group": "Group",
-    "private": "Private"
+    "private": "Private",
+    "settings": "Settings",
+    "notificationpreferences": "Notification preferences",
+    "email": "Email",
+    "general": "General",
+    "useentertosend": "Use enter to send"
 }

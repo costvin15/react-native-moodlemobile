@@ -26,7 +26,7 @@ const Dashboard = ({navigation, route}) => {
     },
   ];
 
-  const renderHeader = (section, index, isActive) => (
+  const renderHeader = (section, _, isActive) => (
     // TODO: Improve with react-native-animatable
     <Card
       style={
