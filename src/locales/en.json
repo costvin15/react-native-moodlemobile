@@ -6,5 +6,9 @@
     "message": "Message",
     "details": "Details",
     "blogposts": "Blog posts",
-    "emblems": "Emblems"
+    "emblems": "Emblems",
+    "messages": "Messages",
+    "favorites": "Favorites",
+    "group": "Group",
+    "private": "Private"
 }
