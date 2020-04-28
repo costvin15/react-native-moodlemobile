@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {View, FlatList, Image, Text, TouchableOpacity} from 'react-native';
-import {Bar} from 'react-native-progress';
+import {Card, ProgressBar} from 'react-native-paper';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {View, FlatList, Image, Text, TouchableOpacity} from 'react-native';
 
 import Provider from './provider';
 import {styles} from './styles';
 import {emmitEvent} from '../../api/helper';
-import {Card} from 'react-native-paper';
 
 const MyOverview = () => {
   const [courses, setCourses] = useState([]);
@@ -55,7 +54,11 @@ const MyOverview = () => {
                 )}
                 <View style={styles.courseFooter}>
                   <Text style={styles.courseTitle}>{item.displayname}</Text>
-                  <Bar progress={item.percentage / 100} width={280} />
+                  <ProgressBar
+                    style={{...styles.marginTopDefault}}
+                    progress={item.percentage / 100}
+                    width={280}
+                  />
                 </View>
               </View>
             </TouchableOpacity>
