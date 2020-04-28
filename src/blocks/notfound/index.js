@@ -1,13 +1,17 @@
 import React from 'react';
+import {styles} from './styles';
 import {View} from 'react-native';
-// TODO: Replace material-ui with paper
-import {Card, Subheader} from 'react-native-material-ui';
+import {Card} from 'react-native-paper';
 
 const Timeline = ({title}) => {
   return (
     <View>
-      <Card>
-        <Subheader text={'O bloco ' + title + ' não está implementado.'} />
+      <Card
+        style={{
+          ...styles.marginHorizontalDefault,
+          ...styles.marginVerticalDefault,
+        }}>
+        <Card.Title subtitle={'O bloco ' + title + ' não está implementado.'} />
       </Card>
     </View>
   );
