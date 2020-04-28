@@ -1,20 +1,24 @@
 import React, {useState, useEffect} from 'react';
 import {View, FlatList, Text, ScrollView, Image} from 'react-native';
-import Provider from './provider';
 import Accordion from 'react-native-collapsible/Accordion';
-import {styles} from './styles';
 import {Card, IconButton} from 'react-native-paper';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
+
 import {emmitEvent} from '../../../../api/helper';
+import Provider from './provider';
+import {styles} from './styles';
 
 const Activities = ({route}) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [sections, setSections] = useState([]);
   const [activeSections, setActiveSections] = useState([0]);
 
   useEffect(() => {
-    Provider.getSectionAndActivities(route.params.id).then(data =>
-      setSections(data),
-    );
+    Provider.getSectionAndActivities(route.params.id).then(data => {
+      setSections(data);
+      setIsLoading(false);
+    });
   }, [route.params.id]);
 
   const _renderHeader = (section, index, isActive) => {
@@ -89,6 +93,78 @@ const Activities = ({route}) => {
   const _updateSections = actives => {
     setActiveSections(actives);
   };
+
+  if (isLoading) {
+    return (
+      <View>
+        <Card
+          style={{
+            ...styles.marginHorizontal,
+            ...styles.marginTop,
+          }}>
+          <View
+            style={{
+              ...styles.marginHorizontal,
+              ...styles.marginVertical,
+            }}>
+            <SkeletonPlaceholder>
+              <SkeletonPlaceholder.Item height={24} />
+              <SkeletonPlaceholder.Item height={12} marginTop={15} />
+              <SkeletonPlaceholder.Item height={12} marginTop={5} />
+            </SkeletonPlaceholder>
+          </View>
+        </Card>
+
+        <Card
+          style={{
+            ...styles.marginHorizontal,
+            ...styles.marginTop,
+          }}>
+          <View
+            style={{
+              ...styles.marginHorizontal,
+              ...styles.marginVertical,
+            }}>
+            <SkeletonPlaceholder>
+              <SkeletonPlaceholder.Item height={24} />
+            </SkeletonPlaceholder>
+          </View>
+        </Card>
+
+        <Card
+          style={{
+            ...styles.marginHorizontal,
+            ...styles.marginTop,
+          }}>
+          <View
+            style={{
+              ...styles.marginHorizontal,
+              ...styles.marginVertical,
+            }}>
+            <SkeletonPlaceholder>
+              <SkeletonPlaceholder.Item height={24} />
+            </SkeletonPlaceholder>
+          </View>
+        </Card>
+
+        <Card
+          style={{
+            ...styles.marginHorizontal,
+            ...styles.marginTop,
+          }}>
+          <View
+            style={{
+              ...styles.marginHorizontal,
+              ...styles.marginVertical,
+            }}>
+            <SkeletonPlaceholder>
+              <SkeletonPlaceholder.Item height={24} />
+            </SkeletonPlaceholder>
+          </View>
+        </Card>
+      </View>
+    );
+  }
 
   return (
     <ScrollView>
