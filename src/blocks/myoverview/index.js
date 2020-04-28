@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, FlatList, Image, Text, TouchableOpacity} from 'react-native';
+// TODO: Replace material-ui with paper
 import {Card, Subheader} from 'react-native-material-ui';
 import Provider from './provider';
 import Styles from './styles';

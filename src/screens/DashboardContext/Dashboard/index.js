@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {SafeAreaView, StatusBar, FlatList} from 'react-native';
+import {FlatList} from 'react-native';
+
 import Provider from './provider';
+import {Page} from '../../../components';
+import Locales from '../../../locales';
 
 const Dashboard = ({navigation}) => {
   const [blocks, setBlocks] = useState([]);
@@ -10,9 +13,10 @@ const Dashboard = ({navigation}) => {
   }, []);
 
   return (
-    <SafeAreaView>
-      <StatusBar barStyle="dark-content" />
-
+    <Page
+      appbar={{
+        title: Locales.t('dashboard'),
+      }}>
       <FlatList
         data={blocks}
         renderItem={({item}) => (
@@ -20,7 +24,7 @@ const Dashboard = ({navigation}) => {
         )}
         keyExtractor={data => data.title}
       />
-    </SafeAreaView>
+    </Page>
   );
 };
 
