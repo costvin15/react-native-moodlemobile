@@ -5835,6 +5835,11 @@ react-native-lightbox@^0.8.1:
   dependencies:
     prop-types "^15.7.2"
 
+react-native-linear-gradient@^2.5.6:
+  version "2.5.6"
+  resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.5.6.tgz#96215cbc5ec7a01247a20890888aa75b834d44a0"
+  integrity sha512-HDwEaXcQIuXXCV70O+bK1rizFong3wj+5Q/jSyifKFLg0VWF95xh8XQgfzXwtq0NggL9vNjPKXa016KuFu+VFg==
+
 react-native-material-design-styles@^0.2.6:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/react-native-material-design-styles/-/react-native-material-design-styles-0.2.7.tgz#428560ef4d0659db1163c9f9b5476d886ed22d57"
@@ -5909,6 +5914,11 @@ react-native-screens@^2.4.0:
   integrity sha512-7GcXlaj7IIrM4l5Ub7BPTkNQJ2slHGt2bhmfWmW73NTXEv+7pjHlp+JpQO32Yn+O8UQGPFf0rsesfYUdER7ppQ==
   dependencies:
     debounce "^1.2.0"
+
+react-native-skeleton-placeholder@^2.0.7:
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/react-native-skeleton-placeholder/-/react-native-skeleton-placeholder-2.0.7.tgz#a804358b6999a8ed05c35ef2e7ba1c53b50a9426"
+  integrity sha512-9O4lU1bOyhErvMYE3Lz7Cy/H8Mj1FEtb2yEfHVoeBql6HJPcoxBtSSb6nZCS3U1AbbH0RvMYAlB1QztZpLf0Og==
 
 react-native-tab-view@^2.13.0:
   version "2.13.0"
