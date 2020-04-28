@@ -32,7 +32,11 @@ const RecentlyAccessedCourses = () => {
           <View>
             <SkeletonPlaceholder>
               <SkeletonPlaceholder.Item flexDirection="row">
-                <SkeletonPlaceholder.Item width={300} margin={15}>
+                <SkeletonPlaceholder.Item
+                  width={300}
+                  marginLeft={15}
+                  marginRight={15}
+                  marginBottom={15}>
                   <SkeletonPlaceholder.Item height={170} />
                   <SkeletonPlaceholder.Item marginTop={10} height={32} />
                 </SkeletonPlaceholder.Item>
