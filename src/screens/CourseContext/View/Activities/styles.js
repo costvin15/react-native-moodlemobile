@@ -24,6 +24,10 @@ export const styles = StyleSheet.create({
   marginHorizontal: {
     marginHorizontal: 15,
   },
+  modIcon: {
+    width: 25,
+    height: 25,
+  },
 });
 
 export default styles;
