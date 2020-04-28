@@ -6,6 +6,7 @@ import {View, TouchableOpacity} from 'react-native';
 import {Card, IconButton, Avatar} from 'react-native-paper';
 import {styles} from './styles';
 import {emmitEvent} from '../../../api/helper';
+import Locales from '../../../locales';
 
 const Dashboard = ({navigation, route}) => {
   const [activeSections, setActiveSections] = useState([]);
@@ -15,20 +16,17 @@ const Dashboard = ({navigation, route}) => {
 
   const sections = [
     {
-      title: `Favoritos (${favouriteConversations.length})`,
-      content: 'Lorem ipsun...',
+      title: `${Locales.t('favorites')} (${favouriteConversations.length})`,
     },
     {
-      title: `Grupo (${groupConversations.length})`,
-      content: 'Lorem ipsun...',
+      title: `${Locales.t('group')} (${groupConversations.length})`,
     },
     {
-      title: `Privado (${privateConversations.length})`,
-      content: 'Lorem ipsun...',
+      title: `${Locales.t('private')} (${privateConversations.length})`,
     },
   ];
 
-  const renderHeader = (section, index, isActive) => (
+  const renderHeader = (section, _, isActive) => (
     // TODO: Improve with react-native-animatable
     <Card
       style={
@@ -72,7 +70,7 @@ const Dashboard = ({navigation, route}) => {
     );
   };
 
-  const renderContent = (section, index, isActive) => {
+  const renderContent = (_, index, isActive) => {
     if (index === 0) {
       return (
         <View
@@ -138,7 +136,18 @@ const Dashboard = ({navigation, route}) => {
   }, []);
 
   return (
-    <Page appbar={{title: 'Mensagens'}}>
+    <Page
+      appbar={{
+        title: Locales.t('messages'),
+        action: {
+          icon: 'settings',
+          onPress: () => {
+            navigation.navigate('messagessubcontext', {
+              screen: 'settings',
+            });
+          },
+        },
+      }}>
       <View>
         <Accordion
           activeSections={activeSections}

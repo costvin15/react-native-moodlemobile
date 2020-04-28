@@ -10,6 +10,7 @@ import {
   MessagesSubcontext,
 } from './screens';
 import {navigationRef} from './RootNavigation';
+import {Provider, DefaultTheme} from 'react-native-paper';
 
 const App = () => {
   const Stack = createStackNavigator();
@@ -31,4 +32,19 @@ const App = () => {
   );
 };
 
-export default App;
+const Main = () => {
+  const theme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+    },
+  };
+
+  return (
+    <Provider theme={theme}>
+      <App />
+    </Provider>
+  );
+};
+
+export default Main;
