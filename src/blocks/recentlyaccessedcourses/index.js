@@ -7,6 +7,7 @@ import {Card} from 'react-native-paper';
 import Provider from './provider';
 import {styles} from './styles';
 import {emmitEvent} from '../../api/helper';
+import Locales from '../../locales';
 
 const RecentlyAccessedCourses = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,7 +27,7 @@ const RecentlyAccessedCourses = () => {
           ...styles.marginVerticalDefault,
           ...styles.marginHorizontalDefault,
         }}>
-        <Card.Title title="Cursos acessados recentemente" />
+        <Card.Title title={Locales.t('recentlyaccessedcourses')} />
         {(isLoading && (
           <View>
             <SkeletonPlaceholder>
