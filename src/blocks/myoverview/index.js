@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import {View, FlatList, Image, Text, TouchableOpacity} from 'react-native';
-// TODO: Replace material-ui with paper
-import {Card, Subheader} from 'react-native-material-ui';
-import Provider from './provider';
-import Styles from './styles';
 import {Bar} from 'react-native-progress';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
+import Provider from './provider';
+import {styles} from './styles';
 import {emmitEvent} from '../../api/helper';
+import {Card} from 'react-native-paper';
 
 const MyOverview = () => {
   const [courses, setCourses] = useState([]);
@@ -17,10 +17,14 @@ const MyOverview = () => {
 
   return (
     <View>
-      <Card>
-        <Subheader text="Resumo dos cursos" />
+      <Card
+        style={{
+          ...styles.marginVerticalDefault,
+          ...styles.marginHorizontalDefault,
+        }}>
+        <Card.Title title="Resumo dos cursos" />
         <FlatList
-          style={Styles.coursesContainer}
+          style={{...styles.marginBottomDefault}}
           horizontal
           showsHorizontalScrollIndicator={false}
           data={courses}
@@ -30,9 +34,10 @@ const MyOverview = () => {
               onPress={() => emmitEvent('core.course.view', {id: item.id})}>
               <View
                 style={{
-                  ...Styles.courseContainer,
-                  ...(index !== courses.length - 1
-                    ? Styles.courseItemMargin
+                  ...styles.courseContainer,
+                  ...styles.marginLeftDefault,
+                  ...(index === courses.length - 1
+                    ? styles.marginRightDefault
                     : {}),
                 }}>
                 {(item.image && (
@@ -40,16 +45,16 @@ const MyOverview = () => {
                     source={{
                       uri: item.image,
                     }}
-                    style={Styles.courseImage}
+                    style={styles.courseImage}
                   />
                 )) || (
                   <View
-                    style={{...Styles.courseImage, ...Styles.courseNoImage}}>
+                    style={{...styles.courseImage, ...styles.courseNoImage}}>
                     <MaterialIcons name="image" size={50} />
                   </View>
                 )}
-                <View style={Styles.courseFooter}>
-                  <Text style={Styles.courseTitle}>{item.displayname}</Text>
+                <View style={styles.courseFooter}>
+                  <Text style={styles.courseTitle}>{item.displayname}</Text>
                   <Bar progress={item.percentage / 100} width={280} />
                 </View>
               </View>
