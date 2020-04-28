@@ -23,5 +23,8 @@
     "login": "Log in",
     "username": "Username",
     "password": "Password",
-    "createanewaccount": "Create a new account"
+    "firstname": "First name",
+    "lastname": "Last name",
+    "createanewaccount": "Create a new account",
+    "register": "Register"
 }
