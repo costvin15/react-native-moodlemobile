@@ -26,6 +26,9 @@ export const styles = StyleSheet.create({
   marginBottomDefault: {
     marginBottom: 15,
   },
+  justifyEnd: {
+    justifyContent: 'flex-end',
+  },
 });
 
 export default styles;
