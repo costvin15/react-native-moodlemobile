@@ -5,24 +5,41 @@ import {TextInput, Button} from 'react-native-paper';
 import {styles} from './styles';
 import Provider from './provider';
 import {Page} from '../../../components';
+import Locales from '../../../locales';
 
 const Register = ({navigation}) => {
   const [fields, setFields] = useState([]);
 
   useEffect(() => {
     setFields([
-      {stringid: 'username', placeholder: 'Nome de usuário', ref: createRef()},
-      {stringid: 'email', placeholder: 'Email', ref: createRef()},
-      {stringid: 'password', placeholder: 'Senha', ref: createRef()},
-      {stringid: 'firstname', placeholder: 'Nome', ref: createRef()},
-      {stringid: 'lastname', placeholder: 'Sobrenome', ref: createRef()},
+      {
+        stringid: 'username',
+        placeholder: Locales.t('username'),
+        ref: createRef(),
+      },
+      {stringid: 'email', placeholder: Locales.t('email'), ref: createRef()},
+      {
+        stringid: 'password',
+        placeholder: Locales.t('password'),
+        ref: createRef(),
+      },
+      {
+        stringid: 'firstname',
+        placeholder: Locales.t('firstname'),
+        ref: createRef(),
+      },
+      {
+        stringid: 'lastname',
+        placeholder: Locales.t('lastname'),
+        ref: createRef(),
+      },
     ]);
   }, []);
 
   return (
     <Page
       appbar={{
-        title: 'Registro',
+        title: Locales.t('register'),
         canGoBack: navigation.canGoBack(),
         goBack: navigation.goBack,
       }}>
@@ -56,7 +73,7 @@ const Register = ({navigation}) => {
             });
             Provider.registerUser(values);
           }}>
-          Registrar
+          {Locales.t('register')}
         </Button>
       </View>
     </Page>
