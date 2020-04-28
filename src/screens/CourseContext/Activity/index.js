@@ -3,9 +3,15 @@ import {View, Button} from 'react-native';
 import {Page} from '../../../components';
 import {styles} from './styles';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
+import Modules from '../../../modules';
+import Locales from '../../../locales';
 
 const Activity = ({navigation, route}) => {
   const module = route?.params?.item;
+
+  if (module.modname === 'resource') {
+    return <Modules.resource />;
+  }
 
   return (
     <Page
@@ -19,9 +25,8 @@ const Activity = ({navigation, route}) => {
           ...styles.marginHorizontalDefault,
           ...styles.marginVerticalDefault,
         }}>
-        {console.log(route.params.item)}
         <Button
-          title="Abrir atividade externa"
+          title={Locales.t('openexternalactivity')}
           onPress={() => {
             (async () => {
               const isSupported = await InAppBrowser.isAvailable();

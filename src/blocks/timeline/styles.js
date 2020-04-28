@@ -10,12 +10,24 @@ export const styles = StyleSheet.create({
   eventContainer: {
     margin: 15,
   },
-  eventDivider: {
-    marginTop: 15,
-  },
   noEventsContainer: {
     padding: 15,
     alignItems: 'center',
+  },
+  marginVerticalDefault: {
+    marginVertical: 15,
+  },
+  marginHorizontalDefault: {
+    marginHorizontal: 15,
+  },
+  marginTopDefault: {
+    marginTop: 15,
+  },
+  marginBottomDefault: {
+    marginBottom: 15,
+  },
+  justifyEnd: {
+    justifyContent: 'flex-end',
   },
 });
 
