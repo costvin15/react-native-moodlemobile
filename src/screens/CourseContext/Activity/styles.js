@@ -1,11 +1,11 @@
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
-  header: {
-    backgroundColor: '#248eff',
+  marginHorizontalDefault: {
+    marginHorizontal: 15,
   },
-  tabbar: {
-    backgroundColor: '#248eff',
+  marginVerticalDefault: {
+    marginVertical: 15,
   },
 });
 

@@ -1,11 +1,43 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Button} from 'react-native';
+import {Page} from '../../../components';
+import {styles} from './styles';
+import InAppBrowser from 'react-native-inappbrowser-reborn';
+import Modules from '../../../modules';
+import Locales from '../../../locales';
 
-const Activity = () => {
+const Activity = ({navigation, route}) => {
+  const module = route?.params?.item;
+
+  if (module.modname === 'resource') {
+    return <Modules.resource />;
+  }
+
   return (
-    <View>
-      <Text>Hello, Activity</Text>
-    </View>
+    <Page
+      appbar={{
+        title: module?.name,
+        canGoBack: navigation.canGoBack(),
+        goBack: () => navigation.goBack(),
+      }}>
+      <View
+        style={{
+          ...styles.marginHorizontalDefault,
+          ...styles.marginVerticalDefault,
+        }}>
+        <Button
+          title={Locales.t('openexternalactivity')}
+          onPress={() => {
+            (async () => {
+              const isSupported = await InAppBrowser.isAvailable();
+              if (isSupported) {
+                await InAppBrowser.open(module.url);
+              }
+            })();
+          }}
+        />
+      </View>
+    </Page>
   );
 };
 

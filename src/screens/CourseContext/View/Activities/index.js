@@ -55,10 +55,12 @@ const Activities = ({route}) => {
         }}>
         <View style={styles.rowDirection}>
           <View style={styles.rowDirection}>
-            <Image
-              source={{uri: item.modicon}}
-              style={{width: 25, height: 25}}
-            />
+            {item.modicontype !== 'image/svg+xml' && (
+              <Image
+                source={{uri: item.modicon}}
+                style={{width: 25, height: 25}}
+              />
+            )}
             <Text>{item.name}</Text>
           </View>
 
