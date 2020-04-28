@@ -34,6 +34,9 @@ export const styles = StyleSheet.create({
   marginLeftDefault: {
     marginLeft: 15,
   },
+  overflowHidden: {
+    overflow: 'hidden',
+  },
 });
 
 export default styles;
