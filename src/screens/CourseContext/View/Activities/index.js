@@ -57,15 +57,33 @@ const Activities = ({route}) => {
         onPress={() => {
           emmitEvent('core.course.activity.view', {item});
         }}>
-        <View style={styles.rowDirection}>
-          <View style={styles.rowDirection}>
-            {item.modicontype !== 'image/svg+xml' && (
-              <Image source={{uri: item.modicon}} style={styles.modIcon} />
-            )}
-            <Text>{item.name}</Text>
-          </View>
-
-          <IconButton icon="link" />
+        <View
+          style={{
+            ...styles.rowDirection,
+            ...styles.alignCenter,
+          }}>
+          {item.modicontype !== 'image/svg+xml' && (
+            <Image
+              source={{uri: item.modicon}}
+              style={{
+                ...styles.modIcon,
+                ...styles.marginLeft,
+              }}
+            />
+          )}
+          <Text
+            style={{
+              ...styles.marginHorizontal,
+              ...styles.flex,
+            }}>
+            {item.name}
+          </Text>
+          <IconButton
+            style={{
+              ...styles.marginRight,
+            }}
+            icon="link"
+          />
         </View>
       </TouchableOpacity>
     );
