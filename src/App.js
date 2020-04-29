@@ -7,8 +7,10 @@ import {
   CourseContext,
   DashboardContext,
   AboutSubcontext,
+  MessagesSubcontext,
 } from './screens';
 import {navigationRef} from './RootNavigation';
+import {Provider, DefaultTheme} from 'react-native-paper';
 
 const App = () => {
   const Stack = createStackNavigator();
@@ -21,9 +23,28 @@ const App = () => {
         <Stack.Screen name="dashboardcontext" component={DashboardContext} />
         <Stack.Screen name="coursecontext" component={CourseContext} />
         <Stack.Screen name="aboutsubcontext" component={AboutSubcontext} />
+        <Stack.Screen
+          name="messagessubcontext"
+          component={MessagesSubcontext}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
 
-export default App;
+const Main = () => {
+  const theme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+    },
+  };
+
+  return (
+    <Provider theme={theme}>
+      <App />
+    </Provider>
+  );
+};
+
+export default Main;

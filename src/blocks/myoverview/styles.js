@@ -1,14 +1,8 @@
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
-  coursesContainer: {
-    margin: 15,
-  },
   courseContainer: {
     width: 300,
-  },
-  courseItemMargin: {
-    marginRight: 15,
   },
   courseImage: {
     height: 170,
@@ -24,6 +18,27 @@ export const styles = StyleSheet.create({
   },
   courseTitle: {
     fontSize: 16,
+  },
+  marginVerticalDefault: {
+    marginVertical: 15,
+  },
+  marginHorizontalDefault: {
+    marginHorizontal: 15,
+  },
+  marginTopDefault: {
+    marginTop: 15,
+  },
+  marginBottomDefault: {
+    marginBottom: 15,
+  },
+  marginRightDefault: {
+    marginRight: 15,
+  },
+  marginLeftDefault: {
+    marginLeft: 15,
+  },
+  overflowHidden: {
+    overflow: 'hidden',
   },
 });
 
