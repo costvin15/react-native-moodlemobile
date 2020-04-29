@@ -10,6 +10,7 @@ import {
 import {Card, Divider} from 'react-native-paper';
 import Provider from './provider';
 import {styles} from './styles';
+import {emmitEvent} from '../../../../api/helper';
 
 const Participants = ({route}) => {
   const [participants, setParticipants] = useState([]);
@@ -25,6 +26,7 @@ const Participants = ({route}) => {
       <Card
         style={{
           ...styles.marginTopDefault,
+          ...styles.marginBottomDefault,
           ...styles.marginHorizontalDefault,
         }}>
         <FlatList
@@ -32,7 +34,10 @@ const Participants = ({route}) => {
           keyExtractor={item => item.id}
           renderItem={({index, item}) => (
             <>
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  emmitEvent('core.user.view', {id: item.id});
+                }}>
                 <View>
                   <View
                     style={{
