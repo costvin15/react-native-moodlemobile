@@ -1,8 +1,11 @@
 import {callMoodleWebService} from '../../../../api/helper';
+import i18n from 'react-native-i18n';
 import Moment from 'moment';
+import 'moment/locale/pt-br';
 
 export const getParticipants = async courseid => {
-  Moment.locale();
+  const locale = i18n.currentLocale();
+  Moment.locale(locale);
   const response = await callMoodleWebService('core_enrol_get_enrolled_users', {
     courseid,
   });
