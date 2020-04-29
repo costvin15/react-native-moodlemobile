@@ -11,7 +11,9 @@ import {useTheme} from 'react-native-paper';
 import Locales from '../../../locales';
 
 const Course = ({navigation, route}) => {
-  const [course, setCourse] = useState({});
+  const [course, setCourse] = useState({
+    displayname: 'Curso',
+  });
   const Tab = createMaterialTopTabNavigator();
   const Theme = useTheme();
 
