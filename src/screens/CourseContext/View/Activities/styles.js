@@ -9,6 +9,9 @@ export const styles = StyleSheet.create({
     borderTopStartRadius: 0,
     borderTopEndRadius: 0,
   },
+  flex: {
+    flex: 1,
+  },
   rowDirection: {
     flexDirection: 'row',
   },
@@ -18,11 +21,24 @@ export const styles = StyleSheet.create({
   marginBottom: {
     marginBottom: 15,
   },
+  marginLeft: {
+    marginLeft: 15,
+  },
+  marginRight: {
+    marginRight: 15,
+  },
   marginVertical: {
     marginVertical: 15,
   },
   marginHorizontal: {
     marginHorizontal: 15,
+  },
+  alignCenter: {
+    alignItems: 'center',
+  },
+  modIcon: {
+    width: 25,
+    height: 25,
   },
 });
 
