@@ -12,6 +12,7 @@ import Provider from './provider';
 import {styles} from './styles';
 import {emmitEvent} from '../../../../api/helper';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const Participants = ({route}) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -94,17 +95,25 @@ const Participants = ({route}) => {
                         ...styles.paddingDefault,
                         ...styles.row,
                         ...styles.alignCenter,
+                        ...styles.spaceBetween,
                       }}>
-                      <Image
-                        source={{uri: item.profileimageurl}}
-                        style={styles.userImage}
-                      />
-                      <View style={{...styles.marginLeftDefault}}>
-                        <Text>{item.fullname}</Text>
-                        {item.lastaccesstime && (
-                          <Text>Último acesso: {item.lastaccesstime}</Text>
-                        )}
+                      <View
+                        style={{
+                          ...styles.row,
+                          ...styles.alignCenter,
+                        }}>
+                        <Image
+                          source={{uri: item.profileimageurl}}
+                          style={styles.userImage}
+                        />
+                        <View style={{...styles.marginLeftDefault}}>
+                          <Text>{item.fullname}</Text>
+                          {item.lastaccesstime && (
+                            <Text>Último acesso: {item.lastaccesstime}</Text>
+                          )}
+                        </View>
                       </View>
+                      <MaterialIcons name="keyboard-arrow-right" size={30} />
                     </View>
                   </View>
                 </TouchableOpacity>

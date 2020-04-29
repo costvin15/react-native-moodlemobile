@@ -26,6 +26,9 @@ export const styles = StyleSheet.create({
     width: 50,
     height: 50,
   },
+  spaceBetween: {
+    justifyContent: 'space-between',
+  },
 });
 
 export default styles;
