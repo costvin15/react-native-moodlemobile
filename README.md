@@ -23,4 +23,4 @@ The project is divided into the following structure
 
 ### Application screenshots
 
-![screenshot-1](https://raw.githubusercontent.com/costvin15/react-native-moodlemobile/develop/docs/assets/screenshot-1.png)
+![screenshot-1](https://raw.githubusercontent.com/costvin15/react-native-moodlemobile/develop/docs/assets/screenshot-1.png) ![screenshot-2](https://raw.githubusercontent.com/costvin15/react-native-moodlemobile/develop/docs/assets/screenshot-2.png) ![screenshot-3](https://raw.githubusercontent.com/costvin15/react-native-moodlemobile/develop/docs/assets/screenshot-3.png)
