@@ -6,11 +6,13 @@ import InAppBrowser from 'react-native-inappbrowser-reborn';
 import Modules from '../../../modules';
 import Locales from '../../../locales';
 
-const Activity = ({navigation, route}) => {
+const Activity = ({navigation, route}, ...props) => {
   const module = route?.params?.item;
 
   if (module.modname === 'resource') {
-    return <Modules.resource />;
+    return (
+      <Modules.resource navigation={navigation} route={route} {...props} />
+    );
   }
 
   return (
