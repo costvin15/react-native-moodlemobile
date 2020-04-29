@@ -10,11 +10,17 @@ export const styles = StyleSheet.create({
   marginBottomDefault: {
     marginBottom: 15,
   },
+  marginLeftDefault: {
+    marginLeft: 15,
+  },
   paddingDefault: {
     padding: 15,
   },
   row: {
     flexDirection: 'row',
+  },
+  alignCenter: {
+    alignItems: 'center',
   },
   userImage: {
     width: 50,

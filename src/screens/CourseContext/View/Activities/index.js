@@ -1,5 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {View, FlatList, Text, ScrollView, Image} from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  FlatList,
+  Text,
+  ScrollView,
+  Image,
+} from 'react-native';
 import Accordion from 'react-native-collapsible/Accordion';
 import {Card, IconButton} from 'react-native-paper';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -182,17 +189,19 @@ const Activities = ({route}) => {
   }
 
   return (
-    <ScrollView>
-      <Accordion
-        sections={sections}
-        activeSections={activeSections}
-        renderSectionTitle={() => <></>}
-        renderHeader={_renderHeader}
-        renderContent={_renderContent}
-        onChange={_updateSections}
-        touchableComponent={props => <TouchableOpacity {...props} />}
-      />
-    </ScrollView>
+    <SafeAreaView>
+      <ScrollView>
+        <Accordion
+          sections={sections}
+          activeSections={activeSections}
+          renderSectionTitle={() => <></>}
+          renderHeader={_renderHeader}
+          renderContent={_renderContent}
+          onChange={_updateSections}
+          touchableComponent={props => <TouchableOpacity {...props} />}
+        />
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
