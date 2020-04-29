@@ -7,7 +7,7 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import {Card} from 'react-native-paper';
+import {Card, Divider} from 'react-native-paper';
 import Provider from './provider';
 import {styles} from './styles';
 
@@ -22,32 +22,42 @@ const Participants = ({route}) => {
 
   return (
     <SafeAreaView>
-      <FlatList
-        data={participants}
-        keyExtractor={item => item.id}
-        renderItem={({index, item}) => (
-          <TouchableOpacity>
-            <View
-              style={{
-                ...styles.marginHorizontalDefault,
-                ...styles.marginTopDefault,
-                ...(index === participants.length - 1
-                  ? styles.marginBottomDefault
-                  : {}),
-              }}>
-              <Card>
-                <View style={{...styles.paddingDefault, ...styles.row}}>
-                  <Image
-                    source={{uri: item.profileimageurl}}
-                    style={styles.userImage}
-                  />
-                  <Text>{item.fullname}</Text>
+      <Card
+        style={{
+          ...styles.marginTopDefault,
+          ...styles.marginHorizontalDefault,
+        }}>
+        <FlatList
+          data={participants}
+          keyExtractor={item => item.id}
+          renderItem={({index, item}) => (
+            <>
+              <TouchableOpacity>
+                <View>
+                  <View
+                    style={{
+                      ...styles.paddingDefault,
+                      ...styles.row,
+                      ...styles.alignCenter,
+                    }}>
+                    <Image
+                      source={{uri: item.profileimageurl}}
+                      style={styles.userImage}
+                    />
+                    <View style={{...styles.marginLeftDefault}}>
+                      <Text>{item.fullname}</Text>
+                      {item.lastaccesstime && (
+                        <Text>Último acesso: {item.lastaccesstime}</Text>
+                      )}
+                    </View>
+                  </View>
                 </View>
-              </Card>
-            </View>
-          </TouchableOpacity>
-        )}
-      />
+              </TouchableOpacity>
+              {index !== participants.length - 1 && <Divider />}
+            </>
+          )}
+        />
+      </Card>
     </SafeAreaView>
   );
 };
