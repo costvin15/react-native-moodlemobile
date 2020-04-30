@@ -42,6 +42,8 @@ target 'MoodleMobile' do
 
   pod 'RNShare', :path => '../node_modules/react-native-share'
 
+  pod 'RNInAppBrowser', :path => '../node_modules/react-native-inappbrowser-reborn'
+
   target 'MoodleMobileTests' do
     inherit! :search_paths
     # Pods for testing
