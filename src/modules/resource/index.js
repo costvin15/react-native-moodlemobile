@@ -11,11 +11,11 @@ export const Resource = ({navigation, route}) => {
   const [resource, setResource] = useState({});
 
   useEffect(() => {
-    const {instance} = route.params.item;
+    const {instance} = route?.params?.item;
     Provider.getResourceDataByKey({instance}).then(data => {
       setResource(data);
     });
-  }, [route.params.item]);
+  }, [route]);
 
   const openFile = ({fileurl, filename}) => {
     (async () => {
