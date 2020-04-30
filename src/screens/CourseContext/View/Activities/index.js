@@ -62,7 +62,7 @@ const Activities = ({route}) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          emmitEvent('core.course.activity.view', {item});
+          emmitEvent('core.module.view', {item});
         }}>
         <View
           style={{
