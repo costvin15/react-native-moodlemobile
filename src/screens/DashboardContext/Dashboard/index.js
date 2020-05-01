@@ -17,13 +17,9 @@ const Dashboard = ({navigation}) => {
       appbar={{
         title: Locales.t('dashboard'),
       }}>
-      <FlatList
-        data={blocks}
-        renderItem={({item}) => (
-          <item.Block key={item.title} title={item.title} />
-        )}
-        keyExtractor={data => data.title}
-      />
+      {blocks.map(item => (
+        <item.Block key={item.title} title={item.title} />
+      ))}
     </Page>
   );
 };
