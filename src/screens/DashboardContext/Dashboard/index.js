@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import {FlatList} from 'react-native';
 
 import Provider from './provider';
 import {Page} from '../../../components';
