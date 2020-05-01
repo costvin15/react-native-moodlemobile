@@ -2,13 +2,16 @@ import React, {useState, useEffect} from 'react';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Provider from './provider';
+import {useTheme} from 'react-native-paper';
 
 import Dashboard from './Dashboard';
 import Messages from './Messages';
 import About from './About';
+import Locales from '../../locales';
 
 const DashboardContext = () => {
   const [unreadConversations, setUnreadConversations] = useState(0);
+  const Theme = useTheme();
 
   useEffect(() => {
     Provider.getUnreadConversationsCount().then(data =>
@@ -19,12 +22,16 @@ const DashboardContext = () => {
   const Tab = createMaterialBottomTabNavigator();
 
   return (
-    <Tab.Navigator initialRouteName="dashboard">
+    <Tab.Navigator
+      initialRouteName="dashboard"
+      barStyle={{
+        backgroundColor: Theme.colors.primary,
+      }}>
       <Tab.Screen
         name="dashboard"
         component={Dashboard}
         options={{
-          title: 'Página Inicial',
+          title: Locales.t('dashboard'),
           tabBarIcon: ({color}) => (
             <MaterialIcons name="home" color={color} size={26} />
           ),
@@ -34,7 +41,7 @@ const DashboardContext = () => {
         name="messages"
         component={Messages}
         options={{
-          title: 'Mensagens',
+          title: Locales.t('messages'),
           tabBarIcon: ({color}) => (
             <MaterialIcons name="chat" color={color} size={26} />
           ),
@@ -45,7 +52,7 @@ const DashboardContext = () => {
         name="about"
         component={About}
         options={{
-          title: 'Sobre',
+          title: Locales.t('about'),
           tabBarIcon: ({color}) => (
             <MaterialIcons name="menu" color={color} size={26} />
           ),

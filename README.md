@@ -17,4 +17,10 @@ The project is divided into the following structure
   * blocks: Here all the blocks to be used by the application, if you have a proprietary moodle block and want to use it in your application, you must implement it here.
   * components: Here are React Components commonly used by the application.
   * events: Here all the files related to the events emitted by the application.
+  * locales: All files related to the internationalization of the application are here
+  * modules: This is where the moodle educational modules are implemented
   * screens: Everything you can see on your device's screen is here.
+
+### Application screenshots
+
+![screenshot-1](https://raw.githubusercontent.com/costvin15/react-native-moodlemobile/develop/docs/assets/screenshot-1.png) ![screenshot-2](https://raw.githubusercontent.com/costvin15/react-native-moodlemobile/develop/docs/assets/screenshot-2.png) ![screenshot-3](https://raw.githubusercontent.com/costvin15/react-native-moodlemobile/develop/docs/assets/screenshot-3.png)

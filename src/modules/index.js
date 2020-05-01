@@ -1,0 +1,18 @@
+import React from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
+
+import NotFound from './notfound';
+import Resource from './resource';
+
+const Modules = () => {
+  const Stack = createStackNavigator();
+
+  return (
+    <Stack.Navigator headerMode="none" initialRouteName="notfound">
+      <Stack.Screen name="notfound" component={NotFound} />
+      <Stack.Screen name="resource" component={Resource} />
+    </Stack.Navigator>
+  );
+};
+
+export default Modules;

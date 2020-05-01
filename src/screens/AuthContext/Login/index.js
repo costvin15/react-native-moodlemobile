@@ -1,40 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import {
-  SafeAreaView,
-  StatusBar,
-  TextInput,
-  StyleSheet,
-  Button,
-  TouchableOpacity,
-  Text,
-  Image,
-  Linking,
-} from 'react-native';
-import Api from '../../../api/helper';
 import Provider from './provider';
+import {Page} from '../../../components';
+import {TextInput, Button} from 'react-native-paper';
+import {View} from 'react-native';
+import {styles} from './styles';
+import {useTheme} from 'react-native-paper';
+import Locales from '../../../locales';
 
 const Login = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [identityProviders, setIdentityProviders] = useState([]);
-
-  const styles = StyleSheet.create({
-    input: {
-      height: 50,
-      borderColor: '#000',
-      borderWidth: 1,
-      color: '#000',
-    },
-  });
-
-  const getUserToken = async () => {
-    try {
-      await Api.renewMoodleUserToken({username: username, password});
-      navigation.navigate('dashboardcontext', {screen: 'frontpage'});
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const Theme = useTheme();
 
   useEffect(() => {
     (async () => {
@@ -44,40 +21,65 @@ const Login = ({navigation}) => {
   }, []);
 
   return (
-    <SafeAreaView>
-      <StatusBar barStyle="dark-content" />
+    <Page appbar={{title: Locales.t('login')}}>
+      <View
+        style={{
+          ...styles.marginHorizontalDefault,
+          ...styles.marginVerticalDefault,
+        }}>
+        <TextInput
+          label={Locales.t('username')}
+          mode="outlined"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          onChangeText={text => setUsername(text)}
+        />
 
-      <TextInput
-        placeholder={'Nome de usuario'}
-        style={styles.input}
-        placeholderTextColor={'#000'}
-        onChangeText={text => setUsername(text)}
-      />
-      <TextInput
-        placeholder={'Senha'}
-        style={styles.input}
-        placeholderTextColor={'#000'}
-        onChangeText={text => setPassword(text)}
-      />
-      <Button title={'Entrar'} onPress={getUserToken} />
+        <TextInput
+          label={Locales.t('password')}
+          mode="outlined"
+          secureTextEntry={true}
+          style={{...styles.marginTopDefault}}
+          onChangeText={text => setPassword(text)}
+        />
 
-      {identityProviders?.map(provider => (
-        <TouchableOpacity
-          onPress={() => {
-            Provider.openBrowserForOAuthLogin({...provider, navigation});
-          }}>
-          <Image
-            source={{uri: provider.iconurl}}
-            style={{width: 25, height: 25}}
-          />
-          <Text>{provider.name}</Text>
-        </TouchableOpacity>
-      ))}
+        <Button
+          mode="contained"
+          style={{...styles.marginTopDefault}}
+          onPress={() => Provider.makeLogin({navigation, username, password})}>
+          {Locales.t('login')}
+        </Button>
 
-      <TouchableOpacity onPress={() => navigation.push('register')}>
-        <Text>Register</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
+        {identityProviders?.map(provider => (
+          <Button
+            icon={provider.name.toLowerCase()}
+            mode="contained"
+            style={{...styles.marginTopDefault}}
+            theme={{
+              colors: {
+                primary:
+                  provider.name === 'Google'
+                    ? '#ab000d'
+                    : provider.name === 'Facebook'
+                    ? '#002171'
+                    : Theme.colors.primary,
+              },
+            }}
+            onPress={() => {
+              Provider.openBrowserForOAuthLogin({...provider, navigation});
+            }}>
+            {provider.name}
+          </Button>
+        ))}
+
+        <Button
+          mode="contained"
+          style={{...styles.marginTopDefault}}
+          onPress={() => navigation.push('register')}>
+          {Locales.t('createanewaccount')}
+        </Button>
+      </View>
+    </Page>
   );
 };
 

@@ -179,6 +179,9 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-inappbrowser-reborn')
+    implementation project(':react-native-share')
+    implementation project(':rn-fetch-blob')
     implementation project(':react-native-webview')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules

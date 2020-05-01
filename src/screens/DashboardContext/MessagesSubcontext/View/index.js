@@ -6,43 +6,35 @@ import {emmitEvent} from '../../../../api/helper';
 import {View} from 'react-native';
 import RenderHTML from 'react-native-render-html';
 import {styles} from './styles';
+import {useTheme} from 'react-native-paper';
 
 const ConversationView = ({navigation, route}) => {
+  const [conversationId, setConversationId] = useState(null);
   const [title, setTitle] = useState('');
   const [currentUser, setCurrentUser] = useState([]);
   const [messages, setMessages] = useState([]);
+  const Theme = useTheme();
 
   useEffect(() => {
     const getConversationByConvid = async () => {
-      try {
-        const response = Provider.getConversation(route?.params?.id);
-        return response;
-      } catch (error) {
-        console.log(error);
-        console.error('Esta conversa não existe (18)');
-      }
+      const response = await Provider.getConversation(route?.params?.id).catch(
+        error => console.error(error),
+      );
+      return response;
     };
 
     const getConversationWithUser = async () => {
-      try {
-        const response = await Provider.getConversationsBetweenUsers({
-          otheruserid: route?.params?.touserid,
-        });
-        return response;
-      } catch (error) {
-        console.log(route?.params?.touserid);
-        console.error('Esta conversa não existe (31)');
-      }
+      const response = await Provider.getConversationsBetweenUsers({
+        otheruserid: route?.params?.touserid,
+      }).catch(error => console.error(error));
+      return response;
     };
 
     const getSelfConversation = async () => {
-      try {
-        const response = await Provider.getSelfConversation();
-        return response;
-      } catch (error) {
-        console.log(error);
-        console.error('Esta conversa não existe (43)');
-      }
+      const response = await Provider.getSelfConversation().catch(error =>
+        console.error(error),
+      );
+      return response;
     };
 
     const wrapper = async () => {
@@ -56,13 +48,13 @@ const ConversationView = ({navigation, route}) => {
       }
 
       if (response?.name !== null) {
-        setTitle(response.name);
+        setTitle(response?.name);
       } else {
-        setTitle(response.members[0].fullname);
+        setTitle(response?.members[0].fullname);
       }
 
       const resultMembers = [];
-      response.members.forEach(member => {
+      response?.members.forEach(member => {
         resultMembers.push({
           _id: member.id,
           name: member.fullname,
@@ -77,9 +69,9 @@ const ConversationView = ({navigation, route}) => {
       });
 
       const resultMessages = [];
-      response.messages.forEach(({text, timecreated, useridfrom}, index) => {
+      response?.messages.forEach(({id, text, timecreated, useridfrom}) => {
         resultMessages.push({
-          _id: index,
+          _id: id,
           text,
           createdAt: new Date(timecreated * 1000),
           user: resultMembers.find(({_id}) => _id === useridfrom),
@@ -87,6 +79,7 @@ const ConversationView = ({navigation, route}) => {
       });
 
       setMessages(resultMessages);
+      setConversationId(response?.id);
     };
 
     if (currentUser.userid) {
@@ -96,7 +89,9 @@ const ConversationView = ({navigation, route}) => {
 
   useEffect(() => {
     (async () => {
-      const user = await Provider.getCurrentUser();
+      const user = await Provider.getCurrentUser().catch(error =>
+        console.error(error),
+      );
       setCurrentUser(user);
     })();
   }, []);
@@ -120,11 +115,29 @@ const ConversationView = ({navigation, route}) => {
         title: title,
         canGoBack: navigation.canGoBack(),
         goBack: navigation.goBack,
-        hasScrolView: false,
-      }}>
+      }}
+      hasScrollView={false}>
       <GiftedChat
         messages={messages}
-        onSend={() => console.log('Send!')}
+        onSend={data => {
+          (async () => {
+            const response = await Provider.sendMessageToConversations({
+              conversationId,
+              data,
+            });
+            const message = {
+              _id: response[0]?.id,
+              text: response[0]?.text,
+              createdAt: Date.now(),
+              user: {
+                _id: currentUser.userid,
+                name: currentUser.fullname,
+                avatar: currentUser.userpictureurl,
+              },
+            };
+            setMessages(GiftedChat.append(messages, message));
+          })();
+        }}
         user={{
           _id: currentUser.userid,
         }}
@@ -137,14 +150,13 @@ const ConversationView = ({navigation, route}) => {
                   backgroundColor: '#3b3b3b',
                 },
                 right: {
-                  backgroundColor: '#248eff',
+                  backgroundColor: Theme.colors.primary,
                 },
               }}
             />
           );
         }}
         renderMessageText={props => renderMessageText(props)}
-        // TODO: Call core.user.view instead of core.user details
         onPressAvatar={user => emmitEvent('core.user.view', {id: user._id})}
       />
     </Page>
