@@ -1,12 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  SafeAreaView,
-  View,
-  FlatList,
-  Text,
-  ScrollView,
-  Image,
-} from 'react-native';
+import {SafeAreaView, View, Text, ScrollView, Image} from 'react-native';
 import Accordion from 'react-native-collapsible/Accordion';
 import {Card, IconButton} from 'react-native-paper';
 import {TouchableOpacity} from 'react-native-gesture-handler';
