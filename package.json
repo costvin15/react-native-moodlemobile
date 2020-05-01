@@ -32,6 +32,7 @@
     "react-native-render-html": "^4.2.0",
     "react-native-safe-area-context": "^0.7.3",
     "react-native-screens": "^2.4.0",
+    "react-native-share": "^3.3.0",
     "react-native-skeleton-placeholder": "^2.0.7",
     "react-native-tab-view": "^2.13.0",
     "react-native-vector-icons": "^6.6.0",

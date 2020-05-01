@@ -1,6 +1,8 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {Provider, DefaultTheme} from 'react-native-paper';
+
 import {
   AuthContext,
   ContextManager,
@@ -9,8 +11,8 @@ import {
   AboutSubcontext,
   MessagesSubcontext,
 } from './screens';
+import Modules from './modules';
 import {navigationRef} from './RootNavigation';
-import {Provider, DefaultTheme} from 'react-native-paper';
 
 const App = () => {
   const Stack = createStackNavigator();
@@ -27,6 +29,7 @@ const App = () => {
           name="messagessubcontext"
           component={MessagesSubcontext}
         />
+        <Stack.Screen name="modulescontext" component={Modules} />
       </Stack.Navigator>
     </NavigationContainer>
   );
