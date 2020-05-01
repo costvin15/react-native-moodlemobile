@@ -61,6 +61,7 @@ const Activities = ({route}) => {
   const _renderActivity = ({item}) => {
     return (
       <TouchableOpacity
+        key={item.id}
         onPress={() => {
           emmitEvent('core.module.view', {item});
         }}>
@@ -103,11 +104,9 @@ const Activities = ({route}) => {
           ...styles.marginHorizontal,
           ...(isActive ? styles.cardContent : {}),
         }}>
-        <FlatList
-          style={{...styles.marginHorizontal, ...styles.marginVertical}}
-          data={sections[index].modules}
-          renderItem={_renderActivity}
-        />
+        {sections[index].modules.map(module => (
+          <_renderActivity key={module.id} item={module} />
+        ))}
       </Card>
     );
   };
@@ -189,8 +188,8 @@ const Activities = ({route}) => {
   }
 
   return (
-    <SafeAreaView>
-      <ScrollView>
+    <SafeAreaView style={styles.flex}>
+      <ScrollView contentContainerStyle={styles.flexGrow}>
         <Accordion
           sections={sections}
           activeSections={activeSections}
