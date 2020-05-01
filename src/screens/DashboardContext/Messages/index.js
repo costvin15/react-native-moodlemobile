@@ -46,7 +46,7 @@ const Dashboard = ({navigation, route}) => {
     </Card>
   );
 
-  const renderConversation = ({id = 0, image = '', title, date = 0}) => {
+  const RenderConversation = ({id = 0, image = '', title, date = 0}) => {
     const currentDate = new Date(date * 1000).toLocaleString(undefined, {
       year: 'numeric',
       month: 'long',
@@ -78,14 +78,15 @@ const Dashboard = ({navigation, route}) => {
             ...styles.marginBottomDefault,
             ...(isActive ? styles.marginHorizontal : {}),
           }}>
-          {favouriteConversations.map(value =>
-            renderConversation({
-              id: value.id,
-              image: value.members[0].profileimageurl,
-              title: value.members[0].fullname,
-              date: value.messages[0].timecreated,
-            }),
-          )}
+          {favouriteConversations.map(value => (
+            <RenderConversation
+              key={value.id}
+              id={value.id}
+              image={value.members[0].profileimageurl}
+              title={value.members[0].fullname}
+              date={value.messages[0].timecreated}
+            />
+          ))}
         </View>
       );
     } else if (index === 1) {
@@ -95,14 +96,15 @@ const Dashboard = ({navigation, route}) => {
             ...styles.marginBottomDefault,
             ...(isActive ? styles.marginHorizontal : {}),
           }}>
-          {groupConversations.map(value => {
-            return renderConversation({
-              id: value.id,
-              image: value.imageurl,
-              title: value.name,
-              date: value.messages[0].timecreated,
-            });
-          })}
+          {groupConversations.map(value => (
+            <RenderConversation
+              key={value.id}
+              id={value.id}
+              image={value.imageurl}
+              title={value.name}
+              date={value.messages[0].timecreated}
+            />
+          ))}
         </View>
       );
     } else if (index === 2) {
@@ -112,14 +114,15 @@ const Dashboard = ({navigation, route}) => {
             ...styles.marginBottomDefault,
             ...(isActive ? styles.marginHorizontal : {}),
           }}>
-          {privateConversations?.map(value => {
-            return renderConversation({
-              id: value.id,
-              image: value.members[0].profileimageurl,
-              title: value.members[0].fullname,
-              date: value.messages[0].timecreated,
-            });
-          })}
+          {privateConversations?.map(value => (
+            <RenderConversation
+              key={value.id}
+              id={value.id}
+              image={value.members[0].profileimageurl}
+              title={value.members[0].fullname}
+              date={value.messages[0].timecreated}
+            />
+          ))}
         </View>
       );
     }
