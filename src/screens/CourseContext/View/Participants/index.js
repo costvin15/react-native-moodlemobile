@@ -3,6 +3,7 @@ import {
   SafeAreaView,
   View,
   FlatList,
+  ScrollView,
   Text,
   Image,
   TouchableOpacity,
@@ -26,64 +27,62 @@ const Participants = ({route}) => {
   }, [route.params.id]);
 
   return (
-    <SafeAreaView>
-      <Card
-        style={{
-          ...styles.marginTopDefault,
-          ...styles.marginBottomDefault,
-          ...styles.marginHorizontalDefault,
-        }}>
-        {(isLoading && (
-          <SkeletonPlaceholder>
-            <SkeletonPlaceholder.Item
-              flexDirection="row"
-              padding={15}
-              alignItems="center">
-              <SkeletonPlaceholder.Item width={50} height={50} />
+    <ScrollView>
+      <SafeAreaView>
+        <Card
+          style={{
+            ...styles.marginTopDefault,
+            ...styles.marginBottomDefault,
+            ...styles.marginHorizontalDefault,
+          }}>
+          {(isLoading && (
+            <SkeletonPlaceholder>
               <SkeletonPlaceholder.Item
-                flexDirection="column"
-                flexGrow={1}
-                marginLeft={15}>
-                <SkeletonPlaceholder.Item height={14} />
-                <SkeletonPlaceholder.Item height={14} marginTop={5} />
+                flexDirection="row"
+                padding={15}
+                alignItems="center">
+                <SkeletonPlaceholder.Item width={50} height={50} />
+                <SkeletonPlaceholder.Item
+                  flexDirection="column"
+                  flexGrow={1}
+                  marginLeft={15}>
+                  <SkeletonPlaceholder.Item height={14} />
+                  <SkeletonPlaceholder.Item height={14} marginTop={5} />
+                </SkeletonPlaceholder.Item>
               </SkeletonPlaceholder.Item>
-            </SkeletonPlaceholder.Item>
 
-            <SkeletonPlaceholder.Item
-              flexDirection="row"
-              padding={15}
-              paddingTop={0}
-              alignItems="center">
-              <SkeletonPlaceholder.Item width={50} height={50} />
               <SkeletonPlaceholder.Item
-                flexDirection="column"
-                flexGrow={1}
-                marginLeft={15}>
-                <SkeletonPlaceholder.Item height={14} />
-                <SkeletonPlaceholder.Item height={14} marginTop={5} />
+                flexDirection="row"
+                padding={15}
+                paddingTop={0}
+                alignItems="center">
+                <SkeletonPlaceholder.Item width={50} height={50} />
+                <SkeletonPlaceholder.Item
+                  flexDirection="column"
+                  flexGrow={1}
+                  marginLeft={15}>
+                  <SkeletonPlaceholder.Item height={14} />
+                  <SkeletonPlaceholder.Item height={14} marginTop={5} />
+                </SkeletonPlaceholder.Item>
               </SkeletonPlaceholder.Item>
-            </SkeletonPlaceholder.Item>
 
-            <SkeletonPlaceholder.Item
-              flexDirection="row"
-              padding={15}
-              paddingTop={0}
-              alignItems="center">
-              <SkeletonPlaceholder.Item width={50} height={50} />
               <SkeletonPlaceholder.Item
-                flexDirection="column"
-                flexGrow={1}
-                marginLeft={15}>
-                <SkeletonPlaceholder.Item height={14} />
-                <SkeletonPlaceholder.Item height={14} marginTop={5} />
+                flexDirection="row"
+                padding={15}
+                paddingTop={0}
+                alignItems="center">
+                <SkeletonPlaceholder.Item width={50} height={50} />
+                <SkeletonPlaceholder.Item
+                  flexDirection="column"
+                  flexGrow={1}
+                  marginLeft={15}>
+                  <SkeletonPlaceholder.Item height={14} />
+                  <SkeletonPlaceholder.Item height={14} marginTop={5} />
+                </SkeletonPlaceholder.Item>
               </SkeletonPlaceholder.Item>
-            </SkeletonPlaceholder.Item>
-          </SkeletonPlaceholder>
-        )) || (
-          <FlatList
-            data={participants}
-            keyExtractor={item => `${item.id}`}
-            renderItem={({index, item}) => (
+            </SkeletonPlaceholder>
+          )) ||
+            participants.map((item, index) => (
               <View key={index}>
                 <TouchableOpacity
                   onPress={() => {
@@ -119,11 +118,10 @@ const Participants = ({route}) => {
                 </TouchableOpacity>
                 {index !== participants.length - 1 && <Divider />}
               </View>
-            )}
-          />
-        )}
-      </Card>
-    </SafeAreaView>
+            ))}
+        </Card>
+      </SafeAreaView>
+    </ScrollView>
   );
 };
 
