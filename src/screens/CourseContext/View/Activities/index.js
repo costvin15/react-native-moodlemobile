@@ -181,19 +181,21 @@ const Activities = ({route}) => {
   }
 
   return (
-    <SafeAreaView style={styles.flex}>
+    <View style={styles.flex}>
       <ScrollView contentContainerStyle={styles.flexGrow}>
-        <Accordion
-          sections={sections}
-          activeSections={activeSections}
-          renderSectionTitle={() => <></>}
-          renderHeader={_renderHeader}
-          renderContent={_renderContent}
-          onChange={_updateSections}
-          touchableComponent={props => <TouchableOpacity {...props} />}
-        />
+        <SafeAreaView>
+          <Accordion
+            sections={sections}
+            activeSections={activeSections}
+            renderSectionTitle={() => <></>}
+            renderHeader={_renderHeader}
+            renderContent={_renderContent}
+            onChange={_updateSections}
+            touchableComponent={props => <TouchableOpacity {...props} />}
+          />
+        </SafeAreaView>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 
