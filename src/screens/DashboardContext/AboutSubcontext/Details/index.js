@@ -3,6 +3,7 @@ import {Page} from '../../../../components';
 import {View} from 'react-native';
 import {List} from 'react-native-paper';
 import Provider from './provider';
+import Locales from '../../../../locales';
 
 const Details = ({navigation, route}) => {
   const [user, setUser] = useState({});
@@ -14,7 +15,7 @@ const Details = ({navigation, route}) => {
   return (
     <Page
       appbar={{
-        title: 'Detalhes',
+        title: Locales.t('details'),
         canGoBack: navigation.canGoBack(),
         goBack: navigation.goBack,
       }}>
@@ -26,7 +27,7 @@ const Details = ({navigation, route}) => {
 
         <List.Section>
           <List.Subheader>Detalhes do usuário</List.Subheader>
-          {user?.customfields?.map(field => {
+          {user?.customfields?.map((field, index) => {
             let description = '';
             if (field.type === 'checkbox') {
               if (field.value === '1') {
@@ -39,7 +40,13 @@ const Details = ({navigation, route}) => {
             } else if (field.type === 'text') {
               description = field.value;
             }
-            return <List.Item title={field.name} description={description} />;
+            return (
+              <List.Item
+                key={index}
+                title={field.name}
+                description={description}
+              />
+            );
           })}
         </List.Section>
       </View>
