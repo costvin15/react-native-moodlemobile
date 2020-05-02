@@ -82,9 +82,9 @@ const Participants = ({route}) => {
         )) || (
           <FlatList
             data={participants}
-            keyExtractor={item => item.id}
+            keyExtractor={item => `${item.id}`}
             renderItem={({index, item}) => (
-              <>
+              <View key={index}>
                 <TouchableOpacity
                   onPress={() => {
                     emmitEvent('core.user.view', {id: item.id});
@@ -118,7 +118,7 @@ const Participants = ({route}) => {
                   </View>
                 </TouchableOpacity>
                 {index !== participants.length - 1 && <Divider />}
-              </>
+              </View>
             )}
           />
         )}
