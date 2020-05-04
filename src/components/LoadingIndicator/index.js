@@ -1,5 +1,7 @@
 import React from 'react';
-import {Modal, ActivityIndicator, View} from 'react-native';
+import {Modal, View} from 'react-native';
+import {ActivityIndicator} from 'react-native-paper';
+
 import {styles} from './styles';
 
 const LoadingIndicator = ({hasActivity = false}) => (
