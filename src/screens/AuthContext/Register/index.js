@@ -4,10 +4,11 @@ import {TextInput, Button} from 'react-native-paper';
 
 import {styles} from './styles';
 import Provider from './provider';
-import {Page} from '../../../components';
 import Locales from '../../../locales';
+import {Page, LoadingIndicator} from '../../../components';
 
 const Register = ({navigation}) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [fields, setFields] = useState([]);
 
   useEffect(() => {
@@ -35,6 +36,21 @@ const Register = ({navigation}) => {
       },
     ]);
   }, []);
+
+  const performRegister = async () => {
+    try {
+      setIsLoading(true);
+      const values = {};
+      fields.map(value => {
+        values[value.stringid] = value.ref.current._lastNativeText || '';
+      });
+      await Provider.registerUser(values);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <Page
@@ -66,15 +82,11 @@ const Register = ({navigation}) => {
           style={{
             ...styles.marginVerticalDefault,
           }}
-          onPress={() => {
-            const values = {};
-            fields.map(value => {
-              values[value.stringid] = value.ref.current._lastNativeText;
-            });
-            Provider.registerUser(values);
-          }}>
+          onPress={() => performRegister()}>
           {Locales.t('register')}
         </Button>
+
+        <LoadingIndicator hasActivity={isLoading} />
       </View>
     </Page>
   );
