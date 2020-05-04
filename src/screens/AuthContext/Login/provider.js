@@ -87,12 +87,8 @@ export const getIdentityProviders = async () => {
 };
 
 export const makeLogin = async ({navigation, username, password}) => {
-  try {
-    await Provider.renewMoodleUserToken({username: username, password});
-    navigation.navigate('dashboardcontext', {screen: 'frontpage'});
-  } catch (error) {
-    console.error(error);
-  }
+  await Provider.renewMoodleUserToken({username: username, password});
+  navigation.navigate('dashboardcontext', {screen: 'frontpage'});
 };
 
 export default {openBrowserForOAuthLogin, getIdentityProviders, makeLogin};

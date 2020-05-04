@@ -1,13 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import Provider from './provider';
-import {Page} from '../../../components';
-import {TextInput, Button} from 'react-native-paper';
 import {View} from 'react-native';
-import {styles} from './styles';
 import {useTheme} from 'react-native-paper';
+
+import {styles} from './styles';
+import Provider from './provider';
 import Locales from '../../../locales';
+import {TextInput, Button} from 'react-native-paper';
+import {Page, LoadingIndicator} from '../../../components';
 
 const Login = ({navigation}) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [identityProviders, setIdentityProviders] = useState([]);
@@ -19,6 +21,17 @@ const Login = ({navigation}) => {
       setIdentityProviders(data);
     })();
   }, []);
+
+  const performLogin = async () => {
+    try {
+      setIsLoading(true);
+      await Provider.makeLogin({navigation, username, password});
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <Page appbar={{title: Locales.t('login')}}>
@@ -46,7 +59,7 @@ const Login = ({navigation}) => {
         <Button
           mode="contained"
           style={{...styles.marginTopDefault}}
-          onPress={() => Provider.makeLogin({navigation, username, password})}>
+          onPress={() => performLogin()}>
           {Locales.t('login')}
         </Button>
 
@@ -78,6 +91,8 @@ const Login = ({navigation}) => {
           onPress={() => navigation.push('register')}>
           {Locales.t('createanewaccount')}
         </Button>
+
+        <LoadingIndicator hasActivity={isLoading} />
       </View>
     </Page>
   );
