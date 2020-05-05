@@ -18,23 +18,32 @@ const Register = ({navigation}) => {
         stringid: 'username',
         placeholder: Locales.t('username'),
         ref: createRef(),
+        autoCapitalize: 'none',
       },
-      {stringid: 'email', placeholder: Locales.t('email'), ref: createRef()},
-      {stringid: 'email2', placeholder: 'Repetir email', ref: createRef()},
+      {
+        stringid: 'email',
+        placeholder: Locales.t('email'),
+        ref: createRef(),
+        autoCapitalize: 'none',
+      },
       {
         stringid: 'password',
         placeholder: Locales.t('password'),
         ref: createRef(),
+        autoCapitalize: 'none',
+        secureTextEntry: true,
       },
       {
         stringid: 'firstname',
         placeholder: Locales.t('firstname'),
         ref: createRef(),
+        autoCapitalize: 'words',
       },
       {
         stringid: 'lastname',
         placeholder: Locales.t('lastname'),
         ref: createRef(),
+        autoCapitalize: 'words',
       },
     ]);
   }, []);
@@ -44,7 +53,7 @@ const Register = ({navigation}) => {
       setIsLoading(true);
       const values = {};
       fields.map(value => {
-        values[value.stringid] = value.ref.current._lastNativeText || '';
+        values[value.stringid] = value.ref.current.state.value || '';
       });
       await Provider.registerUser(values);
     } catch (exception) {
@@ -56,6 +65,7 @@ const Register = ({navigation}) => {
       setError(message);
     } finally {
       setIsLoading(false);
+      setError(null);
     }
   };
 
@@ -71,19 +81,29 @@ const Register = ({navigation}) => {
           style={{
             ...styles.marginHorizontalDefault,
           }}>
-          {fields.map(({stringid, placeholder, ref}) => {
-            return (
-              <TextInput
-                ref={ref}
-                key={stringid}
-                style={{
-                  ...styles.marginTopDefault,
-                }}
-                placeholder={placeholder}
-                placeholderTextColor={'#000'}
-              />
-            );
-          })}
+          {fields.map(
+            ({
+              stringid,
+              placeholder,
+              ref,
+              autoCapitalize,
+              secureTextEntry = false,
+            }) => {
+              return (
+                <TextInput
+                  ref={ref}
+                  key={stringid}
+                  style={{
+                    ...styles.marginTopDefault,
+                  }}
+                  autoCapitalize={autoCapitalize}
+                  placeholder={placeholder}
+                  secureTextEntry={secureTextEntry}
+                  placeholderTextColor={'#000'}
+                />
+              );
+            },
+          )}
 
           <Button
             mode="contained"
