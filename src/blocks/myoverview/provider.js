@@ -21,15 +21,14 @@ const getImage = async url => {
 
 export const getCourseWithCompletionStatus = async () => {
   const coursesWithExtraFields = [];
-  const courses = await getUserCourses();
+  const userCourses = await getUserCourses();
 
-  for (const course of courses) {
+  for (const course of userCourses) {
     let activities_completed = 0;
     const {userid} = await getCurrentUserDetails();
     const {statuses} = await callMoodleWebService(
       'core_completion_get_activities_completion_status',
       {
-        wstoken: Constants.MOODLE_ADMIN_TOKEN,
         userid: userid,
         courseid: course.id,
       },
