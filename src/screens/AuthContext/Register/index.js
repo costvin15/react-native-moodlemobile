@@ -56,16 +56,16 @@ const Register = ({navigation}) => {
         values[value.stringid] = value.ref.current.state.value || '';
       });
       await Provider.registerUser(values);
+      navigation.pop();
     } catch (exception) {
       let message = '';
       console.log(exception);
-      for (const warning of exception?.data?.warnings) {
+      for (const warning of exception.warnings) {
         message += `${warning.message}\n`;
       }
       setError(message);
     } finally {
       setIsLoading(false);
-      setError(null);
     }
   };
 
@@ -117,7 +117,7 @@ const Register = ({navigation}) => {
           <LoadingIndicator hasActivity={isLoading} />
         </View>
       </Page>
-      {error && (
+      {error !== null && (
         <Dialog
           visible
           title="Ocorreu um erro"
