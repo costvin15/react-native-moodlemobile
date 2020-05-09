@@ -27,7 +27,7 @@ const Details = ({navigation, route}) => {
 
         <List.Section>
           <List.Subheader>Detalhes do usuário</List.Subheader>
-          {user?.customfields?.map(field => {
+          {user?.customfields?.map((field, index) => {
             let description = '';
             if (field.type === 'checkbox') {
               if (field.value === '1') {
@@ -40,7 +40,13 @@ const Details = ({navigation, route}) => {
             } else if (field.type === 'text') {
               description = field.value;
             }
-            return <List.Item title={field.name} description={description} />;
+            return (
+              <List.Item
+                key={index}
+                title={field.name}
+                description={description}
+              />
+            );
           })}
         </List.Section>
       </View>
