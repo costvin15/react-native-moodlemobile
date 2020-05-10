@@ -1,8 +1,9 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {Button} from 'react-native-paper';
+import {Button, Title, Paragraph} from 'react-native-paper';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
 
+import {styles} from './styles';
 import {Page} from '../../components';
 
 const NotFound = ({navigation, route}) => {
@@ -19,17 +20,25 @@ const NotFound = ({navigation, route}) => {
         canGoBack: navigation.canGoBack(),
         goBack: navigation.goBack,
       }}>
-      <View>
-        <Text>Uh, oh!</Text>
-        <Text>
+      <View
+        style={{
+          ...styles.marginVerticalDefault,
+          ...styles.marginHorizontalDefault,
+        }}>
+        <Title>Uh, oh!</Title>
+        <Paragraph style={{...styles.marginTopDefault}}>
           Sua organização instalou um plugin que não é suportado ainda.
-        </Text>
-        <Text>
+        </Paragraph>
+        <Paragraph style={{...styles.bold}}>
           Contate o administrador do site e diga que você deseja usar essa
           atividade no aplicativo Moodle Mobile.
-        </Text>
-        <Text>Você ainda pode usar isso no navegador do seu dispositivo</Text>
+        </Paragraph>
+        <Paragraph style={{...styles.bold}}>
+          Você ainda pode usar isso no navegador do seu dispositivo
+        </Paragraph>
         <Button
+          mode="contained"
+          style={{...styles.marginVerticalDefault}}
           onPress={() => {
             openInBrowser({url: params?.url});
           }}>
