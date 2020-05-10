@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import {Button, Title, Paragraph} from 'react-native-paper';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
 
