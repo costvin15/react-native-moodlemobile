@@ -23,6 +23,9 @@
     "login": "Entrar",
     "username": "Nome de usuário",
     "password": "Senha",
+    "firstname": "Nome",
+    "lastname": "Sobrenome",
     "createanewaccount": "Criar uma nova conta",
+    "register": "Registro",
     "recentlyaccessedcourses": "Cursos acessados recentemente"
 }

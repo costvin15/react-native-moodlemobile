@@ -115,8 +115,8 @@ const ConversationView = ({navigation, route}) => {
         title: title,
         canGoBack: navigation.canGoBack(),
         goBack: navigation.goBack,
-        hasScrolView: false,
-      }}>
+      }}
+      hasScrollView={false}>
       <GiftedChat
         messages={messages}
         onSend={data => {

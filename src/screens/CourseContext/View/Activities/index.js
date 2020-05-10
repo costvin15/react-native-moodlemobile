@@ -1,12 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  SafeAreaView,
-  View,
-  FlatList,
-  Text,
-  ScrollView,
-  Image,
-} from 'react-native';
+import {SafeAreaView, View, Text, ScrollView, Image} from 'react-native';
 import Accordion from 'react-native-collapsible/Accordion';
 import {Card, IconButton} from 'react-native-paper';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -61,6 +54,7 @@ const Activities = ({route}) => {
   const _renderActivity = ({item}) => {
     return (
       <TouchableOpacity
+        key={item.id}
         onPress={() => {
           emmitEvent('core.module.view', {item});
         }}>
@@ -103,11 +97,9 @@ const Activities = ({route}) => {
           ...styles.marginHorizontal,
           ...(isActive ? styles.cardContent : {}),
         }}>
-        <FlatList
-          style={{...styles.marginHorizontal, ...styles.marginVertical}}
-          data={sections[index].modules}
-          renderItem={_renderActivity}
-        />
+        {sections[index].modules.map(module => (
+          <_renderActivity key={module.id} item={module} />
+        ))}
       </Card>
     );
   };
@@ -189,19 +181,21 @@ const Activities = ({route}) => {
   }
 
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <Accordion
-          sections={sections}
-          activeSections={activeSections}
-          renderSectionTitle={() => <></>}
-          renderHeader={_renderHeader}
-          renderContent={_renderContent}
-          onChange={_updateSections}
-          touchableComponent={props => <TouchableOpacity {...props} />}
-        />
+    <View style={styles.flex}>
+      <ScrollView contentContainerStyle={styles.flexGrow}>
+        <SafeAreaView>
+          <Accordion
+            sections={sections}
+            activeSections={activeSections}
+            renderSectionTitle={() => <></>}
+            renderHeader={_renderHeader}
+            renderContent={_renderContent}
+            onChange={_updateSections}
+            touchableComponent={props => <TouchableOpacity {...props} />}
+          />
+        </SafeAreaView>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 
