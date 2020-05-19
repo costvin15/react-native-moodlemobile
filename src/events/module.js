@@ -22,6 +22,12 @@ const events = [
             params: {item},
           });
           break;
+        case 'feedback':
+          Navigation.navigate('modulescontext', {
+            screen: 'feedback',
+            params: {item},
+          });
+          break;
         default:
           Navigation.navigate('modulescontext', {
             screen: 'notfound',
