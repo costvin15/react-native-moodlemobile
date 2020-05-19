@@ -25,7 +25,7 @@ const events = [
         case 'feedback':
           Navigation.navigate('modulescontext', {
             screen: 'feedback',
-            params: {item},
+            params: {item, courseid},
           });
           break;
         default:
