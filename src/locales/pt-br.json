@@ -27,5 +27,6 @@
     "lastname": "Sobrenome",
     "createanewaccount": "Criar uma nova conta",
     "register": "Registro",
-    "recentlyaccessedcourses": "Cursos acessados recentemente"
+    "recentlyaccessedcourses": "Cursos acessados recentemente",
+    "myoverview": "Resumo dos cursos"
 }

@@ -27,5 +27,6 @@
     "lastname": "Last name",
     "createanewaccount": "Create a new account",
     "register": "Register",
-    "recentlyaccessedcourses": "Recently accessed courses"
+    "recentlyaccessedcourses": "Recently accessed courses",
+    "myoverview": "My overview"
 }
