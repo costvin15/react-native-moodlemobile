@@ -3,6 +3,7 @@ import {Card, ProgressBar} from 'react-native-paper';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 import {View, FlatList, Image, Text, TouchableOpacity} from 'react-native';
+import i18n from 'react-native-i18n';
 
 import Provider from './provider';
 import {styles} from './styles';
@@ -27,7 +28,7 @@ const MyOverview = () => {
           ...styles.marginHorizontalDefault,
           ...styles.overflowHidden,
         }}>
-        <Card.Title title="Resumo dos cursos" />
+        <Card.Title title={i18n.t('myoverview')} />
         {(isLoading && (
           <SkeletonPlaceholder>
             <SkeletonPlaceholder.Item flexDirection="row">
