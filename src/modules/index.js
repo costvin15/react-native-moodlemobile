@@ -1,6 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
+import Page from './page';
 import NotFound from './notfound';
 import Resource from './resource';
 
@@ -9,6 +10,7 @@ const Modules = () => {
 
   return (
     <Stack.Navigator headerMode="none" initialRouteName="notfound">
+      <Stack.Screen name="page" component={Page} />
       <Stack.Screen name="notfound" component={NotFound} />
       <Stack.Screen name="resource" component={Resource} />
     </Stack.Navigator>
