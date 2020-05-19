@@ -72,6 +72,7 @@ const Login = ({navigation}) => {
 
           {identityProviders?.map(provider => (
             <Button
+              key={provider.name}
               icon={provider.name.toLowerCase()}
               mode="contained"
               style={{...styles.marginTopDefault}}

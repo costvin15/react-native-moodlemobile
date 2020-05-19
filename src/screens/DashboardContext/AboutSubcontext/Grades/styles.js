@@ -2,10 +2,8 @@ import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   rowDirection: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    flexWrap: 'wrap',
+    flexDirection: 'row',
   },
   marginHorizontalDefault: {
     marginHorizontal: 15,
@@ -25,6 +23,7 @@ export const styles = StyleSheet.create({
   paddingLeftDefault: {
     paddingLeft: 15,
   },
+  gradeTitleStyle: {},
   gradeTextStyle: {
     backgroundColor: '#373737',
     paddingVertical: 5,

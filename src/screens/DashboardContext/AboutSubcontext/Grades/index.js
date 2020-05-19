@@ -32,7 +32,7 @@ const Grades = ({navigation}) => {
               ...styles.paddingVerticalDefault,
             }}>
             <View style={{...styles.rowDirection}}>
-              <Text>{course}</Text>
+              <Text style={{...styles.gradeTitleStyle}}>{course}</Text>
 
               <View style={{...styles.gradeTextStyle}}>
                 <Text style={{...styles.whiteColor}}>{totalgrade}</Text>
