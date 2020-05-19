@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
+import {Button} from 'react-native-paper';
+import RenderHTML from 'react-native-render-html';
 
+import {styles} from './styles';
 import Provider from './provider';
 import {Page} from '../../components';
 
@@ -21,7 +24,18 @@ const Feedback = ({navigation, route}) => {
         canGoBack: navigation.canGoBack(),
         goBack: navigation.goBack,
       }}>
-      <View />
+      <View style={{...styles.marginHorizontalDefault}}>
+        <RenderHTML html={feedback?.intro} />
+        <Button mode="outlined" onPress={() => {}}>
+          Pré-visualizar
+        </Button>
+        <Button
+          mode="contained"
+          onPress={() => {}}
+          style={{...styles.marginVerticalDefault}}>
+          Responda as questões
+        </Button>
+      </View>
     </Page>
   );
 };
