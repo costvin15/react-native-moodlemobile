@@ -3304,10 +3304,10 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
-hermes-engine@~0.4.0:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/hermes-engine/-/hermes-engine-0.4.1.tgz#2d02b295596298643c4d24b86687eb554db9e950"
-  integrity sha512-Y3JFC8PD7eN3KpnrzrmvMAqp0IwnZrmP/oGOptvaSu33d7Zq/8b/2lHlZZkNvRl7/I1Q0umTX8TByK7zzLfTXA==
+hermes-engine@~0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/hermes-engine/-/hermes-engine-0.5.0.tgz#d914acce72e9657b3c98875ad3f9094d8643f327"
+  integrity sha512-jSuHiOhdh2+IF3bH2gLpQ37eMkdUrEb9GK6PoG3rLRaUDK3Zn2Y9fXM+wyDfoUTA3gz9EET0/IIWk5k21qp4kw==
 
 hoist-non-react-statics@^2.3.1:
   version "2.5.5"
@@ -5737,10 +5737,10 @@ react-native-webview@^9.2.1:
     invariant "2.2.4"
     uuid "^7.0.3"
 
-react-native@0.63.0-rc.0:
-  version "0.63.0-rc.0"
-  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.63.0-rc.0.tgz#a1760e88ba0a8b08dffd7f4c429a8b476363b003"
-  integrity sha512-Gtbok8S0aqscxj3hPDylDkHQ/8MH2gpspOaiwMpAsjS4o2ZT6roIl45TY6hqAMcS6QqGBz1ZTRwE0stCh4FniQ==
+react-native@0.63.0-rc.1:
+  version "0.63.0-rc.1"
+  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.63.0-rc.1.tgz#eaaee019598a21d214b668873b751c614dfae5d3"
+  integrity sha512-FJgs1OWKxyAFK+sPZX6QphK0UQPCOg+kyQOiIINfk2D2KiJTW+qP9aV5717vcYFXNvrSRm5TpTyoZHbTYGMRiw==
   dependencies:
     "@babel/runtime" "^7.0.0"
     "@react-native-community/cli" "^4.7.0"
@@ -5752,7 +5752,7 @@ react-native@0.63.0-rc.0:
     event-target-shim "^5.0.1"
     fbjs "^1.0.0"
     fbjs-scripts "^1.1.0"
-    hermes-engine "~0.4.0"
+    hermes-engine "~0.5.0"
     invariant "^2.2.4"
     jsc-android "^245459.0.0"
     metro-babel-register "0.59.0"
