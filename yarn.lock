@@ -6023,10 +6023,10 @@ react-native-webview@^9.2.1:
     invariant "2.2.4"
     uuid "^7.0.3"
 
-react-native@0.62.0-rc.0:
-  version "0.62.0-rc.0"
-  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.62.0-rc.0.tgz#2006c1fa6d4d3724826912e16ab92c30e4c8bcc9"
-  integrity sha512-SCBkpAU+llGsOl3BgN6yay+33OWlDx0NpGf5euAARGYpLosdgU/57xin8HzCuiSg3RLh0igTW5ZEkfYXGFbNaw==
+react-native@0.62.0-rc.1:
+  version "0.62.0-rc.1"
+  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.62.0-rc.1.tgz#11581e973a62e7bc2328a53d27c5e62c95f2c710"
+  integrity sha512-z0VIsW10tT228xWROxaFyovbLSXHHSO5zEgilIsRkG7zFSyF5xk21VhrDjEe1QsDRn8OohNbdNVE3+IRoIcvtA==
   dependencies:
     "@babel/runtime" "^7.0.0"
     "@react-native-community/cli" "^3.0.0"
