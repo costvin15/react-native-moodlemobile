@@ -15,11 +15,11 @@ const Page = ({appbar, children, hasScrollView = true}) => {
         />
       </Appbar.Header>
 
-      {hasScrollView && (
+      {(hasScrollView && (
         <ScrollView contentContainerStyle={styles.flexGrow}>
           {children}
         </ScrollView>
-      )}
+      )) || <>{children}</>}
     </View>
   );
 };
