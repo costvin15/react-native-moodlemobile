@@ -23,7 +23,8 @@ const Login = ({navigation}) => {
         const data = await Provider.getIdentityProviders();
         setIdentityProviders(data);
       } catch (error) {
-        console.log(error);
+        console.error(error);
+        setHasError(error);
       }
     })();
   }, []);
@@ -33,6 +34,7 @@ const Login = ({navigation}) => {
       setIsLoading(true);
       await Provider.makeLogin({navigation, username, password});
     } catch (error) {
+      console.error(error);
       setHasError(error);
     } finally {
       setIsLoading(false);
