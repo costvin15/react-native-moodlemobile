@@ -11,4 +11,11 @@ export const getCourseDetail = async id => {
   return courses[0];
 };
 
-export default {getCourseDetail};
+export const logCourseWasViewed = async id => {
+  const {status} = await callMoodleWebService('core_course_view_course', {
+    courseid: id,
+  });
+  return status;
+};
+
+export default {getCourseDetail, logCourseWasViewed};
