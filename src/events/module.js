@@ -30,7 +30,6 @@ const events = [
           });
           break;
         case 'feedback':
-          console.log(item);
           await callMoodleWebService('mod_feedback_view_feedback', {
             feedbackid: item.instance,
           });
