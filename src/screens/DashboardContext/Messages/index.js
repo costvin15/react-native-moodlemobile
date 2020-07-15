@@ -84,7 +84,7 @@ const Dashboard = ({navigation, route}) => {
               id={value.id}
               image={value.members[0].profileimageurl}
               title={value.members[0].fullname}
-              date={value.messages[0].timecreated}
+              date={value.messages.lenght > 0 && value.messages[0].timecreated}
             />
           ))}
         </View>

@@ -8,7 +8,11 @@ const Dashboard = ({navigation}) => {
   const [blocks, setBlocks] = useState([]);
 
   useEffect(() => {
-    Provider.getDashboardBlocks().then(data => setBlocks(data));
+    Provider.getDashboardBlocks().then(data => {
+      if (data) {
+        setBlocks(data);
+      }
+    });
   }, []);
 
   return (
