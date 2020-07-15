@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import {FlatList} from 'react-native';
 
 import Provider from './provider';
 import {Page} from '../../../components';
@@ -9,7 +8,11 @@ const Dashboard = ({navigation}) => {
   const [blocks, setBlocks] = useState([]);
 
   useEffect(() => {
-    Provider.getDashboardBlocks().then(data => setBlocks(data));
+    Provider.getDashboardBlocks().then(data => {
+      if (data) {
+        setBlocks(data);
+      }
+    });
   }, []);
 
   return (
@@ -17,13 +20,9 @@ const Dashboard = ({navigation}) => {
       appbar={{
         title: Locales.t('dashboard'),
       }}>
-      <FlatList
-        data={blocks}
-        renderItem={({item}) => (
-          <item.Block key={item.title} title={item.title} />
-        )}
-        keyExtractor={data => data.title}
-      />
+      {blocks.map(item => (
+        <item.Block key={item.title} title={item.title} />
+      ))}
     </Page>
   );
 };

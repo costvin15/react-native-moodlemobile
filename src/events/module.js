@@ -3,13 +3,29 @@ import Navigation from '../RootNavigation';
 const events = [
   {
     name: 'core.module.view',
-    handler: ({item}) => {
-      console.log(`Event core.module.view received with name ${item.name}`);
+    handler: ({item, courseid}) => {
+      console.log(
+        `Event core.module.view received with name ${item.name} and modname ${
+          item.modname
+        }`,
+      );
       switch (item.modname) {
+        case 'page':
+          Navigation.navigate('modulescontext', {
+            screen: 'page',
+            params: {item, courseid},
+          });
+          break;
         case 'resource':
           Navigation.navigate('modulescontext', {
             screen: 'resource',
             params: {item},
+          });
+          break;
+        case 'feedback':
+          Navigation.navigate('modulescontext', {
+            screen: 'feedback',
+            params: {item, courseid},
           });
           break;
         default:

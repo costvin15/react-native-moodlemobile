@@ -1,12 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  SafeAreaView,
-  View,
-  FlatList,
-  Text,
-  ScrollView,
-  Image,
-} from 'react-native';
+import {SafeAreaView, View, Text, ScrollView, Image} from 'react-native';
 import Accordion from 'react-native-collapsible/Accordion';
 import {Card, IconButton} from 'react-native-paper';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -63,7 +56,7 @@ const Activities = ({route}) => {
       <TouchableOpacity
         key={item.id}
         onPress={() => {
-          emmitEvent('core.module.view', {item});
+          emmitEvent('core.module.view', {item, courseid: route.params.id});
         }}>
         <View
           style={{
@@ -188,19 +181,21 @@ const Activities = ({route}) => {
   }
 
   return (
-    <SafeAreaView style={styles.flex}>
+    <View style={styles.flex}>
       <ScrollView contentContainerStyle={styles.flexGrow}>
-        <Accordion
-          sections={sections}
-          activeSections={activeSections}
-          renderSectionTitle={() => <></>}
-          renderHeader={_renderHeader}
-          renderContent={_renderContent}
-          onChange={_updateSections}
-          touchableComponent={props => <TouchableOpacity {...props} />}
-        />
+        <SafeAreaView>
+          <Accordion
+            sections={sections}
+            activeSections={activeSections}
+            renderSectionTitle={() => <></>}
+            renderHeader={_renderHeader}
+            renderContent={_renderContent}
+            onChange={_updateSections}
+            touchableComponent={props => <TouchableOpacity {...props} />}
+          />
+        </SafeAreaView>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 

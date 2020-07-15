@@ -22,8 +22,9 @@ const Grades = ({navigation}) => {
         goBack: navigation.goBack,
       }}>
       <View>
-        {grades.map(({course, totalgrade}) => (
+        {grades.map(({course, totalgrade}, index) => (
           <Card
+            key={index}
             style={{
               ...styles.marginHorizontalDefault,
               ...styles.marginTopDefault,
@@ -31,7 +32,7 @@ const Grades = ({navigation}) => {
               ...styles.paddingVerticalDefault,
             }}>
             <View style={{...styles.rowDirection}}>
-              <Text>{course}</Text>
+              <Text style={{...styles.gradeTitleStyle}}>{course}</Text>
 
               <View style={{...styles.gradeTextStyle}}>
                 <Text style={{...styles.whiteColor}}>{totalgrade}</Text>

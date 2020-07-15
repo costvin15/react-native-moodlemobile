@@ -17,7 +17,13 @@ const registerUser = async values => {
     body: JSON.stringify(body),
   });
 
-  console.log(await response.json());
+  const {data} = (await response.json())[0];
+
+  if (!data.success) {
+    throw data;
+  }
+
+  return data;
 };
 
 export default {registerUser};
