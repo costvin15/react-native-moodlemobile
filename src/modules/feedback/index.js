@@ -25,7 +25,7 @@ const Feedback = ({navigation, route}) => {
         goBack: navigation.goBack,
       }}>
       <View style={{...styles.marginHorizontalDefault}}>
-        <RenderHTML html={feedback?.intro} />
+        {feedback?.intro && <RenderHTML html={feedback?.intro} />}
         <Button mode="outlined" onPress={() => {}}>
           Pré-visualizar
         </Button>
