@@ -19,7 +19,6 @@ const Course = ({navigation, route}) => {
 
   useEffect(() => {
     Provider.getCourseDetail(route.params.id).then(data => setCourse(data));
-    Provider.logCourseWasViewed(route.params.id);
   }, [route.params.id]);
 
   return (
