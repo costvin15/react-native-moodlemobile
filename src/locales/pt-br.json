@@ -23,6 +23,10 @@
     "login": "Entrar",
     "username": "Nome de usuário",
     "password": "Senha",
+    "firstname": "Nome",
+    "lastname": "Sobrenome",
     "createanewaccount": "Criar uma nova conta",
-    "recentlyaccessedcourses": "Cursos acessados recentemente"
+    "register": "Registro",
+    "recentlyaccessedcourses": "Cursos acessados recentemente",
+    "myoverview": "Resumo dos cursos"
 }

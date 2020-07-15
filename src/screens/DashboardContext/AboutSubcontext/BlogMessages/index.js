@@ -20,9 +20,9 @@ const BlogMessages = ({navigation, route}) => {
         goBack: navigation.goBack,
       }}>
       <View>
-        {entries.map(entry => {
+        {entries.map((entry, index) => {
           return (
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity key={index} onPress={() => {}}>
               <View
                 style={{
                   ...styles.marginTopDefault,

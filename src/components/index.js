@@ -1,2 +1,3 @@
 export {default as Page} from './Page';
-export {default as Toolbar} from './Toolbar';
+export {default as Dialog} from './Dialog';
+export {default as LoadingIndicator} from './LoadingIndicator';
