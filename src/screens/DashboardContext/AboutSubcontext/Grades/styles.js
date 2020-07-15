@@ -33,6 +33,9 @@ export const styles = StyleSheet.create({
   whiteColor: {
     color: '#fff',
   },
+  justifySpaceBetween: {
+    justifyContent: 'space-between',
+  },
 });
 
 export default styles;

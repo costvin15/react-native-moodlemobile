@@ -7,6 +7,7 @@ const getGrades = async () => {
   const grades = [];
   for (const course of courses) {
     const grade = {
+      courseid: course.id,
       course: course.fullname,
       totalgrade: 0,
     };

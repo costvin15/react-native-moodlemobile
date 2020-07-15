@@ -12,6 +12,16 @@ const events = [
       Navigation.navigate('coursecontext', {screen: 'view', params: {id}});
     },
   },
+  {
+    name: 'core.course.grade.view',
+    handler: ({id}) => {
+      console.log(`Event core.course.grade.view received with id ${id}`);
+      Navigation.navigate('aboutsubcontext', {
+        screen: 'gradesview',
+        params: {id},
+      });
+    },
+  },
 ];
 
 export default events;

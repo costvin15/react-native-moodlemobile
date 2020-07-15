@@ -5,6 +5,7 @@ import Profile from './Profile';
 import Details from './Details';
 import BlogMessages from './BlogMessages';
 import Grades from './Grades';
+import GradesView from './Grades/View';
 
 const AboutSubcontext = () => {
   const Stack = createStackNavigator();
@@ -15,6 +16,7 @@ const AboutSubcontext = () => {
       <Stack.Screen name="details" component={Details} />
       <Stack.Screen name="blogmessages" component={BlogMessages} />
       <Stack.Screen name="grades" component={Grades} />
+      <Stack.Screen name="gradesview" component={GradesView} />
     </Stack.Navigator>
   );
 };
