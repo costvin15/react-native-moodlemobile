@@ -40,6 +40,15 @@ export const styles = StyleSheet.create({
   overflowHidden: {
     overflow: 'hidden',
   },
+  paddingVerticalDefault: {
+    paddingVertical: 15,
+  },
+  paddingHorizontalDefault: {
+    paddingHorizontal: 15,
+  },
+  alignItemsCenter: {
+    alignItems: 'center',
+  },
 });
 
 export default styles;
