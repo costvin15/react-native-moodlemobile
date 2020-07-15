@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text} from 'react-native';
+import {emmitEvent} from '../../../../api/helper';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {Card} from 'react-native-paper';
 
 import {Page} from '../../../../components';
@@ -22,23 +23,29 @@ const Grades = ({navigation}) => {
         goBack: navigation.goBack,
       }}>
       <View>
-        {grades.map(({course, totalgrade}, index) => (
-          <Card
+        {grades.map(({course, courseid, totalgrade}, index) => (
+          <TouchableOpacity
             key={index}
-            style={{
-              ...styles.marginHorizontalDefault,
-              ...styles.marginTopDefault,
-              ...styles.paddingHorizontalDefault,
-              ...styles.paddingVerticalDefault,
-            }}>
-            <View style={{...styles.rowDirection}}>
-              <Text style={{...styles.gradeTitleStyle}}>{course}</Text>
+            onPress={() =>
+              emmitEvent('core.course.grade.view', {id: courseid})
+            }>
+            <Card
+              style={{
+                ...styles.marginHorizontalDefault,
+                ...styles.marginTopDefault,
+                ...styles.paddingHorizontalDefault,
+                ...styles.paddingVerticalDefault,
+              }}>
+              <View
+                style={{...styles.rowDirection, ...styles.justifySpaceBetween}}>
+                <Text style={{...styles.gradeTitleStyle}}>{course}</Text>
 
-              <View style={{...styles.gradeTextStyle}}>
-                <Text style={{...styles.whiteColor}}>{totalgrade}</Text>
+                <View style={{...styles.gradeTextStyle}}>
+                  <Text style={{...styles.whiteColor}}>{totalgrade}</Text>
+                </View>
               </View>
-            </View>
-          </Card>
+            </Card>
+          </TouchableOpacity>
         ))}
       </View>
     </Page>
