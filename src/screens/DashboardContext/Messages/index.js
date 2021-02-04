@@ -143,7 +143,7 @@ const Dashboard = ({navigation, route}) => {
       appbar={{
         title: Locales.t('messages'),
         action: {
-          icon: 'settings',
+          icon: 'cog',
           onPress: () => {
             navigation.navigate('messagessubcontext', {
               screen: 'settings',
