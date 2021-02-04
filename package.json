@@ -37,7 +37,7 @@
     "react-native-skeleton-placeholder": "^2.0.7",
     "react-native-tab-view": "^2.13.0",
     "react-native-vector-icons": "^6.6.0",
-    "react-native-webview": "^9.2.1",
+    "react-native-webview": "^11.0.0",
     "rn-fetch-blob": "^0.12.0"
   },
   "devDependencies": {
