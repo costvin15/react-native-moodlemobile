@@ -16,9 +16,7 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* MoodleMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MoodleMobileTests.m */; };
 		4FB33CE024BC209A0080E8AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FB33CDF24BC209A0080E8AB /* LaunchScreen.storyboard */; };
-		7D759676A11C9B4C7D6A5C65 /* libPods-MoodleMobile-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EC1AD158606F450CA09D8D /* libPods-MoodleMobile-tvOSTests.a */; };
 		BB5EFA04D7F1D5B23F38C30C /* libPods-MoodleMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC623F8058B15B77BBBA32F2 /* libPods-MoodleMobile.a */; };
-		D7E40FF94CDAF9267E28655F /* libPods-MoodleMobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 921CF6B57BEC29C91E70AB25 /* libPods-MoodleMobile-tvOS.a */; };
 		F3A371CF96E2597C6831CFC0 /* libPods-MoodleMobile-MoodleMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4891F7EAFF045C4D2B114212 /* libPods-MoodleMobile-MoodleMobileTests.a */; };
 /* End PBXBuildFile section */
 
@@ -50,23 +48,17 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MoodleMobile/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MoodleMobile/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = MoodleMobile/main.m; sourceTree = "<group>"; };
-		16481486385D0392A98AB138 /* Pods-MoodleMobile-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoodleMobile-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-MoodleMobile-tvOSTests/Pods-MoodleMobile-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* MoodleMobile-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MoodleMobile-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* MoodleMobile-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MoodleMobile-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B45DEE767108C263ABBED6F /* Pods-MoodleMobile-MoodleMobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoodleMobile-MoodleMobileTests.debug.xcconfig"; path = "Target Support Files/Pods-MoodleMobile-MoodleMobileTests/Pods-MoodleMobile-MoodleMobileTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4891F7EAFF045C4D2B114212 /* libPods-MoodleMobile-MoodleMobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MoodleMobile-MoodleMobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FB33CDF24BC209A0080E8AB /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		68A69F99270A0D6E7B4BCCCF /* Pods-MoodleMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoodleMobile.release.xcconfig"; path = "Target Support Files/Pods-MoodleMobile/Pods-MoodleMobile.release.xcconfig"; sourceTree = "<group>"; };
-		85D99A16E14A9904A9C9A678 /* Pods-MoodleMobile-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoodleMobile-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-MoodleMobile-tvOS/Pods-MoodleMobile-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		8671B5077C05778391E365D8 /* Pods-MoodleMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoodleMobile.debug.xcconfig"; path = "Target Support Files/Pods-MoodleMobile/Pods-MoodleMobile.debug.xcconfig"; sourceTree = "<group>"; };
-		921CF6B57BEC29C91E70AB25 /* libPods-MoodleMobile-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MoodleMobile-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9FC8401C71F880DB929C0464 /* Pods-MoodleMobile-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoodleMobile-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-MoodleMobile-tvOSTests/Pods-MoodleMobile-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		B0FA9C53B793FB2255F2B681 /* Pods-MoodleMobile-MoodleMobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoodleMobile-MoodleMobileTests.release.xcconfig"; path = "Target Support Files/Pods-MoodleMobile-MoodleMobileTests/Pods-MoodleMobile-MoodleMobileTests.release.xcconfig"; sourceTree = "<group>"; };
-		E771F357FA9D9D4891609F32 /* Pods-MoodleMobile-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoodleMobile-tvOS.release.xcconfig"; path = "Target Support Files/Pods-MoodleMobile-tvOS/Pods-MoodleMobile-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		EC623F8058B15B77BBBA32F2 /* libPods-MoodleMobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MoodleMobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F9EC1AD158606F450CA09D8D /* libPods-MoodleMobile-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MoodleMobile-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +82,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7E40FF94CDAF9267E28655F /* libPods-MoodleMobile-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,7 +89,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D759676A11C9B4C7D6A5C65 /* libPods-MoodleMobile-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,10 +119,6 @@
 				68A69F99270A0D6E7B4BCCCF /* Pods-MoodleMobile.release.xcconfig */,
 				3B45DEE767108C263ABBED6F /* Pods-MoodleMobile-MoodleMobileTests.debug.xcconfig */,
 				B0FA9C53B793FB2255F2B681 /* Pods-MoodleMobile-MoodleMobileTests.release.xcconfig */,
-				85D99A16E14A9904A9C9A678 /* Pods-MoodleMobile-tvOS.debug.xcconfig */,
-				E771F357FA9D9D4891609F32 /* Pods-MoodleMobile-tvOS.release.xcconfig */,
-				16481486385D0392A98AB138 /* Pods-MoodleMobile-tvOSTests.debug.xcconfig */,
-				9FC8401C71F880DB929C0464 /* Pods-MoodleMobile-tvOSTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -158,8 +144,6 @@
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				EC623F8058B15B77BBBA32F2 /* libPods-MoodleMobile.a */,
 				4891F7EAFF045C4D2B114212 /* libPods-MoodleMobile-MoodleMobileTests.a */,
-				921CF6B57BEC29C91E70AB25 /* libPods-MoodleMobile-tvOS.a */,
-				F9EC1AD158606F450CA09D8D /* libPods-MoodleMobile-tvOSTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -245,7 +229,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "MoodleMobile-tvOS" */;
 			buildPhases = (
-				0B43A25F2822B527718BFE47 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
@@ -265,7 +248,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "MoodleMobile-tvOSTests" */;
 			buildPhases = (
-				F9267CE6F16EFF96E5DE245C /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
@@ -376,28 +358,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
-		};
-		0B43A25F2822B527718BFE47 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MoodleMobile-tvOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -555,28 +515,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MoodleMobile/Pods-MoodleMobile-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F9267CE6F16EFF96E5DE245C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MoodleMobile-tvOSTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -765,7 +703,6 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 85D99A16E14A9904A9C9A678 /* Pods-MoodleMobile-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -793,7 +730,6 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E771F357FA9D9D4891609F32 /* Pods-MoodleMobile-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -821,7 +757,6 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 16481486385D0392A98AB138 /* Pods-MoodleMobile-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -848,7 +783,6 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9FC8401C71F880DB929C0464 /* Pods-MoodleMobile-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -905,6 +839,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -965,6 +900,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
