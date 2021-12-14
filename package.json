@@ -21,7 +21,7 @@
     "moment": "^2.24.0",
     "node-fetch": "^2.6.1",
     "react": "17.0.1",
-    "react-native": "0.64.1",
+    "react-native": "0.64.2",
     "react-native-collapsible": "^1.5.2",
     "react-native-dotenv": "^0.2.0",
     "react-native-gesture-handler": "^1.6.1",
